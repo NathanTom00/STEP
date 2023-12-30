@@ -29,6 +29,10 @@ import { OnboardingComponent } from './componenti/onboarding/onboarding.componen
 import {MatChipsModule} from '@angular/material/chips';
 import {MatCardModule} from '@angular/material/card';
 import { RouterModule } from '@angular/router';
+import { OnboardingObiettiviComponent } from './componenti/onboarding-obiettivi/onboarding-obiettivi.component';
+import { OnboardingSuggerimentiComponent } from './componenti/onboarding-suggerimenti/onboarding-suggerimenti.component';
+import { LuogoComponent } from './componenti/luogo/luogo.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -36,6 +40,9 @@ import { RouterModule } from '@angular/router';
     AppComponent,
     HomeComponent,
     OnboardingComponent,
+    OnboardingObiettiviComponent,
+    OnboardingSuggerimentiComponent,
+    LuogoComponent,
     
   ],
   imports: [
@@ -51,7 +58,8 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     MatButtonModule,
     MatChipsModule,
-    CarouselModule
+    CarouselModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

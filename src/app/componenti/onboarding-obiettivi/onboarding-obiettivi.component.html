@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="sezione">
+        <h3 class="titolo-blocco">
+            Cosa cerchi quando viaggi?
+        </h3>
+        <p class="paragrafo">
+            Seleziona 3 obiettivi
+        </p>
+    </div>
+
+    <div class="container-emozioni">
+        <div class="button-container" *ngFor="let emozione of emozioni">
+            <button mat-raised-button type="button" #bottoneEmozione class="emozione" (click)="onClick(bottoneEmozione)"  value="{{emozione}}">{{emozione}}
+            </button>
+            
+        </div>
+    </div>
+    <div class="sezione-button">
+        <button mat-raised-button color="accent" class="submit-button">Inizia il Viaggio</button>
+    </div>
+</div>
