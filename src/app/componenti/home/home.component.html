@@ -1,0 +1,163 @@
+<div class="container">
+    <div class="sezione">
+        <h3 class="titolo-blocco">
+            Quale emozione stai cercando?
+        </h3>
+        <div class="scrollable-container" *ngIf="emozioni.length>1">
+            <mat-chip class="chip"
+                [ngClass]="{'first-chip': emozione === emozioni[0], 'last-chip': emozione === emozioni[emozioni.length-1]}"
+                *ngFor="let emozione of emozioni">
+
+                {{emozione}}
+
+            </mat-chip>
+        </div>
+    </div>
+
+    <div class="sezione">
+        <h3 class="titolo-blocco">
+            In Evidenza
+        </h3>
+        <div class="card-container">
+
+            <mat-card class="card" id="evidenza">
+                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                    alt="Photo of a Shiba Inu">
+
+
+                <mat-card-title>Villa Lante</mat-card-title>
+                <mat-card-subtitle>Descrizione</mat-card-subtitle>
+                <div class="scrollable-container" style="padding: 0.5rem 0">
+                    <mat-chip class="chip" [ngClass]="{'first-chip': emozione === emozioni_evidenza[0]}"
+                        *ngFor="let emozione of emozioni_evidenza">{{emozione}}</mat-chip>
+                </div>
+                <p class="anima-locus-par">
+                    Anima Locus<span class="anima-locus-spacer"></span> <mat-icon>spa</mat-icon>
+                </p>
+            </mat-card>
+
+        </div>
+    </div>
+
+    <div class="sezione">
+        <h3 class="titolo-blocco">
+            Da Esplorare
+        </h3>
+        <div class="scrollable-container">
+
+            <mat-card class="card">
+                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                    alt="Photo of a Shiba Inu">
+
+
+                <mat-card-title>Paesaggio di Civita di Bagnoreggio</mat-card-title>
+                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                <div class="scrollable-container" style="padding: 0.5rem 0">
+                    <mat-chip class="chip" [ngClass]="{'first-chip': emozione === emozioni_evidenza[0]}"
+                        *ngFor="let emozione of emozioni_evidenza">{{emozione}}</mat-chip>
+                </div>
+                <p class="anima-locus-par">
+                    <mat-icon>spa</mat-icon>
+                </p>
+            </mat-card>
+
+            <mat-card class="card">
+                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                    alt="Photo of a Shiba Inu">
+
+
+                <mat-card-title>Paesaggio di Civita di Bagnoreggio</mat-card-title>
+                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                <div class="scrollable-container" style="padding: 0.5rem 0">
+                    <mat-chip class="chip" [ngClass]="{'first-chip': emozione === emozioni_evidenza[0]}"
+                        *ngFor="let emozione of emozioni_evidenza">{{emozione}}</mat-chip>
+                </div>
+                <p class="anima-locus-par">
+                    <mat-icon>spa</mat-icon>
+                </p>
+            </mat-card>
+
+            <mat-card class="card">
+                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                    alt="Photo of a Shiba Inu">
+
+
+                <mat-card-title>Paesaggio di Civita di Bagnoreggio</mat-card-title>
+                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                <div class="scrollable-container" style="padding: 0.5rem 0">
+                    <mat-chip class="chip" [ngClass]="{'first-chip': emozione === emozioni_evidenza[0]}"
+                        *ngFor="let emozione of emozioni_evidenza">{{emozione}}</mat-chip>
+                </div>
+                <p class="anima-locus-par">
+                    <mat-icon>spa</mat-icon>
+                </p>
+            </mat-card>
+
+        </div>
+    </div>
+
+    <div class="sezione">
+        <h3 class="titolo-blocco">
+            Come si sentono gli altri
+        </h3>
+
+        <div class="carousel-container">
+            <owl-carousel-o [options]="customOptions" >
+                <ng-template carouselSlide>
+                    <div class="comment-container">
+                        <div class="comment">
+                            <p class="comment-title">Borgo di Cotanello</p>
+                            <p class="comment-content">
+                                Lorem ipsum dolor sit amet...
+                            </p>
+                            <div>
+                                <mat-chip class="chip" *ngFor="let emozione of emozioni_evidenza">{{emozione}}</mat-chip>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div class="comment-container">
+                        <div class="comment">
+                            <p class="comment-title">Borgo di Cotanello</p>
+                            <p class="comment-content">
+                                Lorem ipsum dolor sit amet...
+                            </p>
+                            <div>
+                                <mat-chip class="chip" *ngFor="let emozione of emozioni_evidenza">{{emozione}}</mat-chip>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div class="comment-container">
+                        <div class="comment">
+                            <p class="comment-title">Borgo di Cotanello</p>
+                            <p class="comment-content">
+                                Lorem ipsum dolor sit amet...
+                            </p>
+                            <div>
+                                <mat-chip class="chip" *ngFor="let emozione of emozioni_evidenza">{{emozione}}</mat-chip>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+            </owl-carousel-o>
+        </div>
+
+    </div>
+
+    <div class="sezione ultima-sezione">
+        <h3 class="titolo-blocco">
+            Vivi la tua esperienza emozionale
+        </h3>
+        <div class="login-container">
+            <p class="login-desc">
+                Accedi o crea un account per personalizzare la tua 
+                esperienza e partecipare alla community game
+            </p>
+            <button mat-raised-button color="accent" class="login-button">Log in o Sign up</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,138 @@
+.container {
+  padding: 1rem 0;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sezione {
+  padding-bottom: 2rem;
+}
+
+.titolo-blocco {
+  font-weight: 500;
+  padding: 0 1rem;
+  font-size: large;
+}
+
+.scrollable-container {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  display: flex;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollable-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollable-container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.chip {
+  margin-inline: 0.2rem;
+}
+
+.first-chip {
+  margin-left: 1rem;
+}
+
+.last-chip {
+  margin-right: 1rem;
+}
+
+.card-container {
+  margin-inline: 1rem;
+}
+
+.card {
+  max-width: 220px;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  overflow-x: initial;
+  white-space: initial;
+}
+
+mat-card-title {
+  font-size: medium;
+}
+
+#evidenza {
+    max-width: 400px;
+}
+
+.card .first-chip {
+  margin-left: 0 !important;
+}
+
+.anima-locus-par {
+  display: flex;
+  align-items: center;
+}
+
+.anima-locus-par mat-icon{
+  transform: scale(0.7);
+}
+
+.anima-locus-spacer {
+  padding-right: 0.5rem;
+}
+
+.scrollable-container .card{
+    padding-inline: 1rem;
+}
+
+.carousel-container{
+  padding-inline: 1rem;
+}
+
+
+.comment-container{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.comment{
+  max-width: 300px;
+  width: 90%;
+  padding: 0.5rem;
+  border:2px solid black;
+}
+
+.comment .scrollable-container{
+  padding: 0;
+}
+
+.comment-title{
+  color: gray;
+  margin-bottom: 0;
+}
+
+.comment-content{
+  font-weight: 550;
+}
+
+.login-container{
+  padding-inline: 1rem;
+}
+
+.login-desc{
+  font-size: smaller;
+  text-align: center;
+}
+
+.login-button{
+  width: 100%;
+  background-color: black !important;
+}
+
+.ultima-sezione{
+  padding-bottom: 10rem;
+}
