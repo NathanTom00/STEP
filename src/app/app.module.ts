@@ -25,7 +25,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import { OnBoardingComponent } from './componenti/on-boarding/on-boarding.component';
+import { OnboardingComponent } from './componenti/onboarding/onboarding.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatCardModule} from '@angular/material/card';
 import { RouterModule } from '@angular/router';
@@ -35,7 +35,7 @@ import { RouterModule } from '@angular/router';
   declarations: [
     AppComponent,
     HomeComponent,
-    OnBoardingComponent,
+    OnboardingComponent,
     
   ],
   imports: [

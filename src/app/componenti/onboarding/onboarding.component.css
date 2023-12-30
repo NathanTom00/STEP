@@ -1,0 +1,48 @@
+.container {
+  width: 100%;
+  min-height: 100%;
+}
+
+.content {
+  max-width: 100%;
+  height: fit-content;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.sezione {
+  padding-bottom: 2rem;
+}
+
+.titolo-blocco {
+  font-weight: 500;
+  font-size: large;
+  margin-bottom: 0.5rem;
+}
+
+.titolo-subblocco {
+  font-weight: 500;
+  font-size: medium;
+  margin-bottom: 0.5rem;
+}
+
+.login-button {
+  width: 100%;
+  max-width: 400px;
+  background-color: black !important;
+}
+
+.paragrafo{
+    max-width: 100%;
+}
+
+.immagine{
+    width: 100%;
+    height: auto;
+}
+
+#sezione-button{
+    display: flex;
+    justify-content: center;
+}
