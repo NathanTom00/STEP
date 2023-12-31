@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ErrObiettiviComponent } from 'src/app/dialogs/err-obiettivi/err-obiettivi.component';
 
 @Component({
   selector: 'app-onboarding-obiettivi',
@@ -28,6 +30,10 @@ export class OnboardingObiettiviComponent implements OnInit {
 
   emozioniSelezionati: string[] = [];
 
+  constructor(private router: Router,private route : ActivatedRoute,private dialog : MatDialog){}
+
+  ngOnInit(): void {}
+
   onClick(buttonMat: MatButton) {
     let button = buttonMat._elementRef.nativeElement;
     let emozione: string = button.value;
@@ -42,7 +48,13 @@ export class OnboardingObiettiviComponent implements OnInit {
     console.log(this.emozioniSelezionati)*/
   }
 
-  ngOnInit(): void {}
+  onSubmit() {
+    if(this.emozioniSelezionati.length != 3){
+      this.dialog.open(ErrObiettiviComponent)
+      return
+    }
 
-  onSubmit() {}
+    this.router.navigate(['./suggerimenti'],{relativeTo: this.route})
+    
+  }
 }

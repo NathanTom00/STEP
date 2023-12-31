@@ -1,0 +1,66 @@
+.sezione {
+  padding: 0 1rem;
+  padding-top: 1rem;
+}
+
+.titolo-blocco {
+  font-weight: 500;
+  font-size: large;
+  margin-bottom: 0.5rem;
+}
+
+.paragrafo {
+  margin-bottom: 0;
+}
+
+.card {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.imm-card {
+  border-radius: 5%;
+  height: 350px;
+  object-fit: cover;
+  width: auto;
+}
+
+
+.card-container {
+  padding-inline: 1rem;
+  padding-top: 50px;
+}
+
+.chip {
+  margin-inline-end: 5px;
+}
+
+.emozioni-container {
+  padding: 0.5rem 0;
+}
+
+.par-card {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: small;
+}
+
+
+::ng-deep .owl-dots {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  right: 25%;
+}
+
+.scopri-button{
+  width: 100%;
+  max-width: 400px;
+  background-color: black !important;
+}
+
+.spacer{
+  padding-top: 5rem;
+}

@@ -19,6 +19,13 @@ import {HttpClientModule} from '@angular/common/http'
  * Carousel
  */
 import { CarouselModule } from 'ngx-owl-carousel-o'; 
+
+/**
+ * Cookie Service
+ */
+import {CookieService} from 'ngx-cookie-service';
+
+
 /**
  * Material
  */
@@ -33,6 +40,8 @@ import { OnboardingObiettiviComponent } from './componenti/onboarding-obiettivi/
 import { OnboardingSuggerimentiComponent } from './componenti/onboarding-suggerimenti/onboarding-suggerimenti.component';
 import { LuogoComponent } from './componenti/luogo/luogo.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ErrObiettiviComponent } from './dialogs/err-obiettivi/err-obiettivi.component';
 
 
 @NgModule({
@@ -43,6 +52,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     OnboardingObiettiviComponent,
     OnboardingSuggerimentiComponent,
     LuogoComponent,
+    ErrObiettiviComponent,
     
   ],
   imports: [
@@ -59,9 +69,12 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatButtonModule,
     MatChipsModule,
     CarouselModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule
   ],
-  providers: [],
+  providers: [
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

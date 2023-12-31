@@ -9,8 +9,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'onboarding/obiettivi',component: OnboardingObiettiviComponent},
   {path: 'onboarding/obiettivi/suggerimenti',component: OnboardingSuggerimentiComponent},
-  {path: 'onboarding', component: OnboardingComponent},
-  {path: '',redirectTo: 'home', pathMatch: 'full'}
+  {path: 'onboarding', component: OnboardingComponent}
 ];
 
 @NgModule({
