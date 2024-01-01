@@ -7,34 +7,52 @@
   padding: 1rem;
 }
 
+.paragrafo {
+  font-size: medium;
+  font-weight: 300;
+  color: #015EDE;
+}
+
 .titolo-blocco {
   font-weight: 500;
   font-size: large;
   margin-bottom: 0.5rem;
 }
-.container-emozioni{
+.container-emozioni {
   display: grid;
   grid-template-columns: auto auto auto;
   margin-inline: 1rem;
-  grid-row-gap: 10px;
+  gap: 10px;
   max-width: 100%;
   padding-bottom: 1rem;
 }
-.button-container{
+.button-container {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
 }
 .emozione {
-  width: 100px;
+  width: 105px;
   height: 100px;
-  border: 1px solid black;
+  border: none;
+  border-radius: 7%;
   box-shadow: none;
-  font-size:small;
+  font-size: small;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: #015ede;
+  box-shadow: 5px 10px 10px 0px hwb(0deg 25.35% 74.65% / 20%);
 }
 
-.sezione-button{
+.icon-button {
+  margin-bottom: 5px;
+}
+
+.sezione-button {
   display: flex;
   justify-content: center;
   padding-inline: 1rem;
@@ -43,13 +61,17 @@
 .submit-button {
   width: 100%;
   max-width: 400px;
-  background-color: black !important;
+  background-image: linear-gradient(to right, #002d6b, #015ede) !important;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  font-size: 1rem;
+  height: 40px;
 }
 
 .selected {
-  background-color: black !important;
+  background-color: #015ede !important;
   color: white !important;
-
 }
 
 @media only screen and (max-width: 320px) {
@@ -58,6 +80,6 @@
     height: 80px;
     border: 1px solid black;
     box-shadow: none;
-    font-size:x-small;
+    font-size: x-small;
   }
 }

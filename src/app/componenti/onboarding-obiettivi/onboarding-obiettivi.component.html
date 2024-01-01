@@ -10,12 +10,21 @@
 
     <div class="container-emozioni">
         <div class="button-container" *ngFor="let emozione of emozioni">
-            <button mat-raised-button type="button" #bottoneEmozione class="emozione" (click)="onClick(bottoneEmozione)"  value="{{emozione}}">{{emozione}}
+            <button matRipple type="button" #bottoneEmozione class="emozione" (click)="onClick(bottoneEmozione)"  value="{{emozione.nome}}">
+                <div class="icon-button">
+                    <svg-icon src="{{emozione.icon}}" ></svg-icon>
+                    
+                </div>
+                <p class="label-button">
+                    {{emozione.nome}}
+                </p>
             </button>
             
         </div>
     </div>
     <div class="sezione-button">
-        <button mat-raised-button color="accent" class="submit-button" (click)="onSubmit()">Inizia il Viaggio</button>
+        <button class="submit-button" (click)="onSubmit()">
+            Scopri Suggerimenti
+        </button>
     </div>
 </div>

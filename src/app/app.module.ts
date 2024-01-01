@@ -2,9 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+/**
+ * Componenti
+ */
 import { AppComponent } from './app.component';
 import { HomeComponent } from './componenti/home/home.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ErrObiettiviComponent } from './dialogs/err-obiettivi/err-obiettivi.component';
+import { LuogoComponent } from './componenti/luogo/luogo.component';
+import { OnboardingObiettiviComponent } from './componenti/onboarding-obiettivi/onboarding-obiettivi.component';
+import { OnboardingSuggerimentiComponent } from './componenti/onboarding-suggerimenti/onboarding-suggerimenti.component';
+
 /**
  * Forms
  */
@@ -25,6 +34,10 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
  */
 import {CookieService} from 'ngx-cookie-service';
 
+/**
+ * Icons
+ */
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 /**
  * Material
@@ -36,12 +49,9 @@ import { OnboardingComponent } from './componenti/onboarding/onboarding.componen
 import {MatChipsModule} from '@angular/material/chips';
 import {MatCardModule} from '@angular/material/card';
 import { RouterModule } from '@angular/router';
-import { OnboardingObiettiviComponent } from './componenti/onboarding-obiettivi/onboarding-obiettivi.component';
-import { OnboardingSuggerimentiComponent } from './componenti/onboarding-suggerimenti/onboarding-suggerimenti.component';
-import { LuogoComponent } from './componenti/luogo/luogo.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDialogModule} from '@angular/material/dialog';
-import { ErrObiettiviComponent } from './dialogs/err-obiettivi/err-obiettivi.component';
+import {MatRippleModule} from '@angular/material/core';
 
 
 @NgModule({
@@ -64,13 +74,15 @@ import { ErrObiettiviComponent } from './dialogs/err-obiettivi/err-obiettivi.com
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AngularSvgIconModule.forRoot(),
     MatCardModule,
     MatIconModule,
     MatButtonModule,
     MatChipsModule,
     CarouselModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRippleModule
   ],
   providers: [
     CookieService
