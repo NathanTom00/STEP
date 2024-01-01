@@ -12,19 +12,6 @@ import { ErrObiettiviComponent } from 'src/app/dialogs/err-obiettivi/err-obietti
   styleUrls: ['./onboarding-obiettivi.component.css'],
 })
 export class OnboardingObiettiviComponent implements OnInit {
-  /**emozioni = [
-    
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-  ]; */
 
   iconLink = "../../../assets/Icons/"
   emozioni = [

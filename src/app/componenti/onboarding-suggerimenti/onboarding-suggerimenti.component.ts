@@ -58,4 +58,8 @@ export class OnboardingSuggerimentiComponent {
     alert(codiceLuogo)
   }
 
+  firstLetterUpper(stringa : string){
+    return stringa[0].toUpperCase() + stringa.substring(1).toLocaleLowerCase();
+  }
+
 }

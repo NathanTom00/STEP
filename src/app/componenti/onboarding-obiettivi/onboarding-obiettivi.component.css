@@ -7,17 +7,12 @@
   padding: 1rem;
 }
 
-.paragrafo {
-  font-size: medium;
-  font-weight: 300;
-  color: #015EDE;
-}
-
-.titolo-blocco {
-  font-weight: 500;
+.titolo-blocco{
+  font-weight: bold;
   font-size: large;
   margin-bottom: 0.5rem;
 }
+
 .container-emozioni {
   display: grid;
   grid-template-columns: auto auto auto;
@@ -26,12 +21,14 @@
   max-width: 100%;
   padding-bottom: 1rem;
 }
+
 .button-container {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
 }
+
 .emozione {
   width: 105px;
   height: 100px;
@@ -48,6 +45,10 @@
   box-shadow: 5px 10px 10px 0px hwb(0deg 25.35% 74.65% / 20%);
 }
 
+.label-button::first-letter {
+  text-transform: uppercase
+}
+
 .icon-button {
   margin-bottom: 5px;
 }
@@ -58,16 +59,7 @@
   padding-inline: 1rem;
 }
 
-.submit-button {
-  width: 100%;
-  max-width: 400px;
-  background-image: linear-gradient(to right, #002d6b, #015ede) !important;
-  color: white;
-  border-radius: 20px;
-  border: none;
-  font-size: 1rem;
-  height: 40px;
-}
+
 
 .selected {
   background-color: #015ede !important;
@@ -78,8 +70,6 @@
   .emozione {
     width: 80px;
     height: 80px;
-    border: 1px solid black;
-    box-shadow: none;
     font-size: x-small;
   }
 }

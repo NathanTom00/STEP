@@ -4,7 +4,7 @@
 }
 
 .titolo-blocco {
-  font-weight: 500;
+  font-weight: bolder;
   font-size: large;
   margin-bottom: 0.5rem;
 }
@@ -16,6 +16,7 @@
 .card {
   border-radius: 0;
   box-shadow: none;
+  background-color: transparent;
 }
 
 .imm-card {
@@ -25,7 +26,6 @@
   width: auto;
 }
 
-
 .card-container {
   padding-inline: 1rem;
   padding-top: 50px;
@@ -33,6 +33,10 @@
 
 .chip {
   margin-inline-end: 5px;
+  --mdc-chip-disabled-label-text-color: #015EDE;
+  --mdc-chip-elevated-disabled-container-color: white; 
+    opacity: 1 !important;
+    border: 1px solid #015EDE;
 }
 
 .emozioni-container {
@@ -45,6 +49,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   font-size: small;
+  color: #015EDE;
 }
 
 
@@ -55,10 +60,8 @@
   right: 25%;
 }
 
-.scopri-button{
-  width: 100%;
-  max-width: 400px;
-  background-color: black !important;
+.anima-locus-container{
+  padding-bottom: 1rem;
 }
 
 .spacer{

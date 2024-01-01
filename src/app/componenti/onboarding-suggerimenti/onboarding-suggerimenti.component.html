@@ -13,9 +13,9 @@
                 <mat-card class="card">
                     <img class="imm-card" src="{{luogo.immagine_link}}">
                     <div class="emozioni-container">
-                        <mat-chip class="chip" *ngFor="let ebiettivo of luogo.obiettivi" >
+                        <mat-chip disabled class="chip" *ngFor="let obiettivo of luogo.obiettivi" >
             
-                            {{ebiettivo}}
+                            {{firstLetterUpper(obiettivo)}}
             
                         </mat-chip>
                     </div>
@@ -23,10 +23,10 @@
                     <p class="par-card">
                         {{luogo.descrizione}}
                     </p>
-                    <div>
-                        <mat-icon *ngFor="let icon of luogo.anima_locus_icons" fontIcon="{{icon}}"></mat-icon>
+                    <div class="anima-locus-container">
+                        <mat-icon style="color: #D2B48C;" *ngFor="let icon of luogo.anima_locus_icons" fontIcon="{{icon}}"></mat-icon>
                     </div>
-                    <button mat-raised-button color="accent" class="scopri-button" (click)="onClickScopri(luogo.codice)">Scopri Luogo</button>
+                    <button class="button" (click)="onClickScopri(luogo.codice)">Scopri Luogo</button>
                 </mat-card>
             </div>
         </ng-template>

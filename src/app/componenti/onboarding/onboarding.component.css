@@ -16,7 +16,7 @@
 }
 
 .titolo-blocco {
-  font-weight: 500;
+  font-weight: bold;
   font-size: large;
   margin-bottom: 0.5rem;
 }
@@ -25,12 +25,6 @@
   font-weight: 500;
   font-size: medium;
   margin-bottom: 0.5rem;
-}
-
-.login-button {
-  width: 100%;
-  max-width: 400px;
-  background-color: black !important;
 }
 
 .paragrafo{
