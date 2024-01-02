@@ -38,6 +38,8 @@ import {CookieService} from 'ngx-cookie-service';
  * Icons
  */
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 /**
  * Material
@@ -45,13 +47,14 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import { OnboardingComponent } from './componenti/onboarding/onboarding.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatCardModule} from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRippleModule} from '@angular/material/core';
+import { OnboardingComponent } from './componenti/onboarding/onboarding.component';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -75,6 +78,8 @@ import {MatRippleModule} from '@angular/material/core';
     ReactiveFormsModule,
     HttpClientModule,
     AngularSvgIconModule.forRoot(),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
     MatCardModule,
     MatIconModule,
     MatButtonModule,

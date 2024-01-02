@@ -9,14 +9,14 @@
     </div>
 
     <div class="container-emozioni">
-        <div class="button-container" *ngFor="let emozione of emozioni">
-            <button matRipple type="button" #bottoneEmozione class="emozione" (click)="onClick(bottoneEmozione)"  value="{{emozione.nome}}">
+        <div class="button-container" *ngFor="let obiettivo of  getObiettivi()">
+            <button matRipple type="button" #bottoneObiettivo class="emozione" (click)="onClick(bottoneObiettivo)"  value="{{obiettivo.nome}}">
                 <div class="icon-button">
-                    <svg-icon src="{{emozione.icon}}" ></svg-icon>
+                    <svg-icon src="{{obiettivo.icon}}" ></svg-icon>
                     
                 </div>
                 <p class="label-button">
-                    {{emozione.nome}}
+                    {{obiettivo.nome}}
                 </p>
             </button>
             

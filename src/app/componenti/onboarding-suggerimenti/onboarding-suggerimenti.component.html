@@ -3,15 +3,16 @@
         Il prossimo viaggio ti aspetta
     </h3>
     <p class="paragrafo">
-        Abbiamo trovato 3 luoghi da cui iniziare
+        Abbiamo trovato {{len}} luoghi da cui iniziare
     </p>
 </div>
 <div class="carousel-container">
     <owl-carousel-o [options]="customOptions">
-        <ng-template carouselSlide *ngFor="let luogo of luoghi_selezionati">
+        <ng-template carouselSlide *ngFor="let luogo of luoghiSelezionati">
             <div class="card-container">
                 <mat-card class="card">
-                    <img class="imm-card" src="{{luogo.immagine_link}}">
+                    
+                    <img class="imm-card" src="{{luogo.imm}}">
                     <div class="emozioni-container">
                         <mat-chip disabled class="chip" *ngFor="let obiettivo of luogo.obiettivi" >
             
@@ -23,10 +24,13 @@
                     <p class="par-card">
                         {{luogo.descrizione}}
                     </p>
+                    
                     <div class="anima-locus-container">
                         <mat-icon style="color: #D2B48C;" *ngFor="let icon of luogo.anima_locus_icons" fontIcon="{{icon}}"></mat-icon>
                     </div>
-                    <button class="button" (click)="onClickScopri(luogo.codice)">Scopri Luogo</button>
+
+                    
+                    <button class="button" (click)="onClickScopri(luogo.id)">Scopri Luogo</button>
                 </mat-card>
             </div>
         </ng-template>
