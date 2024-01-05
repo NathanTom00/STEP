@@ -1,3 +1,17 @@
 .spacer {
   flex: 1 1 auto;
 }
+mat-toolbar {
+  background-color: transparent;
+}
+
+.menu-button{
+  color: #D2B48C;
+  background-color: white;
+  box-shadow: none!important;
+}
+
+.sidenav{
+  width: 100%;
+  background-color: #f7f7f7;
+}

@@ -27,4 +27,12 @@ body {
   color: #015ede;
 }
 
-
+.chip {
+  margin-inline-end: 5px;
+  --mdc-chip-disabled-label-text-color: #015EDE;
+  --mdc-chip-elevated-disabled-container-color: white; 
+  opacity: 1 !important;
+  border: 1px solid #015EDE;
+  --mdc-chip-label-text-color: #015EDE;
+  --mdc-chip-elevated-container-color: white; 
+}

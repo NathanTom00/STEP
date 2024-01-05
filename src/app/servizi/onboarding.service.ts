@@ -1,21 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { Observable, filter, map, tap } from 'rxjs';
-import { ObiettiviService } from './obiettivi.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OnboardingService {
-  obiettivi : {}[];
   obiettiviSelezionati : string[]= []
 
-  constructor(private firestore: Firestore, private obiettiviService : ObiettiviService) {
-    this.obiettivi = obiettiviService.obiettivi
-  }
-
-  getObiettivi(){
-    return this.obiettivi
+  constructor(private firestore: Firestore) {
   }
 
   setObiettiviSelezionati(arr : string[]){

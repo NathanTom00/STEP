@@ -31,14 +31,6 @@
   padding-top: 50px;
 }
 
-.chip {
-  margin-inline-end: 5px;
-  --mdc-chip-disabled-label-text-color: #015EDE;
-  --mdc-chip-elevated-disabled-container-color: white; 
-    opacity: 1 !important;
-    border: 1px solid #015EDE;
-}
-
 .emozioni-container {
   padding: 0.5rem 0;
 }
@@ -58,6 +50,11 @@
   top: 10px;
   left: 25%;
   right: 25%;
+}
+
+::ng-deep .owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+  background: #015EDE !important;
 }
 
 .anima-locus-container{

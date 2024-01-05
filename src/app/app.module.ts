@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { environment } from 'src/environments/environment';
 /**
  * Componenti
  */
@@ -54,8 +54,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRippleModule} from '@angular/material/core';
 import { OnboardingComponent } from './componenti/onboarding/onboarding.component';
-import { environment } from 'src/environments/environment';
-
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -87,7 +86,8 @@ import { environment } from 'src/environments/environment';
     CarouselModule,
     MatGridListModule,
     MatDialogModule,
-    MatRippleModule
+    MatRippleModule,
+    MatSidenavModule
   ],
   providers: [
     CookieService

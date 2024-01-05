@@ -23,4 +23,8 @@ export class ObiettiviService {
     {nome: 'riconnettermi con me stesso', icon: `${this.iconLink}riconnettermi.svg`}
   ]
   constructor() { }
+
+  getObiettivi(){
+    return this.obiettivi
+  }
 }
