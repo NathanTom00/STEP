@@ -29,6 +29,7 @@ body {
 
 .chip {
   margin-inline-end: 5px;
+  margin-bottom: 5px;
   --mdc-chip-disabled-label-text-color: #015EDE;
   --mdc-chip-elevated-disabled-container-color: white; 
   opacity: 1 !important;

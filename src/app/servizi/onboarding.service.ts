@@ -25,8 +25,16 @@ export class OnboardingService {
     return collectionData(collezioneLuoghi, { idField: 'id'}).pipe(
       map((luoghi:any[]) => {
         //ritorna i luoghi del db che hanno incluso uno dei 3 obiettivi selezionati
-        return luoghi.filter((luogo:any) => this.obiettiviSelezionati.some(obiettivo => luogo.obiettivi.includes(obiettivo)))
+        return luoghi.filter((luogo:any) => {
+          for(let obiettivo of luogo.obiettivi){
+            if(this.obiettiviSelezionati.includes(obiettivo.nome))
+              return true
+          }
+
+          return false
+        })
       })
     )
   }
+  
 }

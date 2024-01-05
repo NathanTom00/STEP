@@ -10,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class AppComponent implements OnInit {
   title = 'Step_Proj';
 
-  test = true;
+  test = false;
   constructor(private router: Router,private cookieService : CookieService) {}
 
   ngOnInit(): void {

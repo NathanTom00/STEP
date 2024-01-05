@@ -4,12 +4,17 @@ import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root'
 })
-export class LuoghiService {
+export class FirestoreService {
 
   constructor(private firestore: Firestore) { }
 
   getLuoghi(){
-    const collezioneLuoghi = collection(this.firestore, 'luogo');
-    return collectionData(collezioneLuoghi, { idField: 'id'})
+    const refCollection = collection(this.firestore,'luogo')
+
+    return collectionData(refCollection, { idField: 'id'})
+  }
+
+  getCommentByIDLuogo(idLuogo:string){
+    
   }
 }

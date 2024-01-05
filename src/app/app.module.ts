@@ -38,6 +38,10 @@ import {CookieService} from 'ngx-cookie-service';
  * Icons
  */
 import { AngularSvgIconModule } from 'angular-svg-icon';
+
+/**
+ * Firebase
+ */
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 

@@ -6,9 +6,10 @@
         <div class="scrollable-container" *ngIf="emozioni.length>1">
             <mat-chip class="chip"
                 [ngClass]="{'first-chip': emozione === emozioni[0], 'last-chip': emozione === emozioni[emozioni.length-1]}"
-                *ngFor="let emozione of emozioni">
+                *ngFor="let emozione of emozioni"
+                (click)="selezionaChip(emozione)">
 
-                {{emozione}}
+                {{toCap(emozione)}}
 
             </mat-chip>
         </div>
@@ -21,19 +22,18 @@
         <div class="card-container">
 
             <mat-card class="card" id="evidenza">
-                <img class="imm-card"  src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                    alt="Photo of a Shiba Inu">
-
-
-                <mat-card-title>Villa Lante</mat-card-title>
-                <mat-card-subtitle>Descrizione</mat-card-subtitle>
-                <div class="scrollable-container" style="padding: 0.5rem 0">
-                    <mat-chip class="chip" [ngClass]="{'first-chip': emozione === emozioni_evidenza[0]}"
-                        *ngFor="let emozione of emozioni_evidenza">{{emozione}}</mat-chip>
-                </div>
-                <p class="anima-locus-par">
-                    Anima Locus<span class="anima-locus-spacer"></span> <mat-icon>spa</mat-icon>
-                </p>
+                <img class="imm-card" src="{{luogo_evidenza.imm}}">
+                    <div class="emozioni-container">
+                        <mat-chip disabled class="chip" *ngFor="let obiettivo of luogo_evidenza.obiettivi" >
+            
+                            {{toCap(obiettivo)}}
+            
+                        </mat-chip>
+                    </div>
+                    <mat-card-title>{{luogo_evidenza.nome}}</mat-card-title>
+                    <p class="par-card">
+                        {{luogo_evidenza.descrizione}}
+                    </p>
             </mat-card>
 
         </div>
@@ -45,52 +45,13 @@
         </h3>
         <div class="scrollable-container">
 
-            <mat-card class="card">
-                <img class="imm-card" src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+            <mat-card class="card" *ngFor="let luogo of luoghi_scopri">
+                <img class="imm-card" src="{{luogo.imm}}"
                     alt="Photo of a Shiba Inu">
 
 
-                <mat-card-title>Paesaggio di Civita di Bagnoreggio</mat-card-title>
-                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-                <div class="scrollable-container" style="padding: 0.5rem 0">
-                    <mat-chip class="chip" [ngClass]="{'first-chip': emozione === emozioni_evidenza[0]}"
-                        *ngFor="let emozione of emozioni_evidenza">{{emozione}}</mat-chip>
-                </div>
-                <p class="anima-locus-par">
-                    <mat-icon>spa</mat-icon>
-                </p>
-            </mat-card>
-
-            <mat-card class="card">
-                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                    alt="Photo of a Shiba Inu">
-
-
-                <mat-card-title>Paesaggio di Civita di Bagnoreggio</mat-card-title>
-                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-                <div class="scrollable-container" style="padding: 0.5rem 0">
-                    <mat-chip class="chip" [ngClass]="{'first-chip': emozione === emozioni_evidenza[0]}"
-                        *ngFor="let emozione of emozioni_evidenza">{{emozione}}</mat-chip>
-                </div>
-                <p class="anima-locus-par">
-                    <mat-icon>spa</mat-icon>
-                </p>
-            </mat-card>
-
-            <mat-card class="card">
-                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                    alt="Photo of a Shiba Inu">
-
-
-                <mat-card-title>Paesaggio di Civita di Bagnoreggio</mat-card-title>
-                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-                <div class="scrollable-container" style="padding: 0.5rem 0">
-                    <mat-chip class="chip" [ngClass]="{'first-chip': emozione === emozioni_evidenza[0]}"
-                        *ngFor="let emozione of emozioni_evidenza">{{emozione}}</mat-chip>
-                </div>
-                <p class="anima-locus-par">
-                    <mat-icon>spa</mat-icon>
-                </p>
+                <mat-card-title style="padding-top: 5px;">{{luogo.nome}}</mat-card-title>
+                
             </mat-card>
 
         </div>
@@ -103,32 +64,6 @@
 
         <div class="carousel-container">
             <owl-carousel-o [options]="customOptions" >
-                <ng-template carouselSlide>
-                    <div class="comment-container">
-                        <div class="comment">
-                            <p class="comment-title">Borgo di Cotanello</p>
-                            <p class="comment-content">
-                                Lorem ipsum dolor sit amet...
-                            </p>
-                            <div>
-                                <mat-chip class="chip" *ngFor="let emozione of emozioni_evidenza">{{emozione}}</mat-chip>
-                            </div>
-                        </div>
-                    </div>
-                </ng-template>
-                <ng-template carouselSlide>
-                    <div class="comment-container">
-                        <div class="comment">
-                            <p class="comment-title">Borgo di Cotanello</p>
-                            <p class="comment-content">
-                                Lorem ipsum dolor sit amet...
-                            </p>
-                            <div>
-                                <mat-chip class="chip" *ngFor="let emozione of emozioni_evidenza">{{emozione}}</mat-chip>
-                            </div>
-                        </div>
-                    </div>
-                </ng-template>
                 <ng-template carouselSlide>
                     <div class="comment-container">
                         <div class="comment">

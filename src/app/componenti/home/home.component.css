@@ -11,7 +11,7 @@
 }
 
 .titolo-blocco {
-  font-weight: 500;
+  font-weight: bold;
   padding: 0 1rem;
   font-size: large;
 }
@@ -54,7 +54,7 @@
 
 .imm-card {
   border-radius: 5%;
-  height: 430px;
+  height: 300px;
   max-width: 290px;
   object-fit: cover;
   width: auto;
@@ -75,10 +75,13 @@
   overflow: hidden;
   font-size: small;
   color: #015EDE;
+  overflow-x: initial;
+  white-space: initial;
 }
 
 mat-card-title {
   font-size: medium;
+  font-weight: bold;
 }
 
 #evidenza {
@@ -87,6 +90,7 @@ mat-card-title {
 }
 
 #evidenza .imm-card{
+  height: 430px;
   max-width: 100%;
   width: 100%;
 }
