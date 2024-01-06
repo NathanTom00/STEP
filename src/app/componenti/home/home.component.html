@@ -20,22 +20,22 @@
             In Evidenza
         </h3>
         <div class="card-container">
-
-            <mat-card class="card" id="evidenza">
-                <img class="imm-card" src="{{luogo_evidenza.imm}}">
-                    <div class="emozioni-container">
-                        <mat-chip disabled class="chip" *ngFor="let obiettivo of luogo_evidenza.obiettivi" >
-            
-                            {{toCap(obiettivo)}}
-            
-                        </mat-chip>
-                    </div>
-                    <mat-card-title>{{luogo_evidenza.nome}}</mat-card-title>
-                    <p class="par-card">
-                        {{luogo_evidenza.descrizione}}
-                    </p>
-            </mat-card>
-
+            <div *ngIf="ready">
+                <mat-card class="card" id="evidenza">
+                    <img class="imm-card" src="{{luogo_evidenza.imm}}">
+                        <div class="emozioni-container">
+                            <mat-chip disabled class="chip" *ngFor="let obiettivo of luogo_evidenza.obiettivi" >
+                
+                                {{toCap(obiettivo.nome)}}
+                
+                            </mat-chip>
+                        </div>
+                        <mat-card-title>{{luogo_evidenza.nome}}</mat-card-title>
+                        <p class="par-card">
+                            {{luogo_evidenza.descrizione}}
+                        </p>
+                </mat-card>
+            </div>
         </div>
     </div>
 
@@ -64,6 +64,19 @@
 
         <div class="carousel-container">
             <owl-carousel-o [options]="customOptions" >
+                <ng-template carouselSlide>
+                    <div class="comment-container">
+                        <div class="comment">
+                            <p class="comment-title">Borgo di Cotanello</p>
+                            <p class="comment-content">
+                                Lorem ipsum dolor sit amet...
+                            </p>
+                            <div>
+                                <mat-chip class="chip" *ngFor="let emozione of emozioni_evidenza">{{emozione}}</mat-chip>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
                 <ng-template carouselSlide>
                     <div class="comment-container">
                         <div class="comment">

@@ -1,3 +1,7 @@
+.container{
+  width: 100%;
+  background-color: #f5f3f7;
+}
 .sezione {
   padding: 0 1rem;
   padding-top: 1rem;

@@ -4,6 +4,7 @@
   min-height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: #f5f3f7;;
 }
 
 .sezione {
@@ -167,4 +168,9 @@ mat-card-title {
 
 .ultima-sezione{
   padding-bottom: 10rem;
+}
+
+::ng-deep .owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+  background: #015EDE !important;
 }

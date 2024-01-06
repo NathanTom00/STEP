@@ -33,14 +33,20 @@ export class OnboardingSuggerimentiComponent implements OnInit{
     }
   }
 
-  luoghiSelezionati : any
+  luoghiSelezionati : any[] = []
   len : any
   constructor (protected onboardingService : OnboardingService) {
   }
 
   ngOnInit(): void {
     this.onboardingService.cercaLuoghiPerObiettivi().subscribe((data:any) => {
-      this.luoghiSelezionati = data
+      
+      for (let i = 0; i < 3; i++) {
+        var random_int = Math.round(Math.random()*(data.length -1));
+        this.luoghiSelezionati.push(data[random_int]);
+        data.splice(random_int, 1);
+     }
+      //this.luoghiSelezionati = data
       this.len = Object.keys(this.luoghiSelezionati).length
     })
   }

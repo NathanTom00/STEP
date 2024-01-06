@@ -20,13 +20,9 @@ export class HomeComponent implements OnInit{
     'speranza',
   ];
   emozioni_selezionati=[]
-  luogo_evidenza = {
-    nome: '',
-    descrizione: '',
-    obiettivi: '',
-    imm: ''
-  };
+  luogo_evidenza :any;
   luoghi_scopri : any[] = [];
+  ready : boolean = false
   emozioni_evidenza = ['nostalgia']
   /**
    * Cosa serve:
@@ -65,26 +61,30 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
     this.firestoreService.getLuoghi().subscribe((data:any)=>{
+      
       let arr_luoghi_no_evidenza : any[]= [];
       for(let luogo of data){
         
-        if(luogo.id === "bWtG2oRcYRbVosdn9IUh")
+        if(luogo.id === "rvAQISEhM3dUZ0jJFqUU")
+        //per adesso forzo villa lante
           this.luogo_evidenza = luogo
         else
           arr_luoghi_no_evidenza.push(luogo)
       }
-
+      this.ready = true
+      //prende 3 items random e li mette in arr_luoghi_no_evidenza
       for (let i = 0; i < 3; i++) {
         var random_int = Math.round(Math.random()*(arr_luoghi_no_evidenza.length -1));
         this.luoghi_scopri.push(arr_luoghi_no_evidenza[random_int]);
         arr_luoghi_no_evidenza.splice(random_int, 1);
      }
-
-
-     console.log(this.luoghi_scopri)
      console.log(this.luogo_evidenza)
+
+     //console.log(this.luoghi_scopri)
+     //console.log(this.luogo_evidenza)
     })
   }
+
 
   onClick() {}
 

@@ -1,37 +1,39 @@
-<div class="sezione">
-    <h3 class="titolo-blocco">
-        Il prossimo viaggio ti aspetta
-    </h3>
-    <p class="paragrafo">
-        Abbiamo trovato {{len}} luoghi da cui iniziare
-    </p>
-</div>
-<div class="carousel-container">
-    <owl-carousel-o [options]="customOptions">
-        <ng-template carouselSlide *ngFor="let luogo of luoghiSelezionati">
-            <div class="card-container">
-                <mat-card class="card">
-                    
-                    <img class="imm-card" src="{{luogo.imm}}">
-                    <div class="emozioni-container">
-                        <mat-chip disabled class="chip" *ngFor="let obiettivo of luogo.obiettivi" >
-            
-                            {{firstLetterUpper(obiettivo.nome)}}
-            
-                        </mat-chip>
-                    </div>
-                    <mat-card-title>{{luogo.nome}}</mat-card-title>
-                    <p class="par-card">
-                        {{luogo.descrizione}}
-                    </p>
-                    
+<div class="container">
+    <div class="sezione">
+        <h3 class="titolo-blocco">
+            Il prossimo viaggio ti aspetta
+        </h3>
+        <p class="paragrafo">
+            Abbiamo trovato {{len}} luoghi da cui iniziare
+        </p>
+    </div>
+    <div class="carousel-container">
+        <owl-carousel-o [options]="customOptions">
+            <ng-template carouselSlide *ngFor="let luogo of luoghiSelezionati">
+                <div class="card-container">
+                    <mat-card class="card">
 
-                    
-                    <button class="button" (click)="onClickScopri(luogo.id)">Scopri Luogo</button>
-                </mat-card>
-            </div>
-        </ng-template>
-    </owl-carousel-o>
-    <div class="spacer">
+                        <img class="imm-card" src="{{luogo.imm}}">
+                        <div class="emozioni-container">
+                            <mat-chip disabled class="chip" *ngFor="let obiettivo of luogo.obiettivi">
+
+                                {{firstLetterUpper(obiettivo.nome)}}
+
+                            </mat-chip>
+                        </div>
+                        <mat-card-title>{{luogo.nome}}</mat-card-title>
+                        <p class="par-card">
+                            {{luogo.descrizione}}
+                        </p>
+
+
+
+                        <button class="button" (click)="onClickScopri(luogo.id)">Scopri Luogo</button>
+                    </mat-card>
+                </div>
+            </ng-template>
+        </owl-carousel-o>
+        <div class="spacer">
+        </div>
     </div>
 </div>

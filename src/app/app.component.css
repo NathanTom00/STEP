@@ -2,16 +2,32 @@
   flex: 1 1 auto;
 }
 mat-toolbar {
-  background-color: transparent;
+  background-color: #f5f3f7;
 }
 
-.menu-button{
-  color: #D2B48C;
+.menu-button {
+  color: #d2b48c;
   background-color: white;
-  box-shadow: none!important;
+  box-shadow: none !important;
 }
 
-.sidenav{
+.sidenav {
   width: 100%;
   background-color: #f7f7f7;
+}
+
+::ng-deep .mat-toolbar {
+  position: fixed;
+  z-index: 980;
+}
+
+.toolbar-padding {
+  padding-top: 64px;
+  background-color: #f7f7f7;
+}
+
+@media screen and (max-width: 600px) {
+  .toolbar-padding {
+    padding-top: 56px;
+  }
 }
