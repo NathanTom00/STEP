@@ -6,8 +6,7 @@
         <div class="scrollable-container" *ngIf="emozioni.length>1">
             <mat-chip class="chip"
                 [ngClass]="{'first-chip': emozione === emozioni[0], 'last-chip': emozione === emozioni[emozioni.length-1]}"
-                *ngFor="let emozione of emozioni"
-                (click)="selezionaChip(emozione)">
+                *ngFor="let emozione of emozioni" (click)="selezionaChip(emozione)">
 
                 {{toCap(emozione)}}
 
@@ -23,17 +22,17 @@
             <div *ngIf="ready">
                 <mat-card class="card" id="evidenza">
                     <img class="imm-card" src="{{luogo_evidenza.imm}}">
-                        <div class="emozioni-container">
-                            <mat-chip disabled class="chip" *ngFor="let obiettivo of luogo_evidenza.obiettivi" >
-                
-                                {{toCap(obiettivo.nome)}}
-                
-                            </mat-chip>
-                        </div>
-                        <mat-card-title>{{luogo_evidenza.nome}}</mat-card-title>
-                        <p class="par-card">
-                            {{luogo_evidenza.descrizione}}
-                        </p>
+                    <div class="emozioni-container">
+                        <mat-chip disabled class="chip" *ngFor="let obiettivo of luogo_evidenza.obiettivi">
+
+                            {{toCap(obiettivo.nome)}}
+
+                        </mat-chip>
+                    </div>
+                    <mat-card-title>{{luogo_evidenza.nome}}</mat-card-title>
+                    <p class="par-card">
+                        {{luogo_evidenza.descrizione}}
+                    </p>
                 </mat-card>
             </div>
         </div>
@@ -46,66 +45,59 @@
         <div class="scrollable-container">
 
             <mat-card class="card" *ngFor="let luogo of luoghi_scopri">
-                <img class="imm-card" src="{{luogo.imm}}"
-                    alt="Photo of a Shiba Inu">
+                <img class="imm-card" src="{{luogo.imm}}" alt="Photo of a Shiba Inu">
 
 
                 <mat-card-title style="padding-top: 5px;">{{luogo.nome}}</mat-card-title>
-                
+
             </mat-card>
 
         </div>
     </div>
+</div>
+<div class="sezione">
+    <h3 class="titolo-blocco">
+        Come si sentono gli altri
+    </h3>
 
-    <div class="sezione">
-        <h3 class="titolo-blocco">
-            Come si sentono gli altri
-        </h3>
-
-        <div class="carousel-container">
-            <owl-carousel-o [options]="customOptions" >
-                <ng-template carouselSlide>
-                    <div class="comment-container">
-                        <div class="comment">
-                            <p class="comment-title">Borgo di Cotanello</p>
-                            <p class="comment-content">
-                                Lorem ipsum dolor sit amet...
-                            </p>
-                            <div>
-                                <mat-chip class="chip" *ngFor="let emozione of emozioni_evidenza">{{emozione}}</mat-chip>
-                            </div>
+    <div class="carousel-container">
+        <owl-carousel-o [options]="customOptions">
+            <ng-template carouselSlide *ngFor="let commento of commenti">
+                <div class="comment" >
+                    <div class="comment-header">
+                        <div class="stars">
+                            <star-rating [starType]="'svg'" [readOnly]="true" [rating]="commento.recensione"></star-rating>
                         </div>
+                        
+                        <svg-icon [svgStyle]="{ 'width.px':30 }" src="../../../assets/Icons/tripadvisor-icon.svg"></svg-icon>
                     </div>
-                </ng-template>
-                <ng-template carouselSlide>
-                    <div class="comment-container">
-                        <div class="comment">
-                            <p class="comment-title">Borgo di Cotanello</p>
-                            <p class="comment-content">
-                                Lorem ipsum dolor sit amet...
-                            </p>
-                            <div>
-                                <mat-chip class="chip" *ngFor="let emozione of emozioni_evidenza">{{emozione}}</mat-chip>
-                            </div>
-                        </div>
+                    <div class="commment-content">
+                        <p class="comment-title">{{commento.titolo}}</p>
+                        <p class="comment-desc">
+                            {{commento.descrizione}}
+                        </p>
                     </div>
-                </ng-template>
+                    <div class="comment-footer">
+                        <p class="comment-location">{{commento.luogo}}</p>
+                    </div>
+                </div>
+            </ng-template>
 
-            </owl-carousel-o>
-        </div>
-
+        </owl-carousel-o>
     </div>
 
+</div>
+<div class="container-no-padding">
     <div class="sezione ultima-sezione">
         <h3 class="titolo-blocco">
             Vivi la tua esperienza emozionale
         </h3>
         <div class="login-container">
             <p class="login-desc">
-                Accedi o crea un account per personalizzare la tua 
+                Accedi o crea un account per personalizzare la tua
                 esperienza e partecipare alla community game
             </p>
-            <button mat-raised-button color="accent" class="login-button" (click)="onClick()">Log in o Sign up</button>
+            <button  class="button" (click)="onClick()">Log in o Sign up</button>
         </div>
     </div>
 </div>

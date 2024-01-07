@@ -1,0 +1,94 @@
+
+
+<div class="container">
+    <ng-container *ngIf="signupPage">
+        <div mat-dialog-title class="title" >
+            <h2 class="label-titolo" >Sing up</h2><span style="flex: 1 1 auto"></span> <button mat-mini-fab class="menu-button"
+            [mat-dialog-close]="true">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <mat-dialog-content class="mat-typography">
+            <h3 class="titolo-blocco">
+                Partecipa al community game conviaggiatori come te
+            </h3>
+            <p class="paragrafo-blocco">
+                Scopri luoghi sconosciuti, racconta le tue emozioni evai alla caccia al tesoroquando visiti i luoghi nellavita
+                reale
+            </p>
+            
+            <form [formGroup]="signup" class="login-form" (ngSubmit)="onSingupSubmit()">
+                
+                <div class="form-field">
+                    <input class="input-text" placeholder="Nome Utente" type="text" name="user_name" formControlName="user_name">
+                </div>
+        
+                <div class="form-field">
+                    <input class="input-text" placeholder="Email" type="email" name="email" formControlName="email">
+                </div>
+        
+                <div class="form-field">
+                    <input class="input-text" placeholder="Password" type="password" name="pass" formControlName="pass">
+                </div>
+
+                <div class="form-field" >
+                    <input class="input-text" placeholder="Conferma Password" type="password" name="confPass" formControlName="confPass">
+                    <p [hidden]="hideErr" style="font-size: small; color: red; margin: 0;text-align: center;">Password e Conferma Password non corrispondono, Riprova!</p>
+                </div>
+                
+        
+                <button class="button" [ngClass]="{'disabled-button': !signup.valid}" type="submit" [disabled]="!signup.valid">
+                    Sign up
+                </button>
+
+                
+            </form>
+            <div class="switch-button-container">
+                <button class="link" (click)="switchPage()">Hai già un account? Log in</button>
+            </div>
+            
+           
+        </mat-dialog-content>
+    </ng-container>
+
+    <ng-container *ngIf="!signupPage">
+        <div mat-dialog-title class="title" >
+            <h2>Log in</h2><span style="flex: 1 1 auto"></span> <button mat-mini-fab class="menu-button"
+            [mat-dialog-close]="true">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <mat-dialog-content class="mat-typography">
+            <h3 class="titolo-blocco">
+                Partecipa al community game conviaggiatori come te
+            </h3>
+            <p class="paragrafo-blocco">
+                Scopri luoghi sconosciuti, racconta le tue emozioni evai alla caccia al tesoroquando visiti i luoghi nellavita
+                reale
+            </p>
+        
+            <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onLogInSubmit()">
+        
+                <div class="form-field">
+                    <input class="input-text" placeholder="Email" type="text" name="email" formControlName="email">
+                </div>
+        
+                <div class="form-field">
+                    <input class="input-text" placeholder="Password" type="text" name="pass" formControlName="pass">
+                </div>
+        
+                <button class="button" type="submit" [ngClass]="{'disabled-button': !signup.valid}" [disabled]="!loginForm.valid">
+                    Log in
+                </button>
+            </form>
+
+            <div class="switch-button-container" >
+                <button class="link" (click)="switchPage()">Hai già un account? Log in</button>
+            </div>
+        
+        </mat-dialog-content>
+    </ng-container>
+    <div class="footer">
+        
+    </div>
+</div>

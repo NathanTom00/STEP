@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Observable, concatMap, map, switchMap } from 'rxjs';
+import { LoginSignupDialogComponent } from 'src/app/dialogs/login-signup-dialog/login-signup-dialog.component';
 import { FirestoreService } from 'src/app/servizi/firestore.service';
 
 @Component({
@@ -22,8 +25,10 @@ export class HomeComponent implements OnInit{
   emozioni_selezionati=[]
   luogo_evidenza :any;
   luoghi_scopri : any[] = [];
+  tutti_luoghi : any[] = []
   ready : boolean = false
   emozioni_evidenza = ['nostalgia']
+  commenti : any[] = []
   /**
    * Cosa serve:
    * -luogo_evidenza oggetto che contiene nome_luogo,immagine , breve_descrizione, emozioni, anima locus icon e anima locus attività
@@ -56,12 +61,14 @@ export class HomeComponent implements OnInit{
 
   constructor(
     private router: Router,
-    private firestoreService: FirestoreService
+    private firestoreService: FirestoreService,
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
+
     this.firestoreService.getLuoghi().subscribe((data:any)=>{
-      
+      this.tutti_luoghi = data
       let arr_luoghi_no_evidenza : any[]= [];
       for(let luogo of data){
         
@@ -76,17 +83,31 @@ export class HomeComponent implements OnInit{
       for (let i = 0; i < 3; i++) {
         var random_int = Math.round(Math.random()*(arr_luoghi_no_evidenza.length -1));
         this.luoghi_scopri.push(arr_luoghi_no_evidenza[random_int]);
+        this.commenti.push(this.prendiCommentoPositivo(arr_luoghi_no_evidenza[random_int]));
         arr_luoghi_no_evidenza.splice(random_int, 1);
      }
-     console.log(this.luogo_evidenza)
+     
+     console.log(this.commenti)
 
      //console.log(this.luoghi_scopri)
      //console.log(this.luogo_evidenza)
     })
   }
 
+  prendiCommentoPositivo(luogo : any){
+    const arrCommenti = luogo.commenti
+    
+    let item = arrCommenti[Math.floor(Math.random()*arrCommenti.length)];
+    let ris = item
+    ris['luogo'] = luogo.nome
 
-  onClick() {}
+    
+    return ris
+  }
+
+  onClick() {
+    this.dialog.open(LoginSignupDialogComponent,{data: {singUpPage : true}})
+  }
 
   selezionaChip(emozione : string){
 

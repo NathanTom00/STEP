@@ -59,7 +59,11 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatRippleModule} from '@angular/material/core';
 import { OnboardingComponent } from './componenti/onboarding/onboarding.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+
+import { StarRatingModule } from 'angular-star-rating';
+import { LoginSignupDialogComponent } from './dialogs/login-signup-dialog/login-signup-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +73,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     OnboardingSuggerimentiComponent,
     LuogoComponent,
     ErrObiettiviComponent,
+    LoginSignupDialogComponent,
     
   ],
   imports: [
@@ -83,6 +88,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     AngularSvgIconModule.forRoot(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
+    StarRatingModule.forRoot(),
     MatCardModule,
     MatIconModule,
     MatButtonModule,
@@ -91,7 +97,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatGridListModule,
     MatDialogModule,
     MatRippleModule,
-    MatSidenavModule
+    MatSidenavModule,
+    FontAwesomeModule
   ],
   providers: [
     CookieService
