@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Observable, concatMap, map, switchMap } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { LoginSignupDialogComponent } from 'src/app/dialogs/login-signup-dialog/login-signup-dialog.component';
 import { FirestoreService } from 'src/app/servizi/firestore.service';
 
@@ -63,6 +64,7 @@ export class HomeComponent implements OnInit{
     private router: Router,
     private firestoreService: FirestoreService,
     private dialog: MatDialog,
+    protected authService : AuthService
   ) {}
 
   ngOnInit(): void {

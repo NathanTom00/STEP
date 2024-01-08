@@ -1,11 +1,37 @@
 <mat-drawer-container class="container" autosize>
-    <mat-drawer #drawer class="sidenav" mode="over">
-        <mat-toolbar>
+    <mat-drawer #drawer class="sidenav" mode="over" style="background-color: #f5f3f7;">
+        <mat-toolbar >
             <span class="spacer"></span>
             <button mat-mini-fab class="menu-button" (click)="drawer.close()">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-toolbar>
+        <div class="toolbar-padding">
+        </div>
+
+        <div class="links-container">
+            <div class="link">
+                <button class="link-button">Home</button>
+            </div>
+            <div class="link">
+                <button class="link-button">Esplora</button>
+            </div>
+            <div class="link">
+                <button class="link-button">Leaderboard</button>
+            </div>
+            <div class="link">
+                <button class="link-button">Per Operatori</button>
+            </div>
+            <div style="display: flex;justify-content: flex-end">
+                <hr style="width: 90%;margin: 0;">
+            </div>
+            <div class="link" *ngIf="!authService.isLogged()">
+                <button class="link-button">Log in</button>
+            </div>
+            <div class="link" *ngIf="authService.isLogged()">
+                <button (click)="doLogout()" class="link-button">Log out</button>
+            </div>
+        </div>
     </mat-drawer>
 
     <div class="content">

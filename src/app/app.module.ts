@@ -64,6 +64,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { StarRatingModule } from 'angular-star-rating';
 import { LoginSignupDialogComponent } from './dialogs/login-signup-dialog/login-signup-dialog.component';
+import { getAuth, provideAuth } from '@angular/fire/auth';
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,6 +89,7 @@ import { LoginSignupDialogComponent } from './dialogs/login-signup-dialog/login-
     AngularSvgIconModule.forRoot(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
     StarRatingModule.forRoot(),
     MatCardModule,
     MatIconModule,

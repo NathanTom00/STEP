@@ -74,10 +74,10 @@
                 </div>
         
                 <div class="form-field">
-                    <input class="input-text" placeholder="Password" type="text" name="pass" formControlName="pass">
+                    <input class="input-text" placeholder="Password" type="password" name="pass" formControlName="pass">
                 </div>
         
-                <button class="button" type="submit" [ngClass]="{'disabled-button': !signup.valid}" [disabled]="!loginForm.valid">
+                <button class="button" type="submit" [ngClass]="{'disabled-button': !loginForm.valid}" [disabled]="!loginForm.valid">
                     Log in
                 </button>
             </form>

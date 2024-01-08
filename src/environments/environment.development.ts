@@ -1,6 +1,6 @@
 export const environment = {
     firebase: {
-        apiKey: 'AIzaSyDTnL-AMRjJh1PrDVorvPSBxhh4ctM2PCs',
+        apiKey: 'AIzaSyAXoqLAQO8iyKpLhyYUts_7lLCdE1wTcVE',
         projectId: 'step-e19ca'
       },
 };
