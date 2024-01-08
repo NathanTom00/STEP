@@ -38,12 +38,21 @@
                 <h4 class=" sottosezione">Emozioni Correlate</h4>
             </div>
             <div class="emozioni-container">
-                <mat-chip class="chip aggiungi-button" *ngIf="authService.currentUser$ | async">Aggiungi</mat-chip>
-                <mat-chip disabled class="chip" *ngFor="let obiettivo of luogo.obiettivi">
+                <mat-chip (click)="aggiungiEmozione(luogo.id)" class="chip aggiungi-button" *ngIf="authService.currentUser$ | async" >Aggiungi</mat-chip>
+                <mat-chip disabled class="chip" *ngFor="let emozione of luogo.emozioni">
 
-                    {{toCap(obiettivo.nome)}}
+                    {{toCap(emozione)}}
 
                 </mat-chip>
+
+                <ng-container  *ngIf="(nuoveAggiunte$|async)">
+                    <mat-chip disabled class="chip"  *ngFor="let obiettivo of (nuoveAggiunte$|async)">
+
+                        {{toCap(obiettivo)}}
+    
+                    </mat-chip>
+                </ng-container>
+                
             </div>
         </div>
 

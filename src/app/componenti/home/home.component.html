@@ -48,7 +48,7 @@
         </h3>
         <div class="scrollable-container">
 
-            <mat-card class="card" *ngFor="let luogo of luoghi_scopri">
+            <mat-card class="card" *ngFor="let luogo of luoghi_scopri" (click)="goToLuogo(luogo.id)">
                 <img class="imm-card" src="{{luogo.imm}}" alt="Photo of a Shiba Inu">
 
 

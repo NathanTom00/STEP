@@ -68,6 +68,7 @@ import { StarRatingModule } from 'angular-star-rating';
 import { LoginSignupDialogComponent } from './dialogs/login-signup-dialog/login-signup-dialog.component';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { AggiungiEmozioniDialogComponent } from './dialogs/aggiungi-emozioni-dialog/aggiungi-emozioni-dialog.component';
+import { AngularFireModule } from "@angular/fire/compat";
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,6 +84,7 @@ import { AggiungiEmozioniDialogComponent } from './dialogs/aggiungi-emozioni-dia
   ],
   imports: [
     BrowserModule,
+    AngularFireModule,
     RouterModule,
     AppRoutingModule,
     BrowserAnimationsModule,

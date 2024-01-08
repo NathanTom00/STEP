@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, filter, mergeMap, toArray } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { AggiungiEmozioniDialogComponent } from 'src/app/dialogs/aggiungi-emozioni-dialog/aggiungi-emozioni-dialog.component';
 import { LoginSignupDialogComponent } from 'src/app/dialogs/login-signup-dialog/login-signup-dialog.component';
 import { FirestoreService } from 'src/app/servizi/firestore.service';
 import { ObiettiviService } from 'src/app/servizi/obiettivi.service';
@@ -15,6 +16,9 @@ import { ObiettiviService } from 'src/app/servizi/obiettivi.service';
 export class LuogoComponent implements OnInit {
   idLuogo: string | null = null;
   luogo$!: Observable<any>;
+  nuoveAggiunte$!:Observable<any> | null;
+
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -56,4 +60,11 @@ export class LuogoComponent implements OnInit {
 
     return "";
   }
+
+  aggiungiEmozione(idLuogo : string){
+    const dialogRef = this.dialog.open(AggiungiEmozioniDialogComponent,{data: {idLuogo: idLuogo}})
+    const dialogSubmitSubscription = dialogRef.componentInstance.nuoveAggiunte
+   
+  }
+  
 }

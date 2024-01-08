@@ -1,0 +1,51 @@
+.title {
+  display: flex;
+  padding-top: 1rem;
+}
+
+.container {
+  background-color: #f5f3f7;
+  width: 300px;
+}
+
+.label-titolo {
+  font-size: 20px;
+  margin: 0;
+}
+.menu-button {
+  color: #d2b48c;
+  background-color: white;
+  box-shadow: none !important;
+}
+
+.footer {
+  padding-top: 50px;
+}
+.sezione {
+  width: 100%;
+  padding-top: 1rem;
+}
+
+.chip {
+  margin-inline: 0.2rem;
+}
+
+.emozioni-container{
+  margin-inline: 1rem;
+}
+
+.selected {
+  border: 1px solid #015EDE;
+  --mdc-chip-label-text-color: white;
+  --mdc-chip-elevated-container-color: #015EDE; 
+}
+
+.button{
+  width: 240px;
+}
+
+.aggiungi-container{
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+}

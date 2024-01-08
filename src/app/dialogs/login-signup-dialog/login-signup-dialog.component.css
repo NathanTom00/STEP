@@ -59,25 +59,24 @@ form {
   background-image: none !important;
 }
 
-.button{
-    margin-bottom: 1rem
+.button {
+  margin-bottom: 1rem;
 }
 
-
-.switch-button-container{
-    text-align: center;
+.switch-button-container {
+  text-align: center;
 }
 
-.link{
-    background:none;
-    border:none;
-    margin:0;
-    padding:0;
-    cursor: pointer;
-    color: #015ede;
-    text-decoration: underline;
+.link {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  color: #015ede;
+  text-decoration: underline;
 }
 
-.footer{
-    padding-top: 50px;
+.footer {
+  padding-top: 50px;
 }

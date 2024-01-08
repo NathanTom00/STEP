@@ -31,7 +31,7 @@ export class LoginSignupDialogComponent {
   });
 
   constructor(public dialogRef: MatDialogRef<LoginSignupDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,private dialog: MatDialog,private authService : AuthService,private userService : UserService,private tasksService:TasksService ){
+    @Inject(MAT_DIALOG_DATA) public data: any,private authService : AuthService,private userService : UserService,private tasksService:TasksService ){
       this.signupPage = data.singUpPage
     }
 

@@ -1,1 +1,27 @@
-<p>aggiungi-emozioni-dialog works!</p>
+<div class="container">
+    <div mat-dialog-title class="title">
+        <h2 class="label-titolo">Cosa ti fa sentire?</h2><span style="flex: 1 1 auto"></span> <button mat-mini-fab
+            class="menu-button" [mat-dialog-close]="true">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div class="sezione">
+        <div class="emozioni-container">
+            <mat-chip  (click)="selezionaEmozione(emozione,chipDaSelezionare)" #chipDaSelezionare   class="chip" *ngFor="let emozione of emozioniNotInLuogo">
+
+                {{toCap(emozione)}}
+
+            </mat-chip>
+            
+        </div>
+    </div>
+    <div class="aggiungi-container">
+        <button class="button" (click)="aggiungiEmozioni()">Aggiungi</button>
+    </div>
+
+
+    <div class="footer">
+
+    </div>
+</div>
