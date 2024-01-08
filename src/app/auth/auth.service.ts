@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   Auth,
+  authState,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
@@ -13,9 +14,8 @@ import { catchError, from, throwError } from 'rxjs';
 export class AuthService {
   constructor(private auth: Auth) {}
 
-  isLogged(): boolean {
-    return this.auth.currentUser ? true : false;
-  }
+  currentUser$ = authState(this.auth)
+
 
   signUp(email: string, pass: string) {
     return from(createUserWithEmailAndPassword(this.auth, email, pass));

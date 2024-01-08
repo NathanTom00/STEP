@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { OnboardingService } from 'src/app/servizi/onboarding.service';
 
@@ -35,10 +36,15 @@ export class OnboardingSuggerimentiComponent implements OnInit{
 
   luoghiSelezionati : any[] = []
   len : any
-  constructor (protected onboardingService : OnboardingService) {
+  constructor (protected onboardingService : OnboardingService,private router: Router) {
   }
 
   ngOnInit(): void {
+
+    //se sto qui ma gli obiettivi selezionati non sono presenti allora ritorno all'onboarding
+    if(this.onboardingService.obiettiviSelezionati.length == 0){
+      this.router.navigate(['onboarding'])
+    }
     this.onboardingService.cercaLuoghiPerObiettivi().subscribe((data:any) => {
       
       for (let i = 0; i < 3; i++) {
@@ -52,7 +58,7 @@ export class OnboardingSuggerimentiComponent implements OnInit{
   }
 
   onClickScopri(codiceLuogo : string){
-    alert(codiceLuogo)
+    this.router.navigate(['luoghi/'+codiceLuogo])
   }
 
   firstLetterUpper(stringa : string){

@@ -1,7 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { switchMap } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { TasksService } from 'src/app/servizi/tasks.service';
+import { UserService } from 'src/app/servizi/user.service';
 
 @Component({
   selector: 'app-login-signup-dialog',
@@ -28,7 +31,7 @@ export class LoginSignupDialogComponent {
   });
 
   constructor(public dialogRef: MatDialogRef<LoginSignupDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,private dialog: MatDialog,private authService : AuthService){
+    @Inject(MAT_DIALOG_DATA) public data: any,private dialog: MatDialog,private authService : AuthService,private userService : UserService,private tasksService:TasksService ){
       this.signupPage = data.singUpPage
     }
 
@@ -36,13 +39,29 @@ export class LoginSignupDialogComponent {
 
 
   onSingupSubmit(){
+    
     if(this.signup.value.pass !== this.signup.value.confPass){
       this.hideErr = false;
       return
     }
     let email = this.signup.value.email;
     let pass = this.signup.value.pass;
-    this.authService.signUp(email,pass).subscribe(data => location.reload())
+    let nome = this.signup.value.user_name;
+    let tasks = this.tasksService.getTasks()
+    this.authService.signUp(email,pass).pipe(
+      switchMap(({user: {uid}}) => this.userService.addUser({
+        uid : uid,
+        email :email,
+        nome : nome,
+        tasksDaFare : tasks,
+        taskTotali : tasks,
+        taskFatti : [],
+        badges : []
+      }))
+    ).subscribe(data => {
+      console.log(data)
+      location.reload()
+    })
     //da fare: mettere l'utente su firestore
   }
 

@@ -9,10 +9,10 @@ import { AuthService } from './auth/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Step_Proj';
 
-  test = true;
+  test = false;
   constructor(private router: Router,private cookieService : CookieService,private auth: Auth,protected authService : AuthService) {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -26,24 +26,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    //redirect test
-    if (this.test) {
-      this.router.navigate(['home']);
-    } else {
-      this.router.navigate(['onboarding']);
-    }
-
-    //redirect with cookie
-    /*
-    if (this.cookieService.check("visitato")) {
-      this.router.navigate(['home']);
-    } else {
-      this.cookieService.set("visitato"," ")
-      this.router.navigate(['onboarding']);
-    }
-    */
-  }
+  
 
   doLogout(){
     this.authService.signOut()

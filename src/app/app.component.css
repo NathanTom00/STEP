@@ -10,6 +10,11 @@ mat-toolbar {
   background-color: white;
   box-shadow: none !important;
 }
+.close-container{
+  margin: 1rem;
+  display: flex;
+  justify-content: flex-end
+}
 
 .links-container {
   margin-inline: 1rem;

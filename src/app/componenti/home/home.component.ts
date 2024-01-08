@@ -12,7 +12,7 @@ import { FirestoreService } from 'src/app/servizi/firestore.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
   emozioni = [
     'nostalgia',
     'gioia',
@@ -23,13 +23,15 @@ export class HomeComponent implements OnInit{
     'allegria',
     'speranza',
   ];
-  emozioni_selezionati=[]
-  luogo_evidenza :any;
-  luoghi_scopri : any[] = [];
-  tutti_luoghi : any[] = []
-  ready : boolean = false
-  emozioni_evidenza = ['nostalgia']
-  commenti : any[] = []
+  emozioni_selezionati = [];
+  luogo_evidenza: any;
+  luoghi_scopri: any[] = [];
+  tutti_luoghi: any[] = [];
+  ready: boolean = false;
+  emozioni_evidenza = ['nostalgia'];
+  commenti: any[] = [];
+
+  test = true;
   /**
    * Cosa serve:
    * -luogo_evidenza oggetto che contiene nome_luogo,immagine , breve_descrizione, emozioni, anima locus icon e anima locus attività
@@ -59,63 +61,83 @@ export class HomeComponent implements OnInit{
       },
     },
   };
+  cookieService: any;
 
   constructor(
     private router: Router,
     private firestoreService: FirestoreService,
     private dialog: MatDialog,
-    protected authService : AuthService
+    protected authService: AuthService
   ) {}
 
   ngOnInit(): void {
+    //redirect test
+    if (!this.test) {
+      this.router.navigate(['onboarding']);
+    } 
 
-    this.firestoreService.getLuoghi().subscribe((data:any)=>{
-      this.tutti_luoghi = data
-      let arr_luoghi_no_evidenza : any[]= [];
-      for(let luogo of data){
-        
-        if(luogo.id === "rvAQISEhM3dUZ0jJFqUU")
-        //per adesso forzo villa lante
-          this.luogo_evidenza = luogo
-        else
-          arr_luoghi_no_evidenza.push(luogo)
+    //redirect with cookie -> per vedere se un utente ha già visitato il sito o meno usiamo un cookie
+    /* 
+      if (!this.cookieService.check("visitato")) {
+        this.cookieService.set("visitato"," ")
+        this.router.navigate(['onboarding']);
+        return
+      } 
+      */
+
+    this.firestoreService.getLuoghi().subscribe((data: any) => {
+      this.tutti_luoghi = data;
+      let arr_luoghi_no_evidenza: any[] = [];
+      for (let luogo of data) {
+        if (luogo.id === 'rvAQISEhM3dUZ0jJFqUU')
+          //per adesso forzo villa lante
+          this.luogo_evidenza = luogo;
+        else arr_luoghi_no_evidenza.push(luogo);
       }
-      this.ready = true
+      this.ready = true;
       //prende 3 items random e li mette in arr_luoghi_no_evidenza
       for (let i = 0; i < 3; i++) {
-        var random_int = Math.round(Math.random()*(arr_luoghi_no_evidenza.length -1));
+        var random_int = Math.round(
+          Math.random() * (arr_luoghi_no_evidenza.length - 1)
+        );
         this.luoghi_scopri.push(arr_luoghi_no_evidenza[random_int]);
-        this.commenti.push(this.prendiCommentoPositivo(arr_luoghi_no_evidenza[random_int]));
+        this.commenti.push(
+          this.prendiCommentoPositivo(arr_luoghi_no_evidenza[random_int])
+        );
         arr_luoghi_no_evidenza.splice(random_int, 1);
-     }
-     
-     console.log(this.commenti)
+      }
 
-     //console.log(this.luoghi_scopri)
-     //console.log(this.luogo_evidenza)
-    })
+      //console.log(this.commenti)
+
+      //console.log(this.luoghi_scopri)
+      //console.log(this.luogo_evidenza)
+    });
   }
 
-  prendiCommentoPositivo(luogo : any){
-    const arrCommenti = luogo.commenti
-    
-    let item = arrCommenti[Math.floor(Math.random()*arrCommenti.length)];
-    let ris = item
-    ris['luogo'] = luogo.nome
+  prendiCommentoPositivo(luogo: any) {
+    const arrCommenti = luogo.commenti;
 
-    
-    return ris
+    let item = arrCommenti[Math.floor(Math.random() * arrCommenti.length)];
+    let ris = item;
+    ris['luogo'] = luogo.nome;
+
+    return ris;
   }
 
   onClick() {
-    this.dialog.open(LoginSignupDialogComponent,{data: {singUpPage : true}})
+    this.dialog.open(LoginSignupDialogComponent, {
+      data: { singUpPage: true },
+    });
   }
 
-  selezionaChip(emozione : string){
+  selezionaChip(emozione: string) {}
 
+  toCap(stringa: string) {
+    return stringa[0].toUpperCase() + stringa.substring(1);
   }
 
-  toCap(stringa : string){
-    return stringa[0].toUpperCase() + stringa.substring(1)
+
+  goToLuogo(idLuogo : string){
+    this.router.navigate(['luoghi/'+idLuogo])
   }
 }

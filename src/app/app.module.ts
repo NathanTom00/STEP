@@ -60,11 +60,14 @@ import {MatRippleModule} from '@angular/material/core';
 import { OnboardingComponent } from './componenti/onboarding/onboarding.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 import { StarRatingModule } from 'angular-star-rating';
 import { LoginSignupDialogComponent } from './dialogs/login-signup-dialog/login-signup-dialog.component';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { AggiungiEmozioniDialogComponent } from './dialogs/aggiungi-emozioni-dialog/aggiungi-emozioni-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +78,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
     LuogoComponent,
     ErrObiettiviComponent,
     LoginSignupDialogComponent,
+    AggiungiEmozioniDialogComponent,
     
   ],
   imports: [
@@ -91,6 +95,8 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
     StarRatingModule.forRoot(),
+    MatSnackBarModule,
+    MatBadgeModule,
     MatCardModule,
     MatIconModule,
     MatButtonModule,

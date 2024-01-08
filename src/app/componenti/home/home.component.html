@@ -1,6 +1,6 @@
 <div class="container">
     <!--TESTTTTTTTTTTTTT-->
-    <div *ngIf="authService.isLogged()">
+    <div *ngIf="authService.currentUser$ | async">
         Ciao User
     </div>
     <div class="sezione">
@@ -22,7 +22,7 @@
         <h3 class="titolo-blocco">
             In Evidenza
         </h3>
-        <div class="card-container">
+        <div class="card-container" (click)="goToLuogo(luogo_evidenza.id)">
             <div *ngIf="ready">
                 <mat-card class="card" id="evidenza">
                     <img class="imm-card" src="{{luogo_evidenza.imm}}">
@@ -91,7 +91,7 @@
     </div>
 
 </div>
-<div class="container-no-padding">
+<div class="container-no-padding" *ngIf="!(authService.currentUser$ | async)">
     <div class="sezione ultima-sezione">
         <h3 class="titolo-blocco">
             Vivi la tua esperienza emozionale
