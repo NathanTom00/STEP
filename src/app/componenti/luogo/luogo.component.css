@@ -101,7 +101,13 @@
   color: white;
   box-shadow: 5px 10px 10px 0px hwb(0deg 25.35% 74.65% / 20%);
 }
-
+@media only screen and (max-width: 320px) {
+  .emozione {
+    width: 80px;
+    height: 80px;
+    font-size: x-small;
+  }
+}
 .label-button::first-letter {
   text-transform: uppercase;
 }
@@ -116,8 +122,15 @@
 }
 
 .mat-badge-medium.mat-badge-above .mat-badge-content {
+  top: 5px;
+  right: 30%;
+}
+
+@media only screen and (max-width: 425px) {
+  .mat-badge-medium.mat-badge-above .mat-badge-content {
     top: 5px;
     right: 10px;
+  }
 }
 
 

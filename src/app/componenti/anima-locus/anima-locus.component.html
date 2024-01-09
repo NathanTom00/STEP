@@ -1,0 +1,23 @@
+<div class="container" *ngIf="obiettivoSelezionato">
+
+    <div class="sezione">
+        <h6 class="titolo" >{{toCap(obiettivoSelezionato.nome)}}</h6>
+        <div class="button-container" *ngIf="authService.currentUser$|async" (click)="openDialog()">
+            <button class="add-button button">Aggiungi</button>
+        </div>
+    </div>
+    <div class="anima-container" >
+
+        <ng-container *ngFor="let item of obiettivoSelezionato.container">
+            <div class="anima-item" *ngIf="item.tipo === 'imm'" (click)="zoomImm(item.link)">
+                <img class="imm-anima" src="{{item.link}}" alt="">
+            </div>
+            <div class="anima-item" *ngIf="item.tipo === 'link'" (click)="navTo(item.link)">
+                <div class="div-anima">
+                    {{item.titolo}}
+                </div>
+            </div>
+        </ng-container>
+
+    </div>
+</div>

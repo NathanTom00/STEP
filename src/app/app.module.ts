@@ -69,6 +69,13 @@ import { LoginSignupDialogComponent } from './dialogs/login-signup-dialog/login-
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { AggiungiEmozioniDialogComponent } from './dialogs/aggiungi-emozioni-dialog/aggiungi-emozioni-dialog.component';
 import { AngularFireModule } from "@angular/fire/compat";
+import { AnimaLocusComponent } from './componenti/anima-locus/anima-locus.component';
+import { AggiungiAnimaComponent } from './dialogs/aggiungi-anima/aggiungi-anima.component';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ZoomInImgComponent } from './dialogs/zoom-in-img/zoom-in-img.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,6 +87,9 @@ import { AngularFireModule } from "@angular/fire/compat";
     ErrObiettiviComponent,
     LoginSignupDialogComponent,
     AggiungiEmozioniDialogComponent,
+    AnimaLocusComponent,
+    AggiungiAnimaComponent,
+    ZoomInImgComponent,
     
   ],
   imports: [
@@ -87,16 +97,20 @@ import { AngularFireModule } from "@angular/fire/compat";
     AngularFireModule,
     RouterModule,
     AppRoutingModule,
+    MatFormFieldModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     FormsModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
     HttpClientModule,
     AngularSvgIconModule.forRoot(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
+    provideStorage(() => getStorage()),
     StarRatingModule.forRoot(),
+    NgxMatFileInputModule,
     MatSnackBarModule,
     MatBadgeModule,
     MatCardModule,

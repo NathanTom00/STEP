@@ -50,6 +50,7 @@ export class LuogoComponent implements OnInit {
 
   esploraAnimaLocus(idLuogo: string, i: number) {
     //vai in luoghi/:idLuogo/:i
+    this.router.navigate([`luoghi/${idLuogo}/${i}`])
   }
 
   getIconByName(nomeObiettivo: string) {

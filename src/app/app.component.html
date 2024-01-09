@@ -1,48 +1,56 @@
-<mat-drawer-container class="container" autosize>
-    <mat-drawer #drawer class="sidenav" mode="over" style="background-color: #f5f3f7;">
-        
-        <div class="close-container">
-            <button mat-mini-fab class="menu-button" (click)="drawer.close()">
-                <mat-icon>close</mat-icon>
-            </button>
-        </div>
+
+
+
+<div class="container">
+    <mat-drawer-container  style="min-height: 100%;">
+        <mat-drawer #drawer class="sidenav" mode="over"  style="background-color: #f5f3f7">
             
-        <div class="links-container">
-            <div class="link">
-                <button class="link-button" (click)="nav('home')" >Home</button>
+            <div class="close-container">
+                <button mat-mini-fab class="menu-button" (click)="drawer.close()">
+                    <mat-icon>close</mat-icon>
+                </button>
             </div>
-            <div class="link">
-                <button class="link-button" (click)="nav('')">Esplora</button>
+                
+            <div class="links-container">
+                <div class="link">
+                    <button class="link-button" (click)="nav('home')" >Home</button>
+                </div>
+                <div class="link">
+                    <button class="link-button" (click)="nav('')">Esplora</button>
+                </div>
+                <div class="link">
+                    <button class="link-button" (click)="nav('')">Leaderboard</button>
+                </div>
+                <div class="link">
+                    <button class="link-button" (click)="nav('')">Per Operatori</button>
+                </div>
+                <div style="display: flex;justify-content: flex-end">
+                    <hr style="width: 90%;margin: 0;">
+                </div>
+                <div class="link" *ngIf="!(authService.currentUser$|async)">
+                    <button class="link-button" (click)="doLogIn()">Log in</button>
+                </div>
+                <div class="link" *ngIf="authService.currentUser$|async">
+                    <button (click)="doLogout()" class="link-button">Log out</button>
+                </div>
             </div>
-            <div class="link">
-                <button class="link-button" (click)="nav('')">Leaderboard</button>
+        </mat-drawer>
+    
+        <div class="content">
+            <mat-toolbar>
+                <span><svg-icon src="../assets/Icons/STEP_LOGO.svg"></svg-icon></span>
+                <span class="spacer"></span>
+                <button mat-mini-fab class="menu-button" (click)="openMenu()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </mat-toolbar>
+            <div class="toolbar-padding">
             </div>
-            <div class="link">
-                <button class="link-button" (click)="nav('')">Per Operatori</button>
-            </div>
-            <div style="display: flex;justify-content: flex-end">
-                <hr style="width: 90%;margin: 0;">
-            </div>
-            <div class="link" *ngIf="!(authService.currentUser$|async)">
-                <button class="link-button" (click)="doLogIn()">Log in</button>
-            </div>
-            <div class="link" *ngIf="authService.currentUser$|async">
-                <button (click)="doLogout()" class="link-button">Log out</button>
+            <div class="pagina">
+
+                <router-outlet></router-outlet>
             </div>
         </div>
-    </mat-drawer>
-
-    <div class="content">
-        <mat-toolbar>
-            <span><svg-icon src="../assets/Icons/STEP_LOGO.svg"></svg-icon></span>
-            <span class="spacer"></span>
-            <button mat-mini-fab class="menu-button" (click)="openMenu()">
-                <mat-icon>menu</mat-icon>
-            </button>
-        </mat-toolbar>
-        <div class="toolbar-padding">
-        </div>
-        <router-outlet></router-outlet>
-    </div>
-
-</mat-drawer-container>
+    
+    </mat-drawer-container>
+</div>

@@ -16,6 +16,11 @@ mat-toolbar {
   justify-content: flex-end
 }
 
+.container{
+  min-height: 100%;
+  background-color: #f5f3f7;
+}
+
 .links-container {
   margin-inline: 1rem;
 }

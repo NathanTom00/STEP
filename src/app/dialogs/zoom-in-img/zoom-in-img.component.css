@@ -1,0 +1,31 @@
+.container {
+  background-color: #f5f3f7;
+  width: 300px;
+}
+
+.label-titolo {
+  font-size: 20px;
+  margin: 0;
+}
+
+.menu-button {
+  color: #d2b48c;
+  background-color: white;
+  box-shadow: none !important;
+  position: absolute;
+  right: 5px;
+  top: 3px;
+}
+
+.title {
+  display: flex;
+  padding-top: 1rem;
+}
+
+.footer {
+  padding-top: 50px;
+}
+
+img {
+  width: 100%;
+}

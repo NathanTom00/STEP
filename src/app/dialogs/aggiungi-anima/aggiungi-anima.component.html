@@ -1,0 +1,85 @@
+<div class="container">
+    <div mat-dialog-title class="title">
+        <h2 class="label-titolo">Aggiungi</h2><span style="flex: 1 1 auto"></span> <button mat-mini-fab
+            class="menu-button" [mat-dialog-close]="true">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div class="sezione">
+        <div class="scegli-container">
+            <button class=" scegli-button " [disabled]="caricamento || completato" (click)="cambiaSezione(true)" [ngClass]="{'selected' : sezioneLink}">Condividi Link</button>
+            <button class=" scegli-button" [disabled]="caricamento || completato" (click)="cambiaSezione(false)" [ngClass]="{'selected' : !sezioneLink}">Carica Foto</button>
+            
+        </div>
+    </div>
+
+    
+
+    <div class="content-container" >
+        <div class="spinner-container" *ngIf="caricamento && !completato">
+            <mat-spinner></mat-spinner>
+        </div>
+
+        <div class="completato" *ngIf="!caricamento && completato">
+            <h3 class="accettato-text">
+                L'immagine è stato caricato
+            </h3>
+        </div>
+        <div *ngIf="!caricamento && !completato">
+            
+            <div class="sezione" *ngIf="sezioneLink ">
+                <div class="content">
+                    <p class="paragrafo">
+                        Aggiungi un link ad un sito web, blog post, recensioni etc.. 
+                    </p>
+                </div>
+
+                <form [formGroup]="linkForm" class="login-form" (ngSubmit)="aggiungiLink()" style="padding:1rem">
+                
+                    <div class="form-field">
+                        <input type="text" class="input-text" placeholder="Titolo Link" type="text" name="titolo" formControlName="titolo">
+                    </div>
+            
+                    <div class="form-field">
+                        <input type="text" class="input-text" placeholder="URL" type="text" name="link" formControlName="link">
+                    </div>
+            
+                    <button class="button" type="submit" [ngClass]="{'disabled-button': !linkForm.valid}" [disabled]="!linkForm.valid">
+                        Aggiungi
+                    </button>
+                </form>
+            </div>
+        
+            <div class="sezione" *ngIf="!sezioneLink">
+                <div class="content">
+                    <p class="paragrafo">
+                        Carica una foto che rappresenti il tema dell'anima locus
+                    </p>
+                </div>
+                <div class="imm-button-container">
+                    <form [formGroup]="immForm" class="login-form" (ngSubmit)="aggiungiImm()" style="padding:1rem">
+                
+                    
+                        
+                        <mat-form-field appearance="outline">
+                            <ngx-mat-file-input name="imm" formControlName="imm" [multiple]="false"  accept="image/png, image/jpeg">
+                            </ngx-mat-file-input>
+                         </mat-form-field>
+                        <button class="button" type="submit" [ngClass]="{'disabled-button': !immForm.valid}" [disabled]="!immForm.valid">
+                            Aggiungi
+                        </button>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+
+
+
+    <div class="footer">
+
+    </div>
+</div>
