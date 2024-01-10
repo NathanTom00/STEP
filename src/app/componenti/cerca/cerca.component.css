@@ -116,6 +116,8 @@ mat-card-title {
   white-space: initial;
 }
 
-.card .first-chip {
-  margin-left: 0 !important;
+
+.eliminabile{
+  --mdc-chip-label-text-color: white;
+  --mdc-chip-elevated-container-color: #015EDE; 
 }

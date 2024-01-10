@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, concatMap, forkJoin, switchMap, toArray } from 'rxjs';
 import { CercaTagsComponent } from 'src/app/dialogs/cerca-tags/cerca-tags.component';
 import { FirestoreService } from 'src/app/servizi/firestore.service';
 
@@ -13,9 +13,12 @@ import { FirestoreService } from 'src/app/servizi/firestore.service';
 })
 export class CercaComponent implements OnInit {
   stringaDaCercare = '';
+  provinceSelezionati: any[] = [];
   emozioniSelezionati: any[] = [];
   obiettiviSelezionati: any[] = [];
-  suggerimenti$!: Observable<any>;
+  luoghiLimitati$!: Observable<any>;
+  luoghi_all$ !: Observable<any>;
+
   cercaForm: FormGroup = new FormGroup({
     cercaInput: new FormControl(''),
   });
@@ -27,11 +30,8 @@ export class CercaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.suggerimenti$ = this.firestoreService.getLuoghiLimitato();
-  }
-
-  cercaSubmit() {
-    this.stringaDaCercare = this.cercaForm.value.cercaInput;
+    this.luoghiLimitati$ = this.firestoreService.getLuoghiLimitato();
+    this.luoghi_all$ = this.firestoreService.getLuoghi()
   }
 
   toCap(stringa: string) {
@@ -42,23 +42,95 @@ export class CercaComponent implements OnInit {
     this.router.navigate(['luoghi/' + idLuogo]);
   }
 
+  cercaSubmit(luoghi : any) {
+    this.stringaDaCercare = this.cercaForm.value.cercaInput;
+    this.getLuoghiSelezionati(luoghi)
+  }
+
   onClickFiltra() {
     const dialogRef = this.dialog.open(CercaTagsComponent, {
       maxWidth: '100vw',
       width: '100%',
     });
 
-    let provinceSelezionati;
-    let emozioniSelezionati;
-    let obiettiviSelezionati
-    
-    dialogRef.componentInstance.daCercare.subscribe(result => {
-      provinceSelezionati = result.provinceSelezionati
-      emozioniSelezionati = result.emozioniSelezionati
-      obiettiviSelezionati = result.obiettiviSelezionati
-
+    this.provinceSelezionati = []
+    this.emozioniSelezionati = []
+    this.obiettiviSelezionati = []
+    dialogRef.afterClosed().subscribe((datas: any) => {
+      if(datas.provinceSelezionati)
+        this.provinceSelezionati = datas.provinceSelezionati;
+      if(datas.emozioniSelezionati)
+        this.emozioniSelezionati = datas.emozioniSelezionati;
+      if(datas.obiettiviSelezionati)
+        this.obiettiviSelezionati = datas.obiettiviSelezionati;
     });
+  }
+
+  eliminaProvincia(provincia: string) {
+    this.provinceSelezionati = this.provinceSelezionati.filter(
+      (provinciaSelezionata) => provinciaSelezionata !== provincia
+    );
+  }
+
+  eliminaEmozione(emozione: string) {
+    this.emozioniSelezionati = this.emozioniSelezionati.filter(
+      (emozioneSelezionato) => emozioneSelezionato !== emozione
+    );
+  }
+
+  eliminaObiettivo(obiettivo: string) {
+    this.obiettiviSelezionati = this.obiettiviSelezionati.filter(
+      (obiettivoSelezionato) => obiettivoSelezionato !== obiettivo
+    );
+  }
+
+  verificaLuogo(luogo: any): boolean {
+    
+    if(this.provinceSelezionati.length !== 0){
+      if (this.provinceSelezionati.length !== 1) return false;
+
+      if (this.provinceSelezionati[0] !== luogo.provincia) return false;
+    }
+
+    //console.log(luogo.emozioni,this.emozioniSelezionati,this.emozioniSelezionati.length !== 0 && !luogo.emozioni.includes(this.emozioniSelezionati))
+    
+
+    if(this.emozioniSelezionati.length !== 0 ){
+      for(let emozioneDaFiltrare of this.emozioniSelezionati){
+        if(!luogo.emozioni.includes(emozioneDaFiltrare))
+          return false
+      }
+    }
+      
+    if(this.obiettiviSelezionati.length !== 0){
+      let obiettiviLuogo = luogo.obiettivi.map((obv: any) => obv.nome)
+      for(let obiettivoDaFiltrare of this.obiettiviSelezionati){
+        if(obiettiviLuogo.includes(obiettivoDaFiltrare))
+          return false
+      }
+    }
 
 
+    return true;
+  }
+
+  getLuoghiSelezionati(luoghi : any) : any[]{
+
+    
+    let ris = luoghi
+
+    if(this.stringaDaCercare !== ''){
+      ris  = ris.filter((luogo : any) => luogo.nome.includes(this.stringaDaCercare))
+    }
+
+    for(let itemRis of ris){
+      if(!this.verificaLuogo(itemRis)){
+        ris = ris.filter((items:any) => items !== itemRis)
+      }
+    }
+
+    return ris
+
+    
   }
 }

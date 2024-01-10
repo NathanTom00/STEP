@@ -5,8 +5,6 @@ import { EmozioniServiceService } from 'src/app/servizi/emozioni-service.service
 import { ObiettiviService } from 'src/app/servizi/obiettivi.service';
 import { AggiungiEmozioniDialogComponent } from '../aggiungi-emozioni-dialog/aggiungi-emozioni-dialog.component';
 
-
-
 @Component({
   selector: 'app-cerca-tags',
   templateUrl: './cerca-tags.component.html',
@@ -22,8 +20,6 @@ export class CercaTagsComponent {
   obiettiviTotali: string[] = [];
   obiettiviSelezionati: string[] = [];
 
-  @Output() daCercare = new EventEmitter<any>();
-
   constructor(
     public dialogRef: MatDialogRef<AggiungiEmozioniDialogComponent>,
     private obiettivi: ObiettiviService,
@@ -32,8 +28,6 @@ export class CercaTagsComponent {
     this.emozioniTotali = emozioni.getEmozioni();
     this.obiettiviTotali = obiettivi.getObiettivi().map((data) => data.nome);
   }
-
-  
 
   toCap(stringa: string) {
     return stringa[0].toUpperCase() + stringa.substring(1);
@@ -80,19 +74,14 @@ export class CercaTagsComponent {
       default:
         break;
     }
-    
   }
 
   cerca() {
-    console.log(this.provinceSelezionati,this.emozioniSelezionati,this.obiettiviSelezionati)
 
-    this.daCercare.emit({
-      provinceSelezionati : this.provinceSelezionati,
-      emozioniSelezionati : this.emozioniSelezionati,
-      obiettiviSelezionati : this.obiettiviSelezionati
+    this.dialogRef.close({
+      provinceSelezionati: this.provinceSelezionati,
+      emozioniSelezionati: this.emozioniSelezionati,
+      obiettiviSelezionati: this.obiettiviSelezionati,
     });
-
-    this.dialogRef.close()
   }
-
 }

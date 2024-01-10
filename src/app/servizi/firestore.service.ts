@@ -10,7 +10,7 @@ import {
   query,
   where,
 } from '@angular/fire/firestore';
-import { FieldValue, arrayUnion, updateDoc } from 'firebase/firestore';
+import { FieldValue, QueryConstraint, arrayUnion, updateDoc } from 'firebase/firestore';
 import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { of } from 'rxjs';
 
