@@ -1,0 +1,58 @@
+<div class="container">
+    <div mat-dialog-title class="title">
+        <h2 class="label-titolo">Filtra</h2><span style="flex: 1 1 auto"></span> <button mat-mini-fab
+            class="menu-button" [mat-dialog-close]="true">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div class="sezione">
+        <h3 class="titolo-sezione">
+            Provincia
+        </h3>
+        <div class="emozioni-container">
+            <mat-chip  (click)="selezionaTag(provincia,chipDaSelezionare,'provincia')" #chipDaSelezionare   class="chip" *ngFor="let provincia of provinceTotali">
+
+                {{toCap(provincia)}}
+
+            </mat-chip>
+            
+        </div>
+    </div>
+
+    <div class="sezione">
+        <h3 class="titolo-sezione">
+            Emozioni
+        </h3>
+        <div class="emozioni-container">
+            <mat-chip  (click)="selezionaTag(emozione,chipDaSelezionare,'emozione')" #chipDaSelezionare   class="chip" *ngFor="let emozione of emozioniTotali">
+
+                {{toCap(emozione)}}
+
+            </mat-chip>
+            
+        </div>
+    </div>
+
+    <div class="sezione">
+        <h3 class="titolo-sezione">
+            Anima Locus
+        </h3>
+        <div class="emozioni-container">
+            <mat-chip  (click)="selezionaTag(obiettivo,chipDaSelezionare,'obiettivo')" #chipDaSelezionare   class="chip" *ngFor="let obiettivo of obiettiviTotali">
+
+                {{toCap(obiettivo)}}
+
+            </mat-chip>
+            
+        </div>
+    </div>
+    <div class="aggiungi-container">
+        <button class="button" (click)="cerca()">Aggiungi</button>
+    </div>
+
+
+    <div class="footer">
+
+    </div>
+</div>

@@ -28,6 +28,12 @@ export class FirestoreService {
     return collectionData(refCollection, { idField: 'id' });
   }
 
+  getLuoghiLimitato(){
+    const refCollection = collection(this.firestore, 'luogo');
+    const refQuery = query(refCollection,limit(3))
+    return collectionData(refQuery, { idField: 'id' });
+  }
+
   getLuogoById(idLuogo: string) {
     const refCollection = collection(this.firestore, 'luogo');
     const luogoRef = doc(this.firestore, 'luogo', idLuogo);

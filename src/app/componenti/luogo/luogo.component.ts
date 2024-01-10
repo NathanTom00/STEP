@@ -16,8 +16,6 @@ import { ObiettiviService } from 'src/app/servizi/obiettivi.service';
 export class LuogoComponent implements OnInit {
   idLuogo: string | null = null;
   luogo$!: Observable<any>;
-  nuoveAggiunte$!:Observable<any> | null;
-
 
   constructor(
     private route: ActivatedRoute,
@@ -64,7 +62,6 @@ export class LuogoComponent implements OnInit {
 
   aggiungiEmozione(idLuogo : string){
     const dialogRef = this.dialog.open(AggiungiEmozioniDialogComponent,{data: {idLuogo: idLuogo}})
-    const dialogSubmitSubscription = dialogRef.componentInstance.nuoveAggiunte
    
   }
   

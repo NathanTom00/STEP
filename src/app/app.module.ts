@@ -77,6 +77,7 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ZoomInImgComponent } from './dialogs/zoom-in-img/zoom-in-img.component';
 import { CercaComponent } from './componenti/cerca/cerca.component';
+import { CercaTagsComponent } from './dialogs/cerca-tags/cerca-tags.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +93,7 @@ import { CercaComponent } from './componenti/cerca/cerca.component';
     AggiungiAnimaComponent,
     ZoomInImgComponent,
     CercaComponent,
+    CercaTagsComponent,
     
   ],
   imports: [

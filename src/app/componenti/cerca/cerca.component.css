@@ -17,22 +17,22 @@
   margin-top: 2rem;
 }
 
-.login-form{
-    width: 100%;
-    margin-bottom: 2rem;
+.login-form {
+  width: 100%;
+  margin-bottom: 2rem;
 }
 
-.form-field{
-    margin-bottom: 1rem;
+.form-field {
+  margin-bottom: 1rem;
 }
 
-.titolo {
-  margin: 0;
-  font-size: 18px;
+.titolo-blocco {
   font-weight: bold;
+  padding: 0 1rem;
+  font-size: large;
 }
 
-input[type='text']{
+input[type="text"] {
   height: 2.5rem;
   border: 1px solid #d5d5d5;
   border-radius: 15px;
@@ -46,24 +46,76 @@ input[type='text']{
   -webkit-box-sizing: border-box; /* Safari */
 }
 
-.cerca-button{
-    padding: 0;
-    color: #015ede;
-    border: none;
-    background: none;
-    position: absolute;
-    top: 88px;
-    right: 17px;
-    height: 40px;
-    width: 40px;
+.cerca-button {
+  padding: 0;
+  color: #015ede;
+  border: none;
+  background: none;
+  position: absolute;
+  top: 88px;
+  right: 17px;
+  height: 40px;
+  width: 40px;
 }
 
-.filtra-button{
-    font-size: 20px;
-    vertical-align: middle;
+.filtra-button {
+  font-size: 20px;
+  vertical-align: middle;
 }
 
-.label-filtra{
-    font-weight: bold;
+.label-filtra {
+  font-weight: bold;
 }
 
+.card-container {
+  padding-inline: 1rem;
+  margin-bottom: 4rem;
+}
+
+.card {
+  border-radius: 0;
+  height: fit-content;
+  box-shadow: none;
+  background-color: transparent;
+  max-width: 400px;
+  width: 100%;
+}
+
+.imm-card {
+  border-radius: 5%;
+  object-fit: cover;
+  width: auto;
+  height: 430px;
+  max-width: 100%;
+  width: 100%;
+}
+
+.card-container {
+  padding-inline: 1rem;
+}
+
+.emozioni-container {
+  padding: 0.5rem 0;
+}
+
+.par-card {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: small;
+  color: #015ede;
+  overflow-x: initial;
+  white-space: initial;
+}
+
+mat-card-title {
+  font-size: medium;
+  font-weight: bold;
+  overflow-x: initial;
+  white-space: initial;
+}
+
+.card .first-chip {
+  margin-left: 0 !important;
+}

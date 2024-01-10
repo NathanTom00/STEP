@@ -44,14 +44,6 @@
                     {{toCap(emozione)}}
 
                 </mat-chip>
-
-                <ng-container  *ngIf="(nuoveAggiunte$|async)">
-                    <mat-chip disabled class="chip"  *ngFor="let obiettivo of (nuoveAggiunte$|async)">
-
-                        {{toCap(obiettivo)}}
-    
-                    </mat-chip>
-                </ng-container>
                 
             </div>
         </div>

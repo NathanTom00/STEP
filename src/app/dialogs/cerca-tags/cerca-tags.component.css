@@ -1,0 +1,59 @@
+.title {
+  display: flex;
+  padding-top: 1rem;
+  font-weight: bold;
+}
+
+.container {
+  background-color: #f5f3f7;
+  width: 100%;
+}
+
+.titolo-sezione{
+  font-size: medium;
+  font-weight: bold;
+  padding-inline: 1rem;
+  margin-bottom: 0;
+}
+
+.label-titolo {
+  font-size: 20px;
+  margin: 0;
+}
+.menu-button {
+  color: #d2b48c;
+  background-color: white;
+  box-shadow: none !important;
+}
+
+.footer {
+  padding-top: 50px;
+}
+.sezione {
+  width: 100%;
+  padding-top: 1rem;
+}
+
+.chip {
+  margin-inline: 0.2rem;
+}
+
+.emozioni-container {
+  margin-inline: 1rem;
+}
+
+.selected {
+  border: 1px solid #015ede;
+  --mdc-chip-label-text-color: white;
+  --mdc-chip-elevated-container-color: #015ede;
+}
+
+.button {
+  width: 240px;
+}
+
+.aggiungi-container {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
