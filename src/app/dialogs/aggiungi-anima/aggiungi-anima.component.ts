@@ -31,9 +31,10 @@ export class AggiungiAnimaComponent {
   caricamento : boolean = false
   completato : boolean = false
 
+  private urlRegex = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
   linkForm: FormGroup = new FormGroup({
-    titolo: new FormControl('', [Validators.required]),
-    link: new FormControl('', Validators.required),
+    titolo: new FormControl('', [Validators.required,Validators.maxLength(7)]),
+    link: new FormControl('', [Validators.required,Validators.pattern(this.urlRegex)]),
   });
 
   immForm: FormGroup = new FormGroup({
@@ -59,9 +60,16 @@ export class AggiungiAnimaComponent {
 
   }
 
-  aggiungiLink(){
+  async aggiungiLink(){
 
-    console.log("aggiungi")
+    const titolo = this.linkForm.value.titolo
+    const  link = this.linkForm.value.link
+
+    this.caricamento = true
+    const up = this.firestoreService.uploadLink(this.idLuogo,this.iObiettivo,titolo,link)
+    await up
+    this.caricamento = false;
+    this.completato = true;
   }
 
   async aggiungiImm(){

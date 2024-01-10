@@ -59,7 +59,12 @@
   height: 100%;
   border-radius: 30px;
   background-color: #015ede;
+  color: white;
+  font-size: large;
+  font-weight: lighter;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+

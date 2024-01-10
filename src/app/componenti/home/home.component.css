@@ -198,3 +198,10 @@ mat-card-title {
 .owl-theme .owl-dots .owl-dot:hover span {
   background: #015ede !important;
 }
+
+.caricamento-container{
+  display: flex;
+  padding-top: 40px;
+  justify-content: space-evenly;
+  background-color: #f5f3f7;
+}

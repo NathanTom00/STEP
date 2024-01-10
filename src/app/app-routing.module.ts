@@ -6,14 +6,16 @@ import { OnboardingSuggerimentiComponent } from './componenti/onboarding-suggeri
 import { OnboardingComponent } from './componenti/onboarding/onboarding.component';
 import { LuogoComponent } from './componenti/luogo/luogo.component';
 import { AnimaLocusComponent } from './componenti/anima-locus/anima-locus.component';
+import { CercaComponent } from './componenti/cerca/cerca.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
-  {path: 'onboarding/obiettivi',component: OnboardingObiettiviComponent},
   {path: 'onboarding/obiettivi/suggerimenti',component: OnboardingSuggerimentiComponent},
+  {path: 'onboarding/obiettivi',component: OnboardingObiettiviComponent},
   {path: 'onboarding', component: OnboardingComponent},
-  {path: 'luoghi/:id_luogo', component: LuogoComponent},
   {path: 'luoghi/:id_luogo/:iObiettivo', component: AnimaLocusComponent},
+  {path: 'luoghi/:id_luogo', component: LuogoComponent},
+  {path: 'cerca', component: CercaComponent},
   {path: '',pathMatch: 'full',redirectTo: 'home'}
 ];
 

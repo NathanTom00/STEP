@@ -61,4 +61,15 @@ export class FirestoreService {
     console.log(obiettivi)
     updateDoc(luogoRef, { obiettivi: obiettivi});
   }
+
+  async uploadLink(idLuogo: string, iObiettivo: string,titolo:string,link:string){
+    const refCollection = collection(this.firestore, 'luogo');
+    const luogoRef = doc(this.firestore, 'luogo', idLuogo);
+    const documento = (await getDoc(doc(this.firestore, 'luogo', idLuogo))).data()
+    
+    const obiettivi = documento!['obiettivi']
+    obiettivi[iObiettivo].container.push({tipo: 'link',titolo : titolo,link: link})
+    console.log(obiettivi)
+    updateDoc(luogoRef, { obiettivi: obiettivi});
+  }
 }

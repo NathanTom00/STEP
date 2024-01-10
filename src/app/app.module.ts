@@ -76,6 +76,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ZoomInImgComponent } from './dialogs/zoom-in-img/zoom-in-img.component';
+import { CercaComponent } from './componenti/cerca/cerca.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,6 +91,7 @@ import { ZoomInImgComponent } from './dialogs/zoom-in-img/zoom-in-img.component'
     AnimaLocusComponent,
     AggiungiAnimaComponent,
     ZoomInImgComponent,
+    CercaComponent,
     
   ],
   imports: [

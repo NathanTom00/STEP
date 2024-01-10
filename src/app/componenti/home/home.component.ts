@@ -6,6 +6,7 @@ import { Observable, concatMap, map, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { LoginSignupDialogComponent } from 'src/app/dialogs/login-signup-dialog/login-signup-dialog.component';
 import { FirestoreService } from 'src/app/servizi/firestore.service';
+import { UserService } from 'src/app/servizi/user.service';
 
 @Component({
   selector: 'app-home',
@@ -30,6 +31,7 @@ export class HomeComponent implements OnInit {
   ready: boolean = false;
   emozioni_evidenza = ['nostalgia'];
   commenti: any[] = [];
+  caricamento = true;
 
   test = true;
   /**
@@ -62,12 +64,13 @@ export class HomeComponent implements OnInit {
     },
   };
   cookieService: any;
-
+  subscribeLuoghi : any =null;
   constructor(
     private router: Router,
     private firestoreService: FirestoreService,
     private dialog: MatDialog,
-    protected authService: AuthService
+    protected authService: AuthService,
+    protected userService : UserService
   ) {}
 
   ngOnInit(): void {
@@ -85,33 +88,36 @@ export class HomeComponent implements OnInit {
       } 
       */
 
-    this.firestoreService.getLuoghi().subscribe((data: any) => {
-      this.tutti_luoghi = data;
-      let arr_luoghi_no_evidenza: any[] = [];
-      for (let luogo of data) {
-        if (luogo.id === 'rvAQISEhM3dUZ0jJFqUU')
-          //per adesso forzo villa lante
-          this.luogo_evidenza = luogo;
-        else arr_luoghi_no_evidenza.push(luogo);
-      }
-      this.ready = true;
-      //prende 3 items random e li mette in arr_luoghi_no_evidenza
-      for (let i = 0; i < 3; i++) {
-        var random_int = Math.round(
-          Math.random() * (arr_luoghi_no_evidenza.length - 1)
-        );
-        this.luoghi_scopri.push(arr_luoghi_no_evidenza[random_int]);
-        this.commenti.push(
-          this.prendiCommentoPositivo(arr_luoghi_no_evidenza[random_int])
-        );
-        arr_luoghi_no_evidenza.splice(random_int, 1);
-      }
+      this.subscribeLuoghi=this.firestoreService.getLuoghi().subscribe((data: any) => 
+      {
+        this.tutti_luoghi = data;
+        let arr_luoghi_no_evidenza: any[] = [];
+        for (let luogo of data) {
+          if (luogo.id === 'rvAQISEhM3dUZ0jJFqUU')
+            //per adesso forzo villa lante
+            this.luogo_evidenza = luogo;
+          else arr_luoghi_no_evidenza.push(luogo);
+        }
+        this.ready = true;
+        //prende 3 items random e li mette in arr_luoghi_no_evidenza
+        for (let i = 0; i < 3; i++) {
+          var random_int = Math.round(
+            Math.random() * (arr_luoghi_no_evidenza.length - 1)
+          );
+          this.luoghi_scopri.push(arr_luoghi_no_evidenza[random_int]);
+          this.commenti.push(
+            this.prendiCommentoPositivo(arr_luoghi_no_evidenza[random_int])
+          );
+          arr_luoghi_no_evidenza.splice(random_int, 1);
+        }
 
-      //console.log(this.commenti)
+        this.caricamento = false
 
-      //console.log(this.luoghi_scopri)
-      //console.log(this.luogo_evidenza)
-    });
+        //console.log(this.commenti)
+
+        //console.log(this.luoghi_scopri)
+        //console.log(this.luogo_evidenza)
+      });
   }
 
   prendiCommentoPositivo(luogo: any) {
