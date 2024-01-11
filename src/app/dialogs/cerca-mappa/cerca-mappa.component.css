@@ -1,0 +1,80 @@
+.title {
+  display: flex;
+  padding-top: 1rem;
+  font-weight: bold;
+}
+
+.container {
+  background-color: #f5f3f7;
+  min-height: 100%;
+}
+.map-container{
+  padding: 1rem;
+}
+.titolo-sezione {
+  font-size: medium;
+  font-weight: bold;
+  padding-inline: 1rem;
+  margin-bottom: 0;
+}
+
+.label-titolo {
+  font-size: 20px;
+  margin: 0;
+}
+.menu-button {
+  color: #d2b48c;
+  background-color: white;
+  box-shadow: none !important;
+}
+
+.footer {
+  padding-top: 2rem;
+}
+.sezione {
+  width: 100%;
+  padding-top: 1rem;
+  display: block;
+}
+
+
+
+.scrollable-container{
+  display: flex; /* displays flex-items (children) inline */
+  height: 100px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.item{
+  background-color: white;
+  flex: 0 0 90%; /* doesn't grow nor shrink, initial width set to 25% of the parent's */
+  height: 80px; /* just for demo */
+  border-radius: 20px;
+  display: flex;
+  box-shadow: #64646447 0px 5px 10px 0px;
+  margin-inline: 0.5rem;
+  
+}
+
+.content-item{
+  margin-inline-start: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.testo-task{
+  font-size: smaller;
+  margin: 0;
+}
+
+.blu{
+  color:#015ede
+}
+
+.img-item{
+  width: 80px;
+  border-radius: 20px 0 0 20px
+}
+

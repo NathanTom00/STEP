@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable, concatMap, forkJoin, switchMap, toArray } from 'rxjs';
+import { CercaMappaComponent } from 'src/app/dialogs/cerca-mappa/cerca-mappa.component';
 import { CercaTagsComponent } from 'src/app/dialogs/cerca-tags/cerca-tags.component';
 import { FirestoreService } from 'src/app/servizi/firestore.service';
 
@@ -132,5 +133,10 @@ export class CercaComponent implements OnInit {
     return ris
 
     
+  }
+
+  openMap(){
+    this.dialog.open(CercaMappaComponent,{
+    })
   }
 }

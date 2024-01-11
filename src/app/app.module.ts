@@ -79,6 +79,7 @@ import { ZoomInImgComponent } from './dialogs/zoom-in-img/zoom-in-img.component'
 import { CercaComponent } from './componenti/cerca/cerca.component';
 import { CercaTagsComponent } from './dialogs/cerca-tags/cerca-tags.component';
 import { ProfiloUserComponent } from './componenti/profilo-user/profilo-user.component';
+import { CercaMappaComponent } from './dialogs/cerca-mappa/cerca-mappa.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,6 +97,7 @@ import { ProfiloUserComponent } from './componenti/profilo-user/profilo-user.com
     CercaComponent,
     CercaTagsComponent,
     ProfiloUserComponent,
+    CercaMappaComponent,
     
   ],
   imports: [

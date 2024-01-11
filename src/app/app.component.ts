@@ -36,9 +36,12 @@ export class AppComponent {
   }
   
 
-  doLogout(){
-    this.authService.signOut()
+  async doLogout(){
+    const out = this.authService.signOut()
+    await out
+    this.sidenav.close()
     location.reload()
+    
   }
 
   nav(indirizzo : string){

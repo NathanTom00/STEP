@@ -9,6 +9,8 @@
 
             </div>
 
+            
+
             <mat-chip (click)="onClickFiltra()" class="chip"><mat-icon class="filtra-button">tune</mat-icon><span
                     class="label-filtra">Filtra</span> </mat-chip>
 
@@ -18,9 +20,15 @@
                 class="chip eliminabile">{{toCap(emozione)}} X</mat-chip>
             <mat-chip (click)="eliminaObiettivo(obiettivo)" *ngFor="let obiettivo of obiettiviSelezionati"
                 class="chip eliminabile">{{toCap(obiettivo)}} X</mat-chip>
+
         </form>
 
+        
     </div>
+    <button class="button-mappa" (click)="openMap()">
+        <mat-icon>map</mat-icon>
+        Visualizza la mappa 
+    </button>
     <div class="sezione">
 
         <div
