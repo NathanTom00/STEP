@@ -29,13 +29,13 @@
                 </div>
                 <div class="link" *ngIf="authService.currentUser$|async">
                     <button (click)="nav('profilo')" class="link-button with-icon">
-                        <svg-icon src="../assets/Icons/profile_icon.svg"
+                        <svg-icon src="assets/Icons/profile_icon.svg"
                             [svgStyle]="{ 'height.px':40 }"></svg-icon>Profilo
                     </button>
                 </div>
                 <div class="link" *ngIf="authService.currentUser$|async">
                     <button (click)="doLogout()" class="link-button with-icon logout">
-                        <svg-icon src="../assets/Icons/logout_icon.svg" [svgStyle]="{ 'height.px':40 }"></svg-icon>Log out
+                        <svg-icon src="assets/Icons/logout_icon.svg" [svgStyle]="{ 'height.px':40 }"></svg-icon>Log out
                     </button>
                 </div>
             </div>
@@ -43,7 +43,7 @@
 
         <div class="content">
             <mat-toolbar>
-                <span><svg-icon src="../assets/Icons/STEP_LOGO.svg"></svg-icon></span>
+                <span><svg-icon src="assets/Icons/STEP_LOGO.svg"></svg-icon></span>
                 <span class="spacer"></span>
                 <button mat-mini-fab class="menu-button" (click)="openMenu()">
                     <mat-icon>menu</mat-icon>

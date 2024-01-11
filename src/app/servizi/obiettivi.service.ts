@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ObiettiviService {
-  private iconLink = "../../../assets/Icons/"
+  private iconLink = "assets/Icons/"
   obiettivi = [
     {nome: 'scoprire cose nuove',icon: `${this.iconLink}scoprire-cose-nuove-icon.svg`},
     {nome: "approfondire temi d'interesse", icon: `${this.iconLink}temi-interesse.svg`},
