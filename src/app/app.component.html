@@ -31,6 +31,9 @@
                     <button class="link-button" (click)="doLogIn()">Log in</button>
                 </div>
                 <div class="link" *ngIf="authService.currentUser$|async">
+                    <button (click)="nav('profilo')" class="link-button">Profilo</button>
+                </div>
+                <div class="link" *ngIf="authService.currentUser$|async">
                     <button (click)="doLogout()" class="link-button">Log out</button>
                 </div>
             </div>

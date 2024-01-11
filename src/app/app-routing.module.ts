@@ -7,6 +7,8 @@ import { OnboardingComponent } from './componenti/onboarding/onboarding.componen
 import { LuogoComponent } from './componenti/luogo/luogo.component';
 import { AnimaLocusComponent } from './componenti/anima-locus/anima-locus.component';
 import { CercaComponent } from './componenti/cerca/cerca.component';
+import { ProfiloUserComponent } from './componenti/profilo-user/profilo-user.component';
+import { authGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -16,6 +18,7 @@ const routes: Routes = [
   {path: 'luoghi/:id_luogo/:iObiettivo', component: AnimaLocusComponent},
   {path: 'luoghi/:id_luogo', component: LuogoComponent},
   {path: 'cerca', component: CercaComponent},
+  {path: 'profilo', component: ProfiloUserComponent, canActivate: [authGuard]},
   {path: '',pathMatch: 'full',redirectTo: 'home'}
 ];
 

@@ -5,8 +5,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  user,
 } from '@angular/fire/auth';
-import { catchError, from, throwError } from 'rxjs';
+import { catchError, from, map, mergeMap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,16 @@ export class AuthService {
 
   currentUser$ = authState(this.auth)
 
-
+  isLogged(){
+    return user(this.auth).pipe(
+      map((data:any) => {
+        if(data)
+          return true
+        else
+          return false
+      })
+    )
+  }
   signUp(email: string, pass: string) {
     return from(createUserWithEmailAndPassword(this.auth, email, pass));
   }

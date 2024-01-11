@@ -1,0 +1,35 @@
+<div class="container">
+    <ng-container *ngIf="currentUser$|async as user">
+        <div class="sezione">
+            <div class="livello-container">
+                Lv. {{user.livello}}
+            </div>
+            <h3 class="user-name">Ciao, {{user.nome}}</h3>
+            <button class="link" (click)="goToModifica()">Modifica profilo</button>
+        </div>
+
+        <div class="sezione">
+            <div class="content-container">
+                <button class=" scegli-button "  (click)="cambiaSezione('challenge')" [ngClass]="{'selected' : sezioneLink==='challenge'}">Challenge</button>
+                <button class=" scegli-button "  (click)="cambiaSezione('badge')" [ngClass]="{'selected' : sezioneLink==='badge'}">Badge</button>
+                <button class=" scegli-button "  (click)="cambiaSezione('cronologia')" [ngClass]="{'selected' : sezioneLink==='cronologia'}">Cronologia</button>
+                
+            </div>
+        </div>
+        <div class="sezione">
+            <div class="content-container" *ngIf="sezioneLink==='challenge'">
+                <h3 class="count-challenge"><span class="blu">{{user.taskFatti.length}}/{{user.taskTotali.length}}</span> challenge completati</h3>
+                <div class="task-item" *ngFor="let task of user.taskTotali">
+                    <div class="content-item">
+                        <p class="testo-task blu">{{task.nome}}</p>
+                        <p class="testo-task">{{task.descrizione}}</p>
+                    </div>
+                    <div class="icon-fatto" *ngIf="controllaTask(user.taskFatti,task)">
+                        <mat-icon style="color: rgb(40, 179, 21);transform: scale(1.2);" >check_circle</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    
+</div>

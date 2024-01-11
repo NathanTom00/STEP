@@ -1,11 +1,10 @@
 .container {
   max-width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   background-color: #f5f3f7;
   display: flex;
   flex-direction: column;
   padding-inline: 1rem;
-  min-height: 50rem;
 }
 
 .sezione {
@@ -28,7 +27,6 @@
 
 .titolo-blocco {
   font-weight: bold;
-  padding: 0 1rem;
   font-size: large;
 }
 
@@ -120,4 +118,20 @@ mat-card-title {
 .eliminabile{
   --mdc-chip-label-text-color: white;
   --mdc-chip-elevated-container-color: #015EDE; 
+}
+
+.err-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img-errore{
+  width: 120px;
+}
+
+.paragrado-errore{
+  text-align: center;
+  font-size: large;
 }

@@ -56,8 +56,8 @@
         </div>
 
         <div class="container-emozioni">
-            <div class="button-container"  *ngFor="let obiettivo of  luogo.obiettivi; index as i " matBadge="{{obiettivo.container.length}}">
-                <button matRipple type="button"  class="emozione" (click)="esploraAnimaLocus(luogo.id,i)"  value="{{obiettivo.nome}}">
+            <div class="button-container"  *ngFor="let obiettivo of  luogo.obiettivi; index as i " >
+                <button matRipple type="button"  class="emozione" (click)="esploraAnimaLocus(luogo.id,i)"  value="{{obiettivo.nome}} " matBadge="{{obiettivo.container.length}}">
                     <div class="icon-button" >
                         <svg-icon src="{{getIconByName(obiettivo.nome)}}" ></svg-icon>
                         

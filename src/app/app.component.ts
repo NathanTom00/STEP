@@ -50,6 +50,7 @@ export class AppComponent {
     this.sidenav.close()
     this.dialog.open(LoginSignupDialogComponent, {data: { singUpPage: false },});
   }
+
 }
 
 //ng serve --host 0.0.0.0

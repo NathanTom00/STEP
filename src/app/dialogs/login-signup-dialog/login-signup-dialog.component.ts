@@ -56,7 +56,9 @@ export class LoginSignupDialogComponent {
         tasksDaFare : tasks,
         taskTotali : tasks,
         taskFatti : [],
-        badges : []
+        badges : [],
+        livello : 1,
+        obiettiviInteressati: []
       }))
     ).subscribe(data => {
       console.log(data)
