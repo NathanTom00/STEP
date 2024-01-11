@@ -4,10 +4,15 @@ export interface ProfileUser{
     uid: string;
     email?: string;
     nome: string;
-    tasksDaFare: {nome:string,descrizione:string}[];
     taskTotali: {nome:string,descrizione:string}[];
-    taskFatti: {nome:string,descrizione:string,data: Timestamp}[];
+    taskFatti: {nome:string,descrizione:string,data: number}[];
     livello: number;
     badges: string[];
-    obiettiviInteressati: string[]
+    obiettiviInteressati: string[];
+    count_luoghi_esplorati: number;
+    emozioni_cercati: string[];
+    count_obiettivi_esplorati: number;
+    count_emozioni_aggiunti: number;
+
+    
 }

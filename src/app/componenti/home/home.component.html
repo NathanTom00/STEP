@@ -7,14 +7,26 @@
 <div *ngIf="!caricamento">
     <div class="container">
 
+        <div class="sezione sezione-task" *ngIf="(currentUser$|async) as user">
+            <h3 class="titolo-blocco" style="padding: 0;">
+                Ciao <span style="color: #015ede;">{{user.nome}}</span>, hai delle challenge da fare!
+            </h3>
+            <div class="task-item" *ngFor="let task of getTaskDaFare(user.taskFatti,user.taskTotali)" >
+                <div class="content-item">
+                    <p class="testo-task blu">{{task.nome}}</p>
+                    <p class="testo-task">{{task.descrizione}}</p>
+                </div>
+            </div>
+        </div>
+
         <div class="sezione">
             <h3 class="titolo-blocco">
                 Quale emozione stai cercando?
             </h3>
             <div class="scrollable-container" *ngIf="emozioni.length>1">
                 <mat-chip class="chip"
-                    [ngClass]="{'first-chip': emozione === emozioni[0], 'last-chip': emozione === emozioni[emozioni.length-1]}"
-                    *ngFor="let emozione of emozioni" (click)="selezionaChip(emozione)">
+                    [ngClass]="{'first-chip': emozione === emozioni[0], 'last-chip': emozione === emozioni[emozioni.length-1], 'selezionato': emozioneSelezionato === emozione}"
+                    *ngFor="let emozione of emozioni" (click)="selezionaChip(emozione)" >
 
                     {{toCap(emozione)}}
 
@@ -22,53 +34,83 @@
             </div>
         </div>
 
-        <div class="sezione">
-            <h3 class="titolo-blocco">
-                In Evidenza
-            </h3>
-            <div class="card-container" (click)="goToLuogo(luogo_evidenza.id)">
-                <div *ngIf="ready">
-                    <mat-card class="card" id="evidenza">
-                        <img class="imm-card" src="{{luogo_evidenza.imm}}">
-                        <div class="emozioni-container">
-                            <mat-chip disabled class="chip" *ngFor="let obiettivo of luogo_evidenza.obiettivi">
-
-                                {{toCap(obiettivo.nome)}}
-
-                            </mat-chip>
-                        </div>
-                        <mat-card-title>{{luogo_evidenza.nome}}</mat-card-title>
-                        <p class="par-card">
-                            {{luogo_evidenza.descrizione}}
-                        </p>
-                    </mat-card>
+        <ng-container *ngIf="emozioneSelezionato===''">
+            <div class="sezione">
+                <h3 class="titolo-blocco">
+                    In Evidenza
+                </h3>
+                <div class="card-container" (click)="goToLuogo(luogo_evidenza.id)">
+                    <div *ngIf="ready">
+                        <mat-card class="card" id="evidenza">
+                            <img class="imm-card" src="{{luogo_evidenza.imm}}">
+                            <div class="emozioni-container">
+                                <mat-chip disabled class="chip" *ngFor="let obiettivo of luogo_evidenza.obiettivi">
+    
+                                    {{toCap(obiettivo.nome)}}
+    
+                                </mat-chip>
+                            </div>
+                            <mat-card-title>{{luogo_evidenza.nome}}</mat-card-title>
+                            <p class="par-card">
+                                {{luogo_evidenza.descrizione}}
+                            </p>
+                        </mat-card>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="sezione">
-            <h3 class="titolo-blocco">
-                Da Esplorare
-            </h3>
-            <div class="scrollable-container">
-
-                <mat-card class="card" *ngFor="let luogo of luoghi_scopri" (click)="goToLuogo(luogo.id)">
-                    <img class="imm-card" src="{{luogo.imm}}" alt="Photo of a Shiba Inu">
-
-
-                    <mat-card-title style="padding-top: 5px;">{{luogo.nome}}</mat-card-title>
-
-                </mat-card>
-
+    
+            <div class="sezione">
+                <h3 class="titolo-blocco">
+                    Da Esplorare
+                </h3>
+                <div class="scrollable-container">
+    
+                    <mat-card class="card" *ngFor="let luogo of luoghi_scopri" (click)="goToLuogo(luogo.id)">
+                        <img class="imm-card" src="{{luogo.imm}}" alt="Photo of a Shiba Inu">
+    
+    
+                        <mat-card-title style="padding-top: 5px;">{{luogo.nome}}</mat-card-title>
+    
+                    </mat-card>
+    
+                </div>
             </div>
-        </div>
+        </ng-container>
+
+        <ng-container *ngIf="!(emozioneSelezionato==='')">
+            <h3 class="titolo-blocco">
+                Risultati per Emozione: {{toCap(emozioneSelezionato)}} 
+            </h3>
+            <ng-container *ngFor="let luogo of luoghiByEmozione">
+                <div class="card-container" (click)="goToLuogo(luogo.id)">
+                    <div *ngIf="ready">
+                        <mat-card class="card" id="evidenza">
+                            <img class="imm-card" src="{{luogo.imm}}">
+                            <div class="emozioni-container">
+                                <mat-chip disabled class="chip" *ngFor="let obiettivo of luogo.obiettivi">
+    
+                                    {{toCap(obiettivo.nome)}}
+    
+                                </mat-chip>
+                            </div>
+                            <mat-card-title>{{luogo.nome}}</mat-card-title>
+                            <p class="par-card">
+                                {{luogo.descrizione}}
+                            </p>
+                        </mat-card>
+                    </div>
+                </div>
+            </ng-container>
+            
+        </ng-container>
+        
     </div>
-    <div class="sezione">
+    <div class="sezione" *ngIf="emozioneSelezionato===''">
         <h3 class="titolo-blocco">
             Come si sentono gli altri
         </h3>
 
-        <div class="carousel-container">
+        <div class="carousel-container" >
             <owl-carousel-o [options]="customOptions">
                 <ng-template carouselSlide *ngFor="let commento of commenti">
                     <div class="comment">

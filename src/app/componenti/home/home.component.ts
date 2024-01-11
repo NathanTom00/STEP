@@ -5,6 +5,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Observable, concatMap, map, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { LoginSignupDialogComponent } from 'src/app/dialogs/login-signup-dialog/login-signup-dialog.component';
+import { ProfileUser } from 'src/app/models/user-profile';
 import { FirestoreService } from 'src/app/servizi/firestore.service';
 import { UserService } from 'src/app/servizi/user.service';
 
@@ -32,14 +33,12 @@ export class HomeComponent implements OnInit {
   emozioni_evidenza = ['nostalgia'];
   commenti: any[] = [];
   caricamento = true;
+  emozioneSelezionato = ''
+  luoghiByEmozione : any[] = []
 
+  currentUser$ !: Observable<any>;
   test = true;
-  /**
-   * Cosa serve:
-   * -luogo_evidenza oggetto che contiene nome_luogo,immagine , breve_descrizione, emozioni, anima locus icon e anima locus attività
-   * -luoghi_da_esplorare con nome luogo, immagine e anima locus icon
-   * -una lista di commenti con etichette e nome del luogo commentato
-   */
+ 
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -70,8 +69,13 @@ export class HomeComponent implements OnInit {
     private firestoreService: FirestoreService,
     private dialog: MatDialog,
     protected authService: AuthService,
-    protected userService : UserService
-  ) {}
+    private userService : UserService
+  ) {
+
+    this.currentUser$ = userService.currentUserProfile$
+  }
+
+
 
   ngOnInit(): void {
     //redirect test
@@ -136,7 +140,23 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  selezionaChip(emozione: string) {}
+  selezionaChip(emozione: string) {
+    
+    if(this.emozioneSelezionato === emozione){
+      this.emozioneSelezionato = ''
+      return
+    }
+
+    this.emozioneSelezionato = emozione
+    this.luoghiByEmozione = []
+    this.firestoreService.getLuoghi().subscribe((data:any)=>{
+      for(let luogo of data){
+        if(luogo.emozioni.includes(this.emozioneSelezionato)){
+          this.luoghiByEmozione.push(luogo)
+        }
+      }
+    })
+  }
 
   toCap(stringa: string) {
     return stringa[0].toUpperCase() + stringa.substring(1);
@@ -145,5 +165,16 @@ export class HomeComponent implements OnInit {
 
   goToLuogo(idLuogo : string){
     this.router.navigate(['luoghi/'+idLuogo])
+  }
+
+  getTaskDaFare(taskFatti : any[],taskTotali : any[]){
+    const nomiTaskFatti = taskFatti.map((data:any) => data.nome)
+    let ris: any[] = []
+    for(let task of taskTotali){
+      if((!nomiTaskFatti.includes(task.nome)) && ris.length != 1)
+        ris.push(task)
+    }
+
+    return ris
   }
 }

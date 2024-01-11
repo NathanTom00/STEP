@@ -36,6 +36,11 @@
   scrollbar-width: none; /* Firefox */
 }
 
+.selezionato{
+  --mdc-chip-label-text-color: white;
+  --mdc-chip-elevated-container-color: #015EDE; 
+}
+
 .chip {
   margin-inline: 0.2rem;
 }
@@ -157,6 +162,8 @@ mat-card-title {
   font-weight: lighter;
 }
 
+
+
 .comment-desc {
   font-weight: 550;
   display: -webkit-box;
@@ -204,4 +211,36 @@ mat-card-title {
   padding-top: 40px;
   justify-content: space-evenly;
   background-color: #f5f3f7;
+}
+
+.task-item {
+  background-color: white;
+  width: 100%;
+  max-width: 400px;
+  height: 70px;
+  border-radius: 20px;
+  display: flex;
+  margin-bottom: 1rem;
+  box-shadow: #64646447 0px 5px 10px 0px;
+}
+
+.content-item {
+  width: 100%;
+  padding-inline-start: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.testo-task {
+  font-size: medium;
+  margin: 0;
+}
+
+.sezione-task{
+  padding-inline: 1rem;
+}
+
+.blu{
+  color:#015ede
 }

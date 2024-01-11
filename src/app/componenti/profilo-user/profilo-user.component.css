@@ -11,13 +11,12 @@
   width: 100%;
   height: max-content;
   display: flex;
-    flex-direction: column;
-    align-items: center;
+  flex-direction: column;
+  align-items: center;
   margin-top: 2rem;
 }
 
-
-.livello-container{
+.livello-container {
   width: 90px;
   height: 40px;
   border-radius: 15px;
@@ -30,13 +29,13 @@
   box-shadow: #64646447 0px 5px 10px 0px;
 }
 
-.user-name{
+.user-name {
   font-size: larger;
   font-weight: bold;
   color: #015ede;
 }
 
-.link{
+.link {
   border: none;
   background: none;
   color: #015ede;
@@ -63,18 +62,18 @@
   background-color: #015ede;
 }
 
-.count-challenge{
+.count-challenge {
   font-size: medium;
   font-weight: bold;
   color: #3b3b3b;
   margin-bottom: 1rem;
 }
 
-.blu{
-  color: #015ede
+.blu {
+  color: #015ede;
 }
 
-.task-item{
+.task-item {
   background-color: white;
   width: 100%;
   max-width: 400px;
@@ -85,13 +84,13 @@
   box-shadow: #64646447 0px 5px 10px 0px;
 }
 
-.icon-fatto{
+.icon-fatto {
   width: 70px;
   text-align: center;
   line-height: 80px;
 }
 
-.content-item{
+.content-item {
   width: 100%;
   padding-inline-start: 1rem;
   display: flex;
@@ -99,9 +98,38 @@
   flex-direction: column;
 }
 
-.testo-task{
+.testo-task {
   font-size: medium;
   margin: 0;
-  
+}
+.badge-container {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  gap: 1rem;
+  max-width: 100%;
+  padding-bottom: 1rem;
 }
 
+.badge {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: #64646447 0px 5px 10px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.data{
+  color: #696969;
+  font-size: small;
+  margin:0
+}
+
+.cronologia{
+  justify-content: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}

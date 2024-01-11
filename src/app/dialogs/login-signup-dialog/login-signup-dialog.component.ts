@@ -53,12 +53,15 @@ export class LoginSignupDialogComponent {
         uid : uid,
         email :email,
         nome : nome,
-        tasksDaFare : tasks,
         taskTotali : tasks,
         taskFatti : [],
         badges : [],
         livello : 1,
-        obiettiviInteressati: []
+        obiettiviInteressati: [],
+        count_luoghi_esplorati: 0,
+        emozioni_cercati: [],
+        count_obiettivi_esplorati: 0,
+        count_emozioni_aggiunti: 0
       }))
     ).subscribe(data => {
       console.log(data)

@@ -29,6 +29,29 @@
                     </div>
                 </div>
             </div>
+
+            <div class="content-container" *ngIf="sezioneLink==='badge'">
+                <h3 class="count-challenge">Le tue Badge</h3>
+                <div class="badge-container" *ngFor="let badge of user.badges">
+                    <div class="badge">
+                        <svg-icon [svgStyle]="{ 'width.px':90 }" src="{{getLink(badge)}}"></svg-icon>
+                        <p class="testo-task blu">{{badge}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-container" *ngIf="sezioneLink==='cronologia'">
+                <h3 class="count-challenge">La tua Cronologia</h3>
+                <div class="task-item cronologia" *ngFor="let task of user.taskFatti">
+                    <div class="content-item">
+                        <p class="data">{{task.data| date:'shortDate'}}</p>
+                        <p class="testo-task blu">{{task.nome}}</p>
+                        <p class="testo-task">{{task.descrizione}}</p>
+                    
+                    </div>
+                </div>
+            </div>
+
         </div>
     </ng-container>
     

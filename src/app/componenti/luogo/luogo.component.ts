@@ -7,6 +7,7 @@ import { AggiungiEmozioniDialogComponent } from 'src/app/dialogs/aggiungi-emozio
 import { LoginSignupDialogComponent } from 'src/app/dialogs/login-signup-dialog/login-signup-dialog.component';
 import { FirestoreService } from 'src/app/servizi/firestore.service';
 import { ObiettiviService } from 'src/app/servizi/obiettivi.service';
+import { UserService } from 'src/app/servizi/user.service';
 
 @Component({
   selector: 'app-luogo',
@@ -23,10 +24,21 @@ export class LuogoComponent implements OnInit {
     protected authService: AuthService,
     private firestoreService: FirestoreService,
     private obiettiviService: ObiettiviService,
-    private dialog : MatDialog
+    private dialog : MatDialog,
+    private userService : UserService
+    
   ) {}
 
   ngOnInit(): void {
+    /** se l'utente è loggato allora devo cambiare il suo count */
+    this.authService.currentUser$.subscribe((user:any) =>{
+      if(!user)
+        return
+      this.userService.incrementaCountLuoghi(user)
+    })
+
+
+    /**Inizio visualizzazione luogo */
     this.idLuogo = this.route.snapshot.paramMap.get('id_luogo');
 
     this.luogo$ = this.firestoreService.getLuoghi().pipe(

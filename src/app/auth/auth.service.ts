@@ -8,12 +8,13 @@ import {
   user,
 } from '@angular/fire/auth';
 import { catchError, from, map, mergeMap, throwError } from 'rxjs';
+import { FirestoreService } from '../servizi/firestore.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private auth: Auth) {}
+  constructor(private auth: Auth,private firestoreService:FirestoreService) {}
 
   currentUser$ = authState(this.auth)
 
@@ -46,4 +47,7 @@ export class AuthService {
   getCurrentUser() {
     return this.auth.currentUser;
   }
+
+
+ 
 }

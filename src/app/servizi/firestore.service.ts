@@ -34,6 +34,7 @@ export class FirestoreService {
     return collectionData(refQuery, { idField: 'id' });
   }
 
+
   getLuogoById(idLuogo: string) {
     const refCollection = collection(this.firestore, 'luogo');
     const luogoRef = doc(this.firestore, 'luogo', idLuogo);
@@ -64,7 +65,7 @@ export class FirestoreService {
     
     const obiettivi = documento!['obiettivi']
     obiettivi[iObiettivo].container.push({tipo: 'imm',link : immURL})
-    console.log(obiettivi)
+    //console.log(obiettivi)
     updateDoc(luogoRef, { obiettivi: obiettivi});
   }
 
