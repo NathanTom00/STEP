@@ -17,7 +17,7 @@ export class AppComponent {
   title = 'Step_Proj';
 
   test = false;
-  constructor(private router: Router,private cookieService : CookieService,private auth: Auth,protected authService : AuthService,private dialog:MatDialog) {
+  constructor(private router: Router,private auth: Auth,protected authService : AuthService,private dialog:MatDialog) {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties

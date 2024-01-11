@@ -1,5 +1,5 @@
 <div class="container">
-    
+
     <ng-container *ngIf="luogo$| async; let luogo">
 
         <img class="immagine-luogo" src="{{luogo.imm}}" alt="">
@@ -10,19 +10,25 @@
                 <p style="margin: 0;">
                     {{luogo.location}}
                 </p>
-                
+
             </div>
         </div>
+
         <div class="sezione">
             <div class="titolo-container">
                 <div class="flexer">
                     <h2 class="titolo">{{luogo.nome}}</h2>
                     <span class="spacer"></span>
-                    <button mat-mini-fab class="share-button" (click)="onShare()">
+                    <button mat-mini-fab class="share-button" matRipple (click)="onShare()">
                         <mat-icon>share</mat-icon>
                     </button>
                 </div>
 
+            </div>
+            <div class="button-map-container">
+                <button class="button-map" matRipple (click)="navigaMaps(luogo.coordinate)">
+                    <mat-icon>map</mat-icon> Trova su Google Maps
+                </button>
             </div>
             <p class="descrizione">
                 {{luogo.descrizione}}
@@ -38,13 +44,14 @@
                 <h4 class=" sottosezione">Emozioni Correlate</h4>
             </div>
             <div class="emozioni-container">
-                <mat-chip (click)="aggiungiEmozione(luogo.id)" class="chip aggiungi-button" *ngIf="authService.currentUser$ | async" >Aggiungi</mat-chip>
+                <mat-chip matRipple (click)="aggiungiEmozione(luogo.id)" class="chip aggiungi-button"
+                    *ngIf="authService.currentUser$ | async">Aggiungi</mat-chip>
                 <mat-chip disabled class="chip" *ngFor="let emozione of luogo.emozioni">
 
                     {{toCap(emozione)}}
 
                 </mat-chip>
-                
+
             </div>
         </div>
 
@@ -56,17 +63,18 @@
         </div>
 
         <div class="container-emozioni">
-            <div class="button-container"  *ngFor="let obiettivo of  luogo.obiettivi; index as i " >
-                <button matRipple type="button"  class="emozione" (click)="esploraAnimaLocus(luogo.id,i)"  value="{{obiettivo.nome}} " matBadge="{{obiettivo.container.length}}">
-                    <div class="icon-button" >
-                        <svg-icon src="{{getIconByName(obiettivo.nome)}}" ></svg-icon>
-                        
+            <div class="button-container" matRipple *ngFor="let obiettivo of  luogo.obiettivi; index as i ">
+                <button matRipple type="button" class="emozione" (click)="esploraAnimaLocus(luogo.id,i)"
+                    value="{{obiettivo.nome}} " matBadge="{{obiettivo.container.length}}">
+                    <div class="icon-button">
+                        <svg-icon src="{{getIconByName(obiettivo.nome)}}"></svg-icon>
+
                     </div>
                     <p class="label-button">
                         {{obiettivo.nome}}
                     </p>
                 </button>
-                
+
             </div>
         </div>
     </ng-container>

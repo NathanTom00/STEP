@@ -1,19 +1,16 @@
-
-
-
 <div class="container">
-    <mat-drawer-container  style="min-height: 100%;">
-        <mat-drawer #drawer class="sidenav" mode="over"  style="background-color: #f5f3f7">
-            
+    <mat-drawer-container style="min-height: 100%;">
+        <mat-drawer #drawer class="sidenav" mode="over" style="background-color: #f5f3f7">
+
             <div class="close-container">
                 <button mat-mini-fab class="menu-button" (click)="drawer.close()">
                     <mat-icon>close</mat-icon>
                 </button>
             </div>
-                
+
             <div class="links-container">
                 <div class="link">
-                    <button class="link-button" (click)="nav('home')" >Home</button>
+                    <button class="link-button" (click)="nav('home')">Home</button>
                 </div>
                 <div class="link">
                     <button class="link-button" (click)="nav('cerca')">Cerca</button>
@@ -31,14 +28,19 @@
                     <button class="link-button" (click)="doLogIn()">Log in</button>
                 </div>
                 <div class="link" *ngIf="authService.currentUser$|async">
-                    <button (click)="nav('profilo')" class="link-button">Profilo</button>
+                    <button (click)="nav('profilo')" class="link-button with-icon">
+                        <svg-icon src="../assets/Icons/profile_icon.svg"
+                            [svgStyle]="{ 'height.px':40 }"></svg-icon>Profilo
+                    </button>
                 </div>
                 <div class="link" *ngIf="authService.currentUser$|async">
-                    <button (click)="doLogout()" class="link-button">Log out</button>
+                    <button (click)="doLogout()" class="link-button with-icon logout">
+                        <svg-icon src="../assets/Icons/logout_icon.svg" [svgStyle]="{ 'height.px':40 }"></svg-icon>Log out
+                    </button>
                 </div>
             </div>
         </mat-drawer>
-    
+
         <div class="content">
             <mat-toolbar>
                 <span><svg-icon src="../assets/Icons/STEP_LOGO.svg"></svg-icon></span>
@@ -54,6 +56,6 @@
                 <router-outlet></router-outlet>
             </div>
         </div>
-    
+
     </mat-drawer-container>
 </div>

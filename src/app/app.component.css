@@ -61,3 +61,14 @@ mat-toolbar {
     padding-top: 56px;
   }
 }
+
+.with-icon{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.logout{
+  color: rgb(134, 15, 15);
+}
+

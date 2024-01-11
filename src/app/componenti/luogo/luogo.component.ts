@@ -76,5 +76,10 @@ export class LuogoComponent implements OnInit {
     const dialogRef = this.dialog.open(AggiungiEmozioniDialogComponent,{data: {idLuogo: idLuogo}})
    
   }
+
+  navigaMaps(coordinate:string){
+    //https://www.google.com/maps/search/?api=1&query=<lat>,<lng>
+    window.location.href = `https://www.google.com/maps/search/?api=1&query=${coordinate}`;
+  }
   
 }

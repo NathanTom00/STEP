@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { OnboardingService } from 'src/app/servizi/onboarding.service';
 
@@ -36,7 +37,7 @@ export class OnboardingSuggerimentiComponent implements OnInit{
 
   luoghiSelezionati : any[] = []
   len : any
-  constructor (protected onboardingService : OnboardingService,private router: Router) {
+  constructor (protected onboardingService : OnboardingService,private router: Router,private cookieService : CookieService) {
   }
 
   ngOnInit(): void {
@@ -58,6 +59,7 @@ export class OnboardingSuggerimentiComponent implements OnInit{
   }
 
   onClickScopri(codiceLuogo : string){
+    this.cookieService.set('visitato', ' ');
     this.router.navigate(['luoghi/'+codiceLuogo])
   }
 

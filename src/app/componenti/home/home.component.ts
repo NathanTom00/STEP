@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Observable, concatMap, map, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -33,12 +34,12 @@ export class HomeComponent implements OnInit {
   emozioni_evidenza = ['nostalgia'];
   commenti: any[] = [];
   caricamento = true;
-  emozioneSelezionato = ''
-  luoghiByEmozione : any[] = []
+  emozioneSelezionato = '';
+  luoghiByEmozione: any[] = [];
 
-  currentUser$ !: Observable<any>;
+  currentUser$!: Observable<any>;
   test = true;
- 
+
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -62,38 +63,35 @@ export class HomeComponent implements OnInit {
       },
     },
   };
-  cookieService: any;
-  subscribeLuoghi : any =null;
+  subscribeLuoghi: any = null;
   constructor(
     private router: Router,
     private firestoreService: FirestoreService,
     private dialog: MatDialog,
     protected authService: AuthService,
-    private userService : UserService
+    private userService: UserService,
+    private cookieService : CookieService
   ) {
-
-    this.currentUser$ = userService.currentUserProfile$
+    this.currentUser$ = userService.currentUserProfile$;
   }
-
-
 
   ngOnInit(): void {
     //redirect test
+    /*
     if (!this.test) {
       this.router.navigate(['onboarding']);
     } 
+    */
 
     //redirect with cookie -> per vedere se un utente ha già visitato il sito o meno usiamo un cookie
-    /* 
-      if (!this.cookieService.check("visitato")) {
-        this.cookieService.set("visitato"," ")
-        this.router.navigate(['onboarding']);
-        return
-      } 
-      */
+    if (!this.cookieService.check('visitato')) {
+      this.router.navigate(['onboarding']);
+      return;
+    }
 
-      this.subscribeLuoghi=this.firestoreService.getLuoghi().subscribe((data: any) => 
-      {
+    this.subscribeLuoghi = this.firestoreService
+      .getLuoghi()
+      .subscribe((data: any) => {
         this.tutti_luoghi = data;
         let arr_luoghi_no_evidenza: any[] = [];
         for (let luogo of data) {
@@ -115,7 +113,7 @@ export class HomeComponent implements OnInit {
           arr_luoghi_no_evidenza.splice(random_int, 1);
         }
 
-        this.caricamento = false
+        this.caricamento = false;
 
         //console.log(this.commenti)
 
@@ -141,40 +139,37 @@ export class HomeComponent implements OnInit {
   }
 
   selezionaChip(emozione: string) {
-    
-    if(this.emozioneSelezionato === emozione){
-      this.emozioneSelezionato = ''
-      return
+    if (this.emozioneSelezionato === emozione) {
+      this.emozioneSelezionato = '';
+      return;
     }
 
-    this.emozioneSelezionato = emozione
-    this.luoghiByEmozione = []
-    this.firestoreService.getLuoghi().subscribe((data:any)=>{
-      for(let luogo of data){
-        if(luogo.emozioni.includes(this.emozioneSelezionato)){
-          this.luoghiByEmozione.push(luogo)
+    this.emozioneSelezionato = emozione;
+    this.luoghiByEmozione = [];
+    this.firestoreService.getLuoghi().subscribe((data: any) => {
+      for (let luogo of data) {
+        if (luogo.emozioni.includes(this.emozioneSelezionato)) {
+          this.luoghiByEmozione.push(luogo);
         }
       }
-    })
+    });
   }
 
   toCap(stringa: string) {
     return stringa[0].toUpperCase() + stringa.substring(1);
   }
 
-
-  goToLuogo(idLuogo : string){
-    this.router.navigate(['luoghi/'+idLuogo])
+  goToLuogo(idLuogo: string) {
+    this.router.navigate(['luoghi/' + idLuogo]);
   }
 
-  getTaskDaFare(taskFatti : any[],taskTotali : any[]){
-    const nomiTaskFatti = taskFatti.map((data:any) => data.nome)
-    let ris: any[] = []
-    for(let task of taskTotali){
-      if((!nomiTaskFatti.includes(task.nome)) && ris.length != 1)
-        ris.push(task)
+  getTaskDaFare(taskFatti: any[], taskTotali: any[]) {
+    const nomiTaskFatti = taskFatti.map((data: any) => data.nome);
+    let ris: any[] = [];
+    for (let task of taskTotali) {
+      if (!nomiTaskFatti.includes(task.nome) && ris.length != 1) ris.push(task);
     }
 
-    return ris
+    return ris;
   }
 }
