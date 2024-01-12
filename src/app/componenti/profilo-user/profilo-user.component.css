@@ -101,6 +101,7 @@
 .testo-task {
   font-size: medium;
   margin: 0;
+  text-align: center;
 }
 .badge-container {
   display: grid;

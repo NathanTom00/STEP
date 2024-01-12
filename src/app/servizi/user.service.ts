@@ -60,7 +60,7 @@ export class UserService {
       let taskFatta = {nome: 'Traveller level 2',descrizione: 'Esplora 5 luoghi', data: Date.now()}
       this.snackBar.open('Challenge Completata: Traveller!','OK',{duration: 10000})
       
-      updateDoc(userRef,{taskFatti: arrayUnion(taskFatta), badges: arrayUnion('Traveller'), livello: documento!['livello']+1})
+      updateDoc(userRef,{taskFatti: arrayUnion(taskFatta), badges: arrayUnion('Traveller level 2'), livello: documento!['livello']+1})
     }
 
     updateDoc(userRef, { count_luoghi_esplorati: documento!['count_luoghi_esplorati']+1});
