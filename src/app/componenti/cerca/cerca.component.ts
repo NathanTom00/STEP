@@ -50,8 +50,8 @@ export class CercaComponent implements OnInit {
 
   onClickFiltra() {
     const dialogRef = this.dialog.open(CercaTagsComponent, {
-      maxWidth: '100vw',
-      width: '100%',
+      maxWidth: '90vw',
+      width: '90%',
     });
 
     this.provinceSelezionati = []
@@ -137,8 +137,8 @@ export class CercaComponent implements OnInit {
 
   openMap(){
     this.dialog.open(CercaMappaComponent,{
-      minWidth: '100vw',
-      width: '100%',
+      minWidth: '90vw',
+      width: '90%',
     })
   }
 }

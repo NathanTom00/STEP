@@ -45,7 +45,10 @@ export class OnboardingObiettiviComponent implements OnInit {
 
   onSubmit() {
     if (this.obiettiviSelezionati.length != 3) {
-      this.dialog.open(ErrObiettiviComponent);
+      this.dialog.open(ErrObiettiviComponent, {
+        maxWidth: '90vw',
+        width: '90%',
+      });
       return;
     }
     this.onboardingService.setObiettiviSelezionati(this.obiettiviSelezionati);

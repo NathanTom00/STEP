@@ -25,28 +25,30 @@ export class LuogoComponent implements OnInit {
     protected authService: AuthService,
     private firestoreService: FirestoreService,
     private obiettiviService: ObiettiviService,
-    private dialog : MatDialog,
-    private userService : UserService,
-    protected cookieService : CookieService
-    
+    private dialog: MatDialog,
+    private userService: UserService,
+    protected cookieService: CookieService
   ) {}
 
   ngOnInit(): void {
     /**aggiungo un cookie per contare quante volte ho visitato il luogo*/
-    if(!this.cookieService.check('count_visite_luogo')){
-      this.cookieService.set('count_visite_luogo','0')
+    if (!this.cookieService.check('count_visite_luogo')) {
+      this.cookieService.set('count_visite_luogo', '0');
     }
-    this.cookieService.set('count_visite_luogo', (parseInt(this.cookieService.get('count_visite_luogo')) + 1).toString() ) 
+    this.cookieService.set(
+      'count_visite_luogo',
+      (parseInt(this.cookieService.get('count_visite_luogo')) + 1).toString()
+    );
 
-    
     /** se l'utente è loggato allora devo cambiare il suo count */
-    this.authService.currentUser$.subscribe((user:any) =>{
-      if(!user)
-        return
-      this.userService.incrementaCountLuoghi(user)
-    })
+    this.authService.currentUser$.subscribe((user: any) => {
+      if (!user) return;
+      this.userService.incrementaCountLuoghi(user);
+    });
 
-    const count_visite_luogo = parseInt(this.cookieService.get('count_visite_luogo'))
+    const count_visite_luogo = parseInt(
+      this.cookieService.get('count_visite_luogo')
+    );
 
     /**Inizio visualizzazione luogo */
     this.idLuogo = this.route.snapshot.paramMap.get('id_luogo');
@@ -56,11 +58,15 @@ export class LuogoComponent implements OnInit {
       filter((data: any) => data.id == this.idLuogo)
     );
 
-    this.authService.currentUser$.subscribe(user => {
+    this.authService.currentUser$.subscribe((user) => {
       //se user non è loggato e abbiamo la 1 + 5k visita allora apro il dialog
-      if(!user && count_visite_luogo % 5 == 1)
-        this.dialog.open(LoginSignupDialogComponent, {data: { singUpPage: false },});
-    })
+      if (!user && count_visite_luogo % 5 == 1)
+        this.dialog.open(LoginSignupDialogComponent, {
+          maxWidth: '90vw',
+          width: '90%',
+          data: { singUpPage: false },
+        });
+    });
   }
 
   onShare() {}
@@ -71,30 +77,31 @@ export class LuogoComponent implements OnInit {
 
   esploraAnimaLocus(idLuogo: string, i: number) {
     //vai in luoghi/:idLuogo/:i
-    this.router.navigate([`luoghi/${idLuogo}/${i}`])
+    this.router.navigate([`luoghi/${idLuogo}/${i}`]);
   }
 
   getIconByName(nomeObiettivo: string) {
-    for(let obiettivo of this.obiettiviService.getObiettivi()){
-      if(obiettivo.nome===nomeObiettivo)
-        return obiettivo.icon
+    for (let obiettivo of this.obiettiviService.getObiettivi()) {
+      if (obiettivo.nome === nomeObiettivo) return obiettivo.icon;
     }
 
-    return "";
+    return '';
   }
 
-  aggiungiEmozione(idLuogo : string){
-    const dialogRef = this.dialog.open(AggiungiEmozioniDialogComponent,{data: {idLuogo: idLuogo}})
-   
+  aggiungiEmozione(idLuogo: string) {
+    const dialogRef = this.dialog.open(AggiungiEmozioniDialogComponent, {
+      maxWidth: '90vw',
+      width: '90%',
+      data: { idLuogo: idLuogo },
+    });
   }
 
-  navigaMaps(coordinate:string){
+  navigaMaps(coordinate: string) {
     //https://www.google.com/maps/search/?api=1&query=<lat>,<lng>
     window.location.href = `https://www.google.com/maps/search/?api=1&query=${coordinate}`;
   }
 
-  navigaLink(link : string){
-    window.location.href = link
+  navigaLink(link: string) {
+    window.location.href = link;
   }
-  
 }
