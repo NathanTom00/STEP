@@ -65,7 +65,6 @@ export class CercaComponent implements OnInit {
       if(datas.obiettiviSelezionati)
         this.obiettiviSelezionati = datas.obiettiviSelezionati;
 
-      console.log(this.provinceSelezionati,this.emozioniSelezionati,this.obiettiviSelezionati)
     });
   }
 
@@ -88,7 +87,6 @@ export class CercaComponent implements OnInit {
   }
 
   verificaLuogo(luogo: any): boolean {
-    console.log(this.emozioniSelezionati,this.obiettiviSelezionati)
     if(this.provinceSelezionati.length !== 0){
       if (this.provinceSelezionati.length !== 1) return false;
 
@@ -139,6 +137,8 @@ export class CercaComponent implements OnInit {
 
   openMap(){
     this.dialog.open(CercaMappaComponent,{
+      minWidth: '100vw',
+      width: '100%',
     })
   }
 }

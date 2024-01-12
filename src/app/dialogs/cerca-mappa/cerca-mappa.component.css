@@ -8,8 +8,8 @@
   background-color: #f5f3f7;
   min-height: 100%;
 }
-.map-container{
-  padding: 1rem;
+.map-container {
+  padding: 1rem 1rem 0 1rem;
 }
 .titolo-sezione {
   font-size: medium;
@@ -28,53 +28,52 @@
   box-shadow: none !important;
 }
 
-.footer {
-  padding-top: 2rem;
-}
 .sezione {
   width: 100%;
-  padding-top: 1rem;
   display: block;
 }
 
-
-
-.scrollable-container{
+.scrollable-container {
   display: flex; /* displays flex-items (children) inline */
-  height: 100px;
+  height: 120px;
   width: 100%;
   overflow-x: auto;
+  /*nasconde lo scrollbar*/
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
 }
 
-.item{
+.scrollable-container::-webkit-scrollbar{
+  width: 0;
+}
+
+.item {
   background-color: white;
-  flex: 0 0 90%; /* doesn't grow nor shrink, initial width set to 25% of the parent's */
+  flex: 0 0 80%; /* doesn't grow nor shrink, initial width set to 25% of the parent's */
   height: 80px; /* just for demo */
   border-radius: 20px;
   display: flex;
   box-shadow: #64646447 0px 5px 10px 0px;
-  margin-inline: 0.5rem;
-  
+  margin-inline: 1rem;
 }
 
-.content-item{
+.content-item {
   margin-inline-start: 1rem;
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
 }
 
-.testo-task{
+.testo-task {
   font-size: smaller;
   margin: 0;
 }
 
-.blu{
-  color:#015ede
+.blu {
+  color: #015ede;
 }
 
-.img-item{
+.img-item {
   width: 80px;
-  border-radius: 20px 0 0 20px
+  border-radius: 20px 0 0 20px;
 }
-

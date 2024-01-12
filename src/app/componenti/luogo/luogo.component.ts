@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable, filter, mergeMap, toArray } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { AggiungiEmozioniDialogComponent } from 'src/app/dialogs/aggiungi-emozioni-dialog/aggiungi-emozioni-dialog.component';
@@ -25,11 +26,19 @@ export class LuogoComponent implements OnInit {
     private firestoreService: FirestoreService,
     private obiettiviService: ObiettiviService,
     private dialog : MatDialog,
-    private userService : UserService
+    private userService : UserService,
+    protected cookieService : CookieService
     
   ) {}
 
   ngOnInit(): void {
+    /**aggiungo un cookie per contare quante volte ho visitato il luogo*/
+    if(!this.cookieService.check('count_visite_luogo')){
+      this.cookieService.set('count_visite_luogo','0')
+    }
+    this.cookieService.set('count_visite_luogo', (parseInt(this.cookieService.get('count_visite_luogo')) + 1).toString() ) 
+
+    
     /** se l'utente è loggato allora devo cambiare il suo count */
     this.authService.currentUser$.subscribe((user:any) =>{
       if(!user)
@@ -37,6 +46,7 @@ export class LuogoComponent implements OnInit {
       this.userService.incrementaCountLuoghi(user)
     })
 
+    const count_visite_luogo = parseInt(this.cookieService.get('count_visite_luogo'))
 
     /**Inizio visualizzazione luogo */
     this.idLuogo = this.route.snapshot.paramMap.get('id_luogo');
@@ -47,7 +57,8 @@ export class LuogoComponent implements OnInit {
     );
 
     this.authService.currentUser$.subscribe(user => {
-      if(!user)
+      //se user non è loggato e abbiamo la 1 + 5k visita allora apro il dialog
+      if(!user && count_visite_luogo % 5 == 1)
         this.dialog.open(LoginSignupDialogComponent, {data: { singUpPage: false },});
     })
   }
