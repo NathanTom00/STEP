@@ -9,7 +9,7 @@
 
         <div class="sezione sezione-task" *ngIf="(currentUser$|async) as user">
             <h3 class="titolo-blocco" style="padding: 0;">
-                Ciao <span style="color: #015ede;">{{user.nome}}</span>, hai delle challenge da fare!
+                Ciao <span style="color: #015ede;">{{user.nome}}</span>, ottieni nuovi badge!
             </h3>
             <div class="task-item" *ngFor="let task of getTaskDaFare(user.taskFatti,user.taskTotali)" >
                 <div class="content-item">

@@ -64,6 +64,8 @@ export class CercaComponent implements OnInit {
         this.emozioniSelezionati = datas.emozioniSelezionati;
       if(datas.obiettiviSelezionati)
         this.obiettiviSelezionati = datas.obiettiviSelezionati;
+
+      console.log(this.provinceSelezionati,this.emozioniSelezionati,this.obiettiviSelezionati)
     });
   }
 
@@ -86,7 +88,7 @@ export class CercaComponent implements OnInit {
   }
 
   verificaLuogo(luogo: any): boolean {
-    
+    console.log(this.emozioniSelezionati,this.obiettiviSelezionati)
     if(this.provinceSelezionati.length !== 0){
       if (this.provinceSelezionati.length !== 1) return false;
 
@@ -95,7 +97,7 @@ export class CercaComponent implements OnInit {
 
     //console.log(luogo.emozioni,this.emozioniSelezionati,this.emozioniSelezionati.length !== 0 && !luogo.emozioni.includes(this.emozioniSelezionati))
     
-
+    
     if(this.emozioniSelezionati.length !== 0 ){
       for(let emozioneDaFiltrare of this.emozioniSelezionati){
         if(!luogo.emozioni.includes(emozioneDaFiltrare))
@@ -105,8 +107,9 @@ export class CercaComponent implements OnInit {
       
     if(this.obiettiviSelezionati.length !== 0){
       let obiettiviLuogo = luogo.obiettivi.map((obv: any) => obv.nome)
+      
       for(let obiettivoDaFiltrare of this.obiettiviSelezionati){
-        if(obiettiviLuogo.includes(obiettivoDaFiltrare))
+        if(!obiettiviLuogo.includes(obiettivoDaFiltrare))
           return false
       }
     }
@@ -129,7 +132,6 @@ export class CercaComponent implements OnInit {
         ris = ris.filter((items:any) => items !== itemRis)
       }
     }
-
     return ris
 
     

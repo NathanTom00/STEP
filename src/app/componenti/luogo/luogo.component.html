@@ -25,18 +25,22 @@
                 </div>
 
             </div>
-            <div class="button-map-container">
-                <button class="button-map" matRipple (click)="navigaMaps(luogo.coordinate)">
-                    <mat-icon>map</mat-icon> Trova su Google Maps
-                </button>
-            </div>
+            <div class="titolo-container">
+                    <h4 class=" sottosezione">Descrizione</h4>
+                </div>
             <p class="descrizione">
                 {{luogo.descrizione}}
             </p>
         </div>
-        <div class="sezione" *ngIf="luogo.info !== ''">
+        <div class="button-map-container">
+            <button class="button-map" matRipple (click)="navigaMaps(luogo.coordinate)">
+                <mat-icon>map</mat-icon> Trova su Google Maps
+            </button>
+        </div>
+        <div class="sezione" *ngIf="luogo.info !== '' && luogo.info">
             <div class="titolo-container">
                 <h4 class=" sottosezione">Info Utili</h4>
+                <button class="link-utile" (click)="navigaLink(luogo.info)"><svg-icon src="assets/Icons/exit_to_app.svg"></svg-icon>  {{luogo.info}}</button>
             </div>
         </div>
         <div class="sezione">
@@ -55,7 +59,7 @@
             </div>
         </div>
 
-
+        
         <div class="sezione">
             <div class="titolo-container">
                 <h4 class=" sottosezione">Anima Locus</h4>

@@ -77,7 +77,6 @@ export class CercaTagsComponent {
   }
 
   cerca() {
-
     this.dialogRef.close({
       provinceSelezionati: this.provinceSelezionati,
       emozioniSelezionati: this.emozioniSelezionati,

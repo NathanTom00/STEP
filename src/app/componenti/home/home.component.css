@@ -228,7 +228,7 @@ mat-card-title {
   width: 100%;
   padding-inline-start: 1rem;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-direction: column;
 }
 

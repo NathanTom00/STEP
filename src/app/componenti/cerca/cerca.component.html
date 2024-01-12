@@ -32,7 +32,7 @@
     <div class="sezione">
 
         <div
-            *ngIf="stringaDaCercare==='' && provinceSelezionati.length  === 0 && emozioniSelezionati.length  === 0 &&  emozioniSelezionati.length  === 0  ">
+            *ngIf="stringaDaCercare==='' && provinceSelezionati.length  == 0 && emozioniSelezionati.length  == 0 &&  obiettiviSelezionati.length  == 0  ">
 
             <h4 class="titolo-blocco">Suggerimenti</h4>
             <div>
@@ -58,7 +58,7 @@
         </div>
 
         <div
-            *ngIf="!(stringaDaCercare==='' && provinceSelezionati.length  === 0 && emozioniSelezionati.length  === 0 &&  emozioniSelezionati.length  === 0)">
+            *ngIf="!(stringaDaCercare=='' && provinceSelezionati.length  == 0 && emozioniSelezionati.length  == 0 &&  obiettiviSelezionati.length  == 0)">
 
             <h4 class="titolo-blocco">Risultati</h4>
             <ng-container *ngIf="getLuoghiSelezionati(luoghi).length !== 0">

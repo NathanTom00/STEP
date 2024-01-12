@@ -81,5 +81,9 @@ export class LuogoComponent implements OnInit {
     //https://www.google.com/maps/search/?api=1&query=<lat>,<lng>
     window.location.href = `https://www.google.com/maps/search/?api=1&query=${coordinate}`;
   }
+
+  navigaLink(link : string){
+    window.location.href = link
+  }
   
 }
