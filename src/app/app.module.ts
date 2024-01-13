@@ -80,6 +80,9 @@ import { CercaComponent } from './componenti/cerca/cerca.component';
 import { CercaTagsComponent } from './dialogs/cerca-tags/cerca-tags.component';
 import { ProfiloUserComponent } from './componenti/profilo-user/profilo-user.component';
 import { CercaMappaComponent } from './dialogs/cerca-mappa/cerca-mappa.component';
+import { LeaderboardComponent } from './componenti/leaderboard/leaderboard.component';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,6 +101,7 @@ import { CercaMappaComponent } from './dialogs/cerca-mappa/cerca-mappa.component
     CercaTagsComponent,
     ProfiloUserComponent,
     CercaMappaComponent,
+    LeaderboardComponent,
     
   ],
   imports: [
@@ -124,6 +128,7 @@ import { CercaMappaComponent } from './dialogs/cerca-mappa/cerca-mappa.component
     MatCardModule,
     MatIconModule,
     MatButtonModule,
+    ClipboardModule,
     MatChipsModule,
     CarouselModule,
     MatGridListModule,

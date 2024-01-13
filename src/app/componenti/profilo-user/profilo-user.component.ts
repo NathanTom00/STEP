@@ -28,7 +28,8 @@ export class ProfiloUserComponent {
 
 
   goToModifica(){
-    console.log("daje")
+    /**TODO: fare la schermata modifica profilo*/
+    //console.log("daje")
   }
 
   cambiaSezione(sezioneDaCambiare  :string){

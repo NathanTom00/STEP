@@ -1,5 +1,7 @@
 <div class="container " *ngIf="(luoghi_all$|async) as luoghi">
+    
     <div class="sezione">
+        <h3 class="titolo-blocco esplora">Esplora</h3>
         <form [formGroup]="cercaForm" class="login-form" (ngSubmit)="cercaSubmit(luoghi)">
             <div class="form-field">
                 <button type="submit" class="cerca-button" [disabled]="!cercaForm.valid">

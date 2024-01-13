@@ -6,7 +6,7 @@
             <button class="add-button button">Aggiungi</button>
         </div>
     </div>
-    <div class="anima-container" >
+    <div class="anima-container" *ngIf="obiettivoSelezionato.container.length != 0" >
 
         <ng-container *ngFor="let item of obiettivoSelezionato.container">
             <div class="anima-item" *ngIf="item.tipo === 'imm'" (click)="zoomImm(item.link)">
@@ -19,5 +19,8 @@
             </div>
         </ng-container>
 
+    </div>
+    <div class="empty-container" *ngIf="obiettivoSelezionato.container.length == 0">
+        <p class="p-empty">Perché non constribuisci a quest'anima locus con una foto o link utile?</p>
     </div>
 </div>

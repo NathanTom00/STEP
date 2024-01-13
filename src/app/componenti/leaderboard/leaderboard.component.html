@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="sezione">
+        <h3 class="titolo-blocco ">Leaderboard</h3>
+        <form [formGroup]="cercaForm" class="cerca-form" (ngSubmit)="cercaSubmit()">
+            <div class="form-field">
+                <button type="submit" class="cerca-button" [disabled]="!cercaForm.valid">
+                    <mat-icon>search</mat-icon>
+                </button>
+                <input class="input-text" type="text" placeholder="Cerca nome"
+                    formControlName="cercaInput">
+
+            </div>
+        </form>
+    </div>
+    <div class="sezione" *ngIf="nomeDaCercare === ''">
+        <h3 class="titolo-blocco sub-titolo">Classifica</h3>
+        <div class="task-item" *ngFor="let utente of utenti">
+            <div class="content-item">
+                <div class="text-container">
+                    <p class="posizione">#{{utente.posizione}}</p>
+                    <p class="testo-task">{{utente.nome}}</p>
+                    <div class="badge-container">
+                        <svg-icon src="{{getLink(badge)}}" [svgStyle]="{ 'height.px':'30' }" *ngFor="let badge of utente.badges"></svg-icon>
+                    </div>
+                </div>
+                <div class="livello-container">
+                    <div class="livello">
+                        <svg-icon src="assets/Icons/ranking-star.svg"></svg-icon> {{utente.livello}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="sezione" *ngIf="nomeDaCercare !== ''">
+        <h3 class="titolo-blocco sub-titolo">Risultati ricerca</h3>
+        <div class="task-item" *ngIf="utenteCercato" >
+            <div class="content-item">
+                <div class="text-container">
+                    <p class="posizione">#{{utenteCercato.posizione}}</p>
+                    <p class="testo-task">{{utenteCercato.nome}}</p>
+                    <div class="badge-container">
+                        <svg-icon src="{{getLink(badge)}}" [svgStyle]="{ 'height.px':'30' }" *ngFor="let badge of utenteCercato.badges"></svg-icon>
+                    </div>
+                </div>
+                <div class="livello-container">
+                    <div class="livello">
+                        <svg-icon src="assets/Icons/ranking-star.svg"></svg-icon> {{utenteCercato.livello}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div ngIf="!utenteCercato" >
+            <p class="p-empty">Nessun utente con nome: {{nomeDaCercare}}</p>
+        </div>
+    </div>
+</div>

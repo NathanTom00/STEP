@@ -9,6 +9,7 @@ import { AnimaLocusComponent } from './componenti/anima-locus/anima-locus.compon
 import { CercaComponent } from './componenti/cerca/cerca.component';
 import { ProfiloUserComponent } from './componenti/profilo-user/profilo-user.component';
 import { authGuard } from './auth/auth.guard';
+import { LeaderboardComponent } from './componenti/leaderboard/leaderboard.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'luoghi/:id_luogo', component: LuogoComponent},
   {path: 'cerca', component: CercaComponent},
   {path: 'profilo', component: ProfiloUserComponent, canActivate: [authGuard]},
+  {path: 'leaderboard', component: LeaderboardComponent},
   {path: '',pathMatch: 'full',redirectTo: 'home'}
 ];
 

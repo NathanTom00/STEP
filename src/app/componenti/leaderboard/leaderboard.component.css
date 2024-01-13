@@ -1,0 +1,134 @@
+.container {
+  max-width: 100%;
+  min-height: 100vh;
+  background-color: #f5f3f7;
+  display: flex;
+  flex-direction: column;
+  padding-inline: 1rem;
+}
+
+.sezione {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  margin-top: 1rem;
+  flex-direction: column;
+}
+
+.titolo-blocco {
+  font-weight: bold;
+  font-size: large;
+}
+
+.sub-titolo{
+  font-size:medium;
+}
+
+.cerca-form {
+  width: 100%;
+}
+
+input[type="text"] {
+  height: 2.5rem;
+  border: 1px solid #d5d5d5;
+  border-radius: 15px;
+  width: 100%;
+  padding: 0 20px;
+  font-size: 16px;
+
+  /*per mettere il padding senza alterare il width */
+  box-sizing: border-box;
+  -moz-box-sizing: border-box; /* Firefox */
+  -webkit-box-sizing: border-box; /* Safari */
+}
+
+.cerca-button {
+  padding: 0;
+  color: #015ede;
+  border: none;
+  background: none;
+  position: absolute;
+  right: 20px;
+  height: 40px;
+  width: 40px;
+}
+
+.task-item {
+  background-color: white;
+  width: 100%;
+  max-width: 400px;
+  height: 130px;
+  border-radius: 20px;
+  display: flex;
+  margin-bottom: 1rem;
+  box-shadow: #64646447 0px 5px 10px 0px;
+}
+
+.content-item {
+  width: 100%;
+  display: flex;
+  padding: 1rem;
+}
+
+.testo-task {
+  font-size: medium;
+  margin: 0;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.text-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.posizione {
+  font-size: large;
+  color: grey;
+}
+
+.badge-container {
+  overflow: hidden;
+  display: block;
+  width: 175px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.livello-container {
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.livello {
+  background-color: #015ede;
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  height: 50px;
+  border-radius: 20px;
+  line-height: 50px;
+}
+
+@media only screen and (max-width: 320px) {
+  .livello-container {
+    width: 70px;
+  }
+  .livello {
+    font-size: 16px;
+    height: 40px;
+    border-radius: 15px;
+    line-height: 40px;
+  }
+}
+
+.p-empty {
+  font-size: medium;
+  text-align: center;
+  color: #818181;
+}

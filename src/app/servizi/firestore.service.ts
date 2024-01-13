@@ -10,7 +10,7 @@ import {
   query,
   where,
 } from '@angular/fire/firestore';
-import { FieldValue, QueryConstraint, arrayUnion, updateDoc } from 'firebase/firestore';
+import { FieldValue, QueryConstraint, arrayUnion, orderBy, updateDoc } from 'firebase/firestore';
 import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { of } from 'rxjs';
 
@@ -78,5 +78,11 @@ export class FirestoreService {
     obiettivi[iObiettivo].container.push({tipo: 'link',titolo : titolo,link: link})
     console.log(obiettivi)
     updateDoc(luogoRef, { obiettivi: obiettivi});
+  }
+
+  getClassifica(){
+    const refCollection = collection(this.firestore, 'users')
+    const refQuery = query(refCollection,orderBy('livello'))
+    return collectionData(refQuery, { idField: 'id' });
   }
 }

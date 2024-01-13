@@ -43,7 +43,7 @@ export class AnimaLocusComponent implements OnInit {
         }
       }
 
-      console.log(this.obiettivoSelezionato);
+      //console.log(this.obiettivoSelezionato);
     });
   }
 

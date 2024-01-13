@@ -9,6 +9,9 @@ import { LoginSignupDialogComponent } from 'src/app/dialogs/login-signup-dialog/
 import { FirestoreService } from 'src/app/servizi/firestore.service';
 import { ObiettiviService } from 'src/app/servizi/obiettivi.service';
 import { UserService } from 'src/app/servizi/user.service';
+import {Clipboard} from '@angular/cdk/clipboard';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-luogo',
@@ -27,7 +30,10 @@ export class LuogoComponent implements OnInit {
     private obiettiviService: ObiettiviService,
     private dialog: MatDialog,
     private userService: UserService,
-    protected cookieService: CookieService
+    protected cookieService: CookieService,
+    private clipboard: Clipboard,
+    private snackBar: MatSnackBar
+    
   ) {}
 
   ngOnInit(): void {
@@ -69,7 +75,10 @@ export class LuogoComponent implements OnInit {
     });
   }
 
-  onShare() {}
+  onShare() {
+    this.clipboard.copy(window.location.href)
+    this.snackBar.open('Indirizzo URL copiato','OK');
+  }
 
   toCap(stringa: string) {
     return stringa[0].toUpperCase() + stringa.substring(1);

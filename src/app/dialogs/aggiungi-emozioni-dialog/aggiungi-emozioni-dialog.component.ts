@@ -53,11 +53,11 @@ export class AggiungiEmozioniDialogComponent implements OnInit{
     if(!this.emozioniSelezionati.includes(emozione)){
       chip._elementRef.nativeElement.classList.add('selected');
       this.emozioniSelezionati.push(emozione)
-      console.log(this.emozioniSelezionati)
+      //console.log(this.emozioniSelezionati)
     }else{
       chip._elementRef.nativeElement.classList.remove('selected');
       this.emozioniSelezionati = this.emozioniSelezionati.filter((item: string) => item !== emozione)
-      console.log(this.emozioniSelezionati)
+      //console.log(this.emozioniSelezionati)
     }
   }
 
