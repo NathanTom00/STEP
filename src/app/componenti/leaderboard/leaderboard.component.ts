@@ -12,7 +12,7 @@ export class LeaderboardComponent implements OnInit{
 
   nomeDaCercare = ''
   utenti : any[] = [];
-  utenteCercato : any; 
+  utenteCercato : any = null; 
   cercaForm: FormGroup = new FormGroup({
     cercaInput: new FormControl(''),
   });

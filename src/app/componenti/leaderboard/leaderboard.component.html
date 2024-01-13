@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        <div ngIf="!utenteCercato" >
+        <div *ngIf="!utenteCercato" >
             <p class="p-empty">Nessun utente con nome: {{nomeDaCercare}}</p>
         </div>
     </div>
