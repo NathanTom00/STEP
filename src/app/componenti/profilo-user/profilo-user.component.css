@@ -94,6 +94,15 @@
   width: 100%;
   padding-inline-start: 1rem;
   display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.content-badge {
+  width: 100%;
+  padding-inline-start: 1rem;
+  display: flex;
   justify-content: space-evenly;
   flex-direction: column;
 }
@@ -123,13 +132,13 @@
   justify-content: center;
 }
 
-.data{
+.data {
   color: #696969;
   font-size: small;
-  margin:0
+  margin: 0;
 }
 
-.cronologia{
+.cronologia {
   justify-content: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
