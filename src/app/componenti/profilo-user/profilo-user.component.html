@@ -2,7 +2,7 @@
     <ng-container *ngIf="currentUser$|async as user">
         <div class="sezione">
             <div class="livello-container">
-                Lv. {{user.livello}}
+                <svg-icon src="assets/Icons/ranking-star.svg"></svg-icon> {{user.livello}}
             </div>
             <h3 class="user-name">Ciao, {{user.nome}}</h3>
             <button class="link" (click)="goToModifica()">Modifica profilo</button>
