@@ -51,7 +51,7 @@ export class AppComponent {
 
   doLogIn(){
     this.sidenav.close()
-    this.dialog.open(LoginSignupDialogComponent, {data: { singUpPage: false },});
+    this.dialog.open(LoginSignupDialogComponent, {data: { singUpPage: 'login' },});
   }
 
 }

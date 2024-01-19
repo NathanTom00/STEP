@@ -3,11 +3,12 @@ import {
   Auth,
   authState,
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   user,
 } from '@angular/fire/auth';
-import { catchError, from, map, mergeMap, throwError } from 'rxjs';
+import { catchError, from, map, mergeMap, of, throwError } from 'rxjs';
 import { FirestoreService } from '../servizi/firestore.service';
 
 @Injectable({
@@ -47,7 +48,9 @@ export class AuthService {
   getCurrentUser() {
     return this.auth.currentUser;
   }
-
-
+  
+  passDimenticata(email : string){
+    return of(sendPasswordResetEmail(this.auth,email))
+  }
  
 }

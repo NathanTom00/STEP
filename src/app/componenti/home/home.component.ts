@@ -136,7 +136,7 @@ export class HomeComponent implements OnInit {
     this.dialog.open(LoginSignupDialogComponent, {
       maxWidth: '90vw',
       width: '90%',
-      data: { singUpPage: true },
+      data: { singUpPage: 'login' },
     });
   }
 

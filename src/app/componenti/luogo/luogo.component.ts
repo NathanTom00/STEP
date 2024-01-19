@@ -70,7 +70,7 @@ export class LuogoComponent implements OnInit {
         this.dialog.open(LoginSignupDialogComponent, {
           maxWidth: '90vw',
           width: '90%',
-          data: { singUpPage: false },
+          data: { singUpPage: 'signup' },
         });
     });
   }
