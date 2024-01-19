@@ -13,7 +13,8 @@ import { UserService } from 'src/app/servizi/user.service';
 })
 export class LoginSignupDialogComponent {
 
-  hideErr = true
+  hidePassUguale = true
+  hideCredValidi = true
   signupPage : boolean
   
   signup: FormGroup = new FormGroup({
@@ -41,7 +42,7 @@ export class LoginSignupDialogComponent {
   onSingupSubmit(){
     
     if(this.signup.value.pass !== this.signup.value.confPass){
-      this.hideErr = false;
+      this.hidePassUguale = false;
       return
     }
     let email = this.signup.value.email;
@@ -63,17 +64,16 @@ export class LoginSignupDialogComponent {
         count_obiettivi_esplorati: 0,
         count_emozioni_aggiunti: 0
       }))
-    ).subscribe(data => {
-      console.log(data)
+    ).subscribe(_ => {
+      //console.log(data)
       location.reload()
     })
-    //da fare: mettere l'utente su firestore
   }
 
   onLogInSubmit(){
     let email = this.loginForm.value.email;
     let pass = this.loginForm.value.pass;
-    this.authService.logIn(email,pass).subscribe(data => location.reload())
+    this.authService.logIn(email,pass).subscribe(_ => location.reload() , _ => this.hideCredValidi = false)
   }
 
   switchPage(){

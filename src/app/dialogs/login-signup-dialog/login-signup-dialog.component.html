@@ -32,7 +32,7 @@
 
                 <div class="form-field" >
                     <input class="input-text" placeholder="Conferma Password" type="password" name="confPass" formControlName="confPass">
-                    <p [hidden]="hideErr" style="font-size: small; color: red; margin: 0;text-align: center;">Password e Conferma Password non corrispondono, Riprova!</p>
+                    <p [hidden]="hidePassUguale" style="font-size: small; color: red; margin: 0;text-align: center;">Password e Conferma Password non corrispondono, Riprova!</p>
                 </div>
                 
         
@@ -68,11 +68,13 @@
             <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onLogInSubmit()">
         
                 <div class="form-field">
+                    <p [hidden]="hideCredValidi" style="font-size: small; color: red; margin: 0;text-align: center;">Email o Password non corretti, Riprova!</p>
                     <input class="input-text" placeholder="Email" type="text" name="email" formControlName="email">
                 </div>
         
                 <div class="form-field">
                     <input class="input-text" placeholder="Password" type="password" name="pass" formControlName="pass">
+                    
                 </div>
         
                 <button class="button" type="submit" [ngClass]="{'disabled-button': !loginForm.valid}" [disabled]="!loginForm.valid">
