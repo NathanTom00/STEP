@@ -19,21 +19,21 @@
                     <button class="link-button" (click)="nav('leaderboard')">Leaderboard</button>
                 </div>
                 <div class="link">
-                    <button class="link-button" (click)="nav('')">Per Operatori</button>
+                    <button class="link-button" *ngIf="(currentUser$|async)?.idLuoghiAdmin" (click)="nav('dashboard')">Per Operatori</button>
                 </div>
                 <div style="display: flex;justify-content: flex-end">
                     <hr style="width: 90%;margin: 0;">
                 </div>
-                <div class="link" *ngIf="!(authService.currentUser$|async)">
+                <div class="link" *ngIf="!(currentUser$|async)">
                     <button class="link-button" (click)="doLogIn()">Log in</button>
                 </div>
-                <div class="link" *ngIf="authService.currentUser$|async">
+                <div class="link" *ngIf="currentUser$|async">
                     <button (click)="nav('profilo')" class="link-button with-icon">
                         <svg-icon src="assets/Icons/profile_icon.svg"
                             [svgStyle]="{ 'height.px':40 }"></svg-icon>Profilo
                     </button>
                 </div>
-                <div class="link" *ngIf="authService.currentUser$|async">
+                <div class="link" *ngIf="currentUser$|async">
                     <button (click)="doLogout()" class="link-button with-icon logout">
                         <svg-icon src="assets/Icons/logout_icon.svg" [svgStyle]="{ 'height.px':40 }"></svg-icon>Log out
                     </button>

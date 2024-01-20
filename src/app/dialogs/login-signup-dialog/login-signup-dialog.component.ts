@@ -73,6 +73,7 @@ export class LoginSignupDialogComponent {
             emozioni_cercati: [],
             count_obiettivi_esplorati: 0,
             count_emozioni_aggiunti: 0,
+            idLuoghiAdmin: null
           })
         )
       )
@@ -88,7 +89,9 @@ export class LoginSignupDialogComponent {
     this.authService
       .logIn(email, pass)
       .subscribe({
-        next: (_) => location.reload(),
+        next: (_) =>{ 
+          location.reload()
+        },
         error: (_) => (this.hideCredValidi = false),
       });
   }

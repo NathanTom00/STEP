@@ -13,6 +13,5 @@ export interface ProfileUser{
     emozioni_cercati: string[];
     count_obiettivi_esplorati: number;
     count_emozioni_aggiunti: number;
-
-    
+    idLuoghiAdmin : string[] | null
 }

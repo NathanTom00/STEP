@@ -6,6 +6,7 @@ import {
   collectionData,
   doc,
   getDoc,
+  getDocs,
   limit,
   query,
   where,
@@ -36,10 +37,12 @@ export class FirestoreService {
 
 
   getLuogoById(idLuogo: string) {
+    
     const refCollection = collection(this.firestore, 'luogo');
     const luogoRef = doc(this.firestore, 'luogo', idLuogo);
     return of(getDoc(luogoRef));
   }
+
 
   aggiungiEmozioni(idLuogo: string, emozioni: string[]) {
     const refCollection = collection(this.firestore, 'luogo');

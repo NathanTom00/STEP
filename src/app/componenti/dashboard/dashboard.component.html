@@ -1,0 +1,55 @@
+<div class="container" *ngIf="(currentUser$|async) as user">
+    <div class="sezione">
+        <h3 class="titolo-blocco">
+            Ciao {{user.nome}}!
+        </h3>
+    </div>
+
+    <div class="sezione">
+        <h3 class="titolo-blocco">
+            Trend Emozionali
+        </h3>
+        <div class="scrollable-container">
+            <ng-container *ngFor="let luogo of luoghiAdmin">
+                <button class=" scegli-button" (click)="selezionaLuogo(luogo.id)"
+                    [ngClass]="{'selected' : idLuogoSelezionato===luogo.id}">{{luogo.nome}}
+                </button>
+
+            </ng-container>
+        </div>
+    </div>
+
+    <div class="sezione" *ngIf="luogoSelezionato">
+        <div class="container-counters">
+            <div class="count-commenti" style="border-right: 0.5px solid black;">
+                <p class="pos-count">{{contaPositivi()}}</p>
+                <p class="testo-commento">commenti positivi</p>
+            </div>
+            <div class="count-commenti">
+                <p class="neg-count">{{contaNegativi()}}</p>
+                <p class="testo-commento">commenti negativi</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="sezione sezione-graph">
+
+        <div class="graph-container">
+            <div class="titolo-graph-container">
+                <h3 class="titolo-blocco-graph">
+                    Commenti
+                </h3>
+            </div>
+            <div class="graph-content">
+                <canvas id="canvas" height="250">{{grafico}}</canvas>
+            </div>
+
+            <select id="anno" (change)="onChange($event.target)">
+                <ng-container *ngFor="let anno of anni">
+                    <option [selected]="annoSelezionato == anno ? 'selected' : ''" value="{{anno}}">{{anno}}</option>
+                </ng-container>
+            </select>
+        </div>
+    </div>
+
+</div>

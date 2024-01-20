@@ -10,6 +10,7 @@ import { CercaComponent } from './componenti/cerca/cerca.component';
 import { ProfiloUserComponent } from './componenti/profilo-user/profilo-user.component';
 import { authGuard } from './auth/auth.guard';
 import { LeaderboardComponent } from './componenti/leaderboard/leaderboard.component';
+import { DashboardComponent } from './componenti/dashboard/dashboard.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'cerca', component: CercaComponent},
   {path: 'profilo', component: ProfiloUserComponent, canActivate: [authGuard]},
   {path: 'leaderboard', component: LeaderboardComponent},
+  {path: 'dashboard', component: DashboardComponent},
   {path: '',pathMatch: 'full',redirectTo: 'home'}
 ];
 

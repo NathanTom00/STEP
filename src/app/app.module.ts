@@ -82,7 +82,8 @@ import { ProfiloUserComponent } from './componenti/profilo-user/profilo-user.com
 import { CercaMappaComponent } from './dialogs/cerca-mappa/cerca-mappa.component';
 import { LeaderboardComponent } from './componenti/leaderboard/leaderboard.component';
 import {ClipboardModule} from '@angular/cdk/clipboard';
-
+import { DashboardComponent } from './componenti/dashboard/dashboard.component';
+import { DatePipe } from "@angular/common";
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,6 +103,7 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     ProfiloUserComponent,
     CercaMappaComponent,
     LeaderboardComponent,
+    DashboardComponent,
     
   ],
   imports: [
@@ -138,7 +140,8 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     FontAwesomeModule
   ],
   providers: [
-    CookieService
+    CookieService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
