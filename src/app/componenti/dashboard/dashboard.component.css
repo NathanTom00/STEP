@@ -109,16 +109,57 @@
 }
 
 .titolo-blocco-graph {
-  
   font-size: medium;
 }
 
-.graph-content{
+.graph-content {
   width: 100%;
   padding-inline: 1rem;
   margin-bottom: 1rem;
   box-sizing: border-box;
   -moz-box-sizing: border-box; /* Firefox */
   -webkit-box-sizing: border-box; /* Safari */
+}
+
+#canvas {
+  max-height: 250px;
+}
+
+.select-container {
+  display: flex;
+  justify-content: center;
+}
+
+.select-anno {
+  width: 80%;
+  height: 40px;
+  text-align: center;
+  border-radius: 15px;
+  border-color: lightgray;
+  font-size: medium;
+}
+
+.card {
+  border-radius: 0;
+  width: 250px;
+  height: fit-content;
+  box-shadow: none;
+  background-color: transparent;
+  margin-inline: 1rem;
+}
+
+.imm-card {
+  border-radius: 5%;
+  height: 300px;
+  max-width: inherit;
+  object-fit: cover;
+  width: auto;
+}
+
+mat-card-title {
+  font-size: medium;
+  font-weight: bold;
+  overflow-x: initial;
+  white-space: initial;
 }
 

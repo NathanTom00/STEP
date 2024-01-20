@@ -59,8 +59,8 @@ export class DashboardComponent implements OnInit {
 
   selezionaLuogo(idLuogo: string) {
     this.idLuogoSelezionato = idLuogo;
-    if(this.grafico)
-      this.grafico.destroy()
+    this.annoSelezionato = 2023
+    
     //ripulisco i commenti negativi e positivi
     this.commentiPositivi = [];
     this.commentiNegativi = [];
@@ -83,9 +83,16 @@ export class DashboardComponent implements OnInit {
       }
     }
 
+    this.creaGrafico()
+  }
+
+  creaGrafico(){
     //per il grafico dobbiamo avere il numero di commenti positivi/negativi divisi in periodi di mesi
     //creo countCommentiPositiviByMonths che rappresenta l'array del conteggio raggruppato in mesi, dove la posizione i rappresenta l' (i+1)esimo mese dell'anno
     //e quindi l' i-esimo mese sarà rappresentato dall'elemento in i-1
+    if(this.grafico)
+      this.grafico.destroy()
+
     let countCommentiPositiviByMonths = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let countCommentiNegativiByMonths = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
@@ -100,6 +107,7 @@ export class DashboardComponent implements OnInit {
     }
 
     //console.log(countCommentiPositiviByMonths, countCommentiNegativiByMonths);
+
     this.grafico = new Chart('canvas', {
       type: 'line',
       data: {
@@ -149,6 +157,11 @@ export class DashboardComponent implements OnInit {
   }
 
   onChange(event : any){
-    console.log(event.value)
+    this.annoSelezionato = event.value
+    this.creaGrafico()
+  }
+
+  gestisciLuogo(idLuogo : string){
+    console.log(idLuogo)
   }
 }

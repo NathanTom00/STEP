@@ -44,12 +44,37 @@
                 <canvas id="canvas" height="250">{{grafico}}</canvas>
             </div>
 
-            <select id="anno" (change)="onChange($event.target)">
-                <ng-container *ngFor="let anno of anni">
-                    <option [selected]="annoSelezionato == anno ? 'selected' : ''" value="{{anno}}">{{anno}}</option>
-                </ng-container>
-            </select>
+            <div class="select-container">
+                <select id="anno" class="select-anno" (change)="onChange($event.target)">
+                    <ng-container *ngFor="let anno of anni">
+                        <option [selected]="annoSelezionato == anno ? 'selected' : ''" value="{{anno}}">{{anno}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            
         </div>
     </div>
 
+    <div class="sezione">
+        <h3 class="titolo-blocco">
+            Gestisci i tuoi luoghi
+        </h3>
+        <div class="scrollable-container">
+    
+            <mat-card class="card" *ngFor="let luogo of luoghiAdmin" (click)="gestisciLuogo(luogo.id)" >
+                <img class="imm-card" src="{{luogo.imm}}" alt="Photo of a Shiba Inu">
+
+
+                <mat-card-title style="padding-top: 5px;">{{luogo.nome}}</mat-card-title>
+
+            </mat-card>
+
+        </div>
+    </div>
+
+    <div class="sezione">
+        <h3 class="titolo-blocco">
+            Recensioni recenti
+        </h3>
+    </div>
 </div>
