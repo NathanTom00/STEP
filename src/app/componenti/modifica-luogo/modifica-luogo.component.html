@@ -1,4 +1,102 @@
+<div class="container" *ngIf="luogoModificato">
+    <div class="sezione">
+        <h4 class="sub-titolo">
+            Foto
+        </h4>
+        <div class="foto-container">
+            <img class="imm-luogo" src="{{luogo.imm}}" alt="">
+        </div>
+        <div class="imm-button-container">
+            <!--TODO-->
 
-<div class="container">
-    <p>modifica-luogo works!</p>
+        </div>
+    </div>
+
+    <div class="sezione">
+        <h4 class="sub-titolo">
+            Titolo
+        </h4>
+        <input type="text" class="input-field" [(ngModel)]="luogoModificato['nome']"
+            placeholder="{{luogoModificato['nome']}}" value="{{luogoModificato['nome']}}">
+    </div>
+
+    <div class="sezione">
+        <h4 class="sub-titolo">
+            Città
+        </h4>
+        <input type="text" class="input-field" [(ngModel)]="luogoModificato['location']"
+            placeholder="{{luogoModificato['location']}}" value="{{luogoModificato['location']}}">
+    </div>
+
+    <div class="sezione">
+        <h4 class="sub-titolo">
+            Provincia
+        </h4>
+        <select name="provincia" class="select-provincia" [(ngModel)]="luogoModificato['provincia']">
+            <option value="Roma">Roma</option>
+            <option value="Latina">Latina</option>
+            <option value="Rieti">Rieti</option>
+            <option value="Viterbo">Viterbo</option>
+            <option value="Frosinone">Frosinone</option>
+        </select>
+    </div>
+
+    <div class="sezione">
+        <h4 class="sub-titolo">
+            Descrizione
+        </h4>
+        <div class="textarea-container">
+            <textarea class="textarea-descrizione" [(ngModel)]="luogoModificato['descrizione']"></textarea>
+        </div>
+    </div>
+
+    <div class="sezione">
+        <h4 class="sub-titolo">
+            Emozioni
+        </h4>
+        <div class="emozioni-container">
+            <ng-container *ngFor="let emozione of luogoModificato['emozioni']">
+                <mat-chip class="chip" (click)="rimuoviEmozione(emozione)"> <span
+                        class="elimina-emozione">{{toCap(emozione)}} <mat-icon class="close-icon"
+                            fontIcon="close"></mat-icon></span> </mat-chip>
+            </ng-container>
+
+        </div>
+    </div>
+
+    <div class="sezione">
+        <h4 class="sub-titolo">
+            Anima locus
+        </h4>
+        <div class="container-emozioni">
+            <div class="button-container" matRipple *ngFor="let obiettivo of  luogo.obiettivi; index as i ">
+                <div class="button-obiettivo">
+                    <button matRipple type="button" class="obiettivo" value="{{obiettivo.nome}} ">
+                        <div class="icon-button">
+                            <svg-icon src="{{getIconByName(obiettivo.nome)}}"></svg-icon>
+
+                        </div>
+                        <p class="label-button">
+                            {{obiettivo.nome}}
+                        </p>
+                    </button>
+                    <svg-icon src="assets/Icons/edit.svg" [svgStyle]="{ 'height.px':20 }" class="edit_icon"></svg-icon>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="sezione">
+        <h4 class="sub-titolo">
+            Info utili
+        </h4>
+        <input type="text" class="input-field" [(ngModel)]="luogoModificato['info']"
+            placeholder="{{luogoModificato['info']}}" value="{{luogoModificato['info']}}">
+    </div>
+
+    <div class="sezione action-container">
+        <button class="button" matRipple (click)="test()">Salva</button>
+        <button class="button warning-button" matRipple (click)="annulla()">Annulla</button>
+    </div>
 </div>

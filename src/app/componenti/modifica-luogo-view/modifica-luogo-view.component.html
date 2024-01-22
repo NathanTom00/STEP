@@ -3,7 +3,7 @@
     <ng-container *ngIf="luogo$| async; let luogo">
 
         <div class="sezione modifica-container">
-            <mat-chip class="chip " style="margin-inline-end: 1rem;" (click)="modificaLuogo()"> <span class="modifica-button"><mat-icon fontIcon="edit_note"></mat-icon> Modifica</span>  </mat-chip>
+            <mat-chip class="chip " style="margin-inline-end: 1rem;" (click)="modificaLuogo()"> <span class="modifica-button"><svg-icon src="assets/Icons/edit.svg" [svgStyle]="{ 'height.px':16, 'width.px':16 , 'margin-right.px': 5}" class="edit_icon"></svg-icon> Modifica</span>  </mat-chip>
         </div>
         <img class="immagine-luogo" src="{{luogo.imm}}" alt="">
 
@@ -61,7 +61,7 @@
 
         <div class="container-emozioni">
             <div class="button-container" matRipple *ngFor="let obiettivo of  luogo.obiettivi; index as i ">
-                <button matRipple type="button" class="emozione" (click)="esploraAnimaLocus(luogo.id,i)"
+                <button matRipple type="button" class="obiettivo" (click)="esploraAnimaLocus(luogo.id,i)"
                     value="{{obiettivo.nome}} " matBadge="{{obiettivo.container.length}}">
                     <div class="icon-button">
                         <svg-icon src="{{getIconByName(obiettivo.nome)}}"></svg-icon>

@@ -1,6 +1,177 @@
 .container {
   max-width: 100%;
   min-height: 100vh;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
+  padding-inline: 1rem;
+  padding-bottom: 50px;
+}
+
+.sezione {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  margin-top: 2rem;
+  flex-direction: column;
+}
+
+.sub-titolo {
+  font-size: medium;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.imm-luogo {
+  width: 100px;
+  height: 100px;
+  border-radius: 15px;
+}
+
+.input-field {
+  height: 2.5rem;
+  border: 1px solid #d5d5d5;
+  border-radius: 15px;
+  width: 100%;
+  padding: 0 1rem;
+  font-size: 16px;
+
+  /*per mettere il padding senza alterare il width */
+  box-sizing: border-box;
+  -moz-box-sizing: border-box; /* Firefox */
+  -webkit-box-sizing: border-box; /* Safari */
+}
+
+.select-provincia {
+  width: 100%;
+  height: 40px;
+  border-radius: 15px;
+  border-color: lightgray;
+  font-size: medium;
+  padding: 0 1rem;
+  font-size: 16px;
+
+  /*per mettere il padding senza alterare il width */
+  box-sizing: border-box;
+  -moz-box-sizing: border-box; /* Firefox */
+  -webkit-box-sizing: border-box; /* Safari */
+}
+
+.textarea-container {
+  width: 100%;
+  border-radius: 15px;
+  background-color: white;
+  border: lightgray 1px solid;
+  padding: 10px;
+  /*per mettere il padding senza alterare il width */
+  box-sizing: border-box;
+  -moz-box-sizing: border-box; /* Firefox */
+  -webkit-box-sizing: border-box; /* Safari */
+}
+
+.textarea-descrizione {
+  width: 100%;
+  resize: none;
+  height: 6rem;
+  font-size: 16px;
+  border: none;
+}
+
+.textarea-descrizione::-webkit-scrollbar {
+  width: 4px;
+  background: transparent;
+}
+
+.textarea-descrizione::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  padding: 5px;
+  background-color: #a9a9a9;
+}
+
+.emozioni-container {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 15px;
+  border: lightgray 1px solid;
+  /*per mettere il padding senza alterare il width */
+  box-sizing: border-box;
+  -moz-box-sizing: border-box; /* Firefox */
+  -webkit-box-sizing: border-box; /* Safari */
+}
+
+.elimina-emozione {
+  display: flex;
+  align-items: center;
+}
+
+.close-icon {
+  font-size: medium;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-emozioni {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  max-width: 100%;
+  padding-bottom: 1rem;
+}
+
+.button-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.obiettivo {
+  width: 105px;
+  height: 100px;
+  border: none;
+  border-radius: 7%;
+  box-shadow: none;
+  font-size: small;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #015ede;
+  color: white;
+}
+@media only screen and (max-width: 320px) {
+  .obiettivo {
+    width: 80px;
+    height: 80px;
+    font-size: x-small;
+  }
+}
+
+.button-obiettivo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit_icon {
+  padding-top: 0.5rem;
+}
+
+.action-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.button {
+  width: 120px 
+}
+
+.warning-button{
+  color: #d51a52;
+  background-image: none !important;
+  background-color: white;
+  border: #d51a52 1px solid;
+  font-weight: bold;
 }
