@@ -1,8 +1,13 @@
+.drawer-container {
+  min-height: 100vh;
+  background-image: linear-gradient(#e2dcd5,#f5f3f7);
+}
 .spacer {
   flex: 1 1 auto;
 }
+
 mat-toolbar {
-  background-color: #f5f3f7;
+  background-color: #E2DCD5;
 }
 
 .menu-button {
@@ -10,15 +15,14 @@ mat-toolbar {
   background-color: white;
   box-shadow: none !important;
 }
-.close-container{
+.close-container {
   margin: 1rem;
   display: flex;
-  justify-content: flex-end
+  justify-content: flex-end;
 }
 
-.container{
+.container {
   min-height: 100%;
-  background-color: #f5f3f7;
 }
 
 .links-container {
@@ -62,13 +66,12 @@ mat-toolbar {
   }
 }
 
-.with-icon{
+.with-icon {
   display: flex;
   align-items: center;
   justify-content: flex-end;
 }
 
-.logout{
+.logout {
   color: rgb(134, 15, 15);
 }
-

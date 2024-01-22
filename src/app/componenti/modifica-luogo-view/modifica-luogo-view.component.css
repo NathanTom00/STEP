@@ -1,6 +1,6 @@
 .container {
   max-width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   background-color: transparent;
   display: flex;
   flex-direction: column;
@@ -17,6 +17,18 @@
 .sezione {
   width: 100%;
   padding-top: 1rem;
+}
+
+.modifica-container{
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 2rem 0 2rem 0;
+}
+
+.modifica-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .location-container {

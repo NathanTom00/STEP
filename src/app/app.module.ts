@@ -62,6 +62,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 import { StarRatingModule } from 'angular-star-rating';
@@ -84,6 +85,8 @@ import { LeaderboardComponent } from './componenti/leaderboard/leaderboard.compo
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { DashboardComponent } from './componenti/dashboard/dashboard.component';
 import { DatePipe } from "@angular/common";
+import { ModificaLuogoViewComponent } from './componenti/modifica-luogo-view/modifica-luogo-view.component';
+import { ModificaLuogoComponent } from './componenti/modifica-luogo/modifica-luogo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,6 +107,8 @@ import { DatePipe } from "@angular/common";
     CercaMappaComponent,
     LeaderboardComponent,
     DashboardComponent,
+    ModificaLuogoViewComponent,
+    ModificaLuogoComponent,
     
   ],
   imports: [
@@ -126,6 +131,7 @@ import { DatePipe } from "@angular/common";
     StarRatingModule.forRoot(),
     NgxMatFileInputModule,
     MatSnackBarModule,
+    MatMenuModule,
     MatBadgeModule,
     MatCardModule,
     MatIconModule,

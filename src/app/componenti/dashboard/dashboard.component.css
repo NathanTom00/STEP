@@ -4,12 +4,11 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #f5f3f7;
+  background-color: transparent;
 }
 
 .sezione {
   padding-bottom: 2rem;
-  background-color: #f5f3f7;
 }
 
 .titolo-blocco {
@@ -102,6 +101,8 @@
   width: 100%;
   padding-top: 1rem;
   padding-inline: 1rem;
+  display: flex;
+  justify-content: space-between;
 
   box-sizing: border-box;
   -moz-box-sizing: border-box; /* Firefox */
@@ -163,3 +164,54 @@ mat-card-title {
   white-space: initial;
 }
 
+.comment-container {
+  padding-inline: 1rem;
+}
+
+.comment {
+  padding: 1rem;
+  border-radius: 15px;
+  background-color: white;
+  margin-bottom: 1rem;
+  box-shadow: #64646447 0px 5px 10px 0px;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.comment-title {
+  color: gray;
+  margin-bottom: 0;
+}
+
+.comment-location {
+  color: gray;
+  font-weight: lighter;
+}
+
+.comment-desc {
+  font-weight: 550;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: small;
+  overflow-x: initial;
+  white-space: initial;
+}
+
+.tipo-button{
+  border: none;
+  background-color: transparent;
+  width: 70px;
+  border-radius: 15px;
+}
+
+.tipo-elemento{
+  justify-content: center;
+}

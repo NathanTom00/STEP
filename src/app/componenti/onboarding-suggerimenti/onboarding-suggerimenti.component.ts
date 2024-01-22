@@ -37,11 +37,10 @@ export class OnboardingSuggerimentiComponent implements OnInit{
 
   luoghiSelezionati : any[] = []
   len : any
-  constructor (protected onboardingService : OnboardingService,private router: Router,private cookieService : CookieService) {
+  constructor (protected onboardingService : OnboardingService,private router: Router) {
   }
 
   ngOnInit(): void {
-    this.cookieService.set('visitato', ' ');
     //se sto qui ma gli obiettivi selezionati non sono presenti allora ritorno all'onboarding
     if(this.onboardingService.obiettiviSelezionati.length == 0){
       this.router.navigate(['onboarding'])

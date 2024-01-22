@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Observable, concatMap, map, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -69,22 +68,15 @@ export class HomeComponent implements OnInit {
     private firestoreService: FirestoreService,
     private dialog: MatDialog,
     protected authService: AuthService,
-    private userService: UserService,
-    private cookieService : CookieService
+    private userService: UserService
   ) {
     this.currentUser$ = userService.currentUserProfile$;
   }
 
   ngOnInit(): void {
-    //redirect test
-    /*
-    if (!this.test) {
-      this.router.navigate(['onboarding']);
-    } 
-    */
 
-    //redirect with cookie -> per vedere se un utente ha già visitato il sito o meno usiamo un cookie
-    if (!this.cookieService.check('visitato')) {
+    //redirect with localstorage -> per vedere se un utente ha già visitato il sito o meno usiamo un cookie
+    if (localStorage['visitato'] !== 'TRUE') {
       this.router.navigate(['onboarding']);
       return;
     }

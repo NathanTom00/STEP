@@ -1,4 +1,4 @@
-<div *ngIf="caricamento">
+<div class="container" *ngIf="caricamento">
     <div class="caricamento-container">
 
         <mat-spinner></mat-spinner>
@@ -103,54 +103,54 @@
             </ng-container>
             
         </ng-container>
-        
-    </div>
-    <div class="sezione" *ngIf="emozioneSelezionato===''">
-        <h3 class="titolo-blocco">
-            Come si sentono gli altri
-        </h3>
-
-        <div class="carousel-container" >
-            <owl-carousel-o [options]="customOptions">
-                <ng-template carouselSlide *ngFor="let commento of commenti">
-                    <div class="comment">
-                        <div class="comment-header">
-                            <div class="stars">
-                                <star-rating [starType]="'svg'" [readOnly]="true"
-                                    [rating]="commento.recensione"></star-rating>
-                            </div>
-
-                            <svg-icon [svgStyle]="{ 'width.px':30 }"
-                                src="assets/Icons/tripadvisor-icon.svg"></svg-icon>
-                        </div>
-                        <div class="commment-content">
-                            <p class="comment-title">{{commento.titolo}}</p>
-                            <p class="comment-desc">
-                                {{commento.descrizione}}
-                            </p>
-                        </div>
-                        <div class="comment-footer">
-                            <p class="comment-location">{{commento.luogo}}</p>
-                        </div>
-                    </div>
-                </ng-template>
-
-            </owl-carousel-o>
-        </div>
-
-    </div>
-    <div class="container-no-padding" *ngIf="!(authService.currentUser$ | async)">
-        <div class="sezione ultima-sezione">
+        <div class="sezione" *ngIf="emozioneSelezionato===''">
             <h3 class="titolo-blocco">
-                Vivi la tua esperienza emozionale
+                Come si sentono gli altri
             </h3>
-            <div class="login-container">
-                <p class="login-desc">
-                    Accedi o crea un account per personalizzare la tua
-                    esperienza e partecipare alla community game
-                </p>
-                <button class="button" (click)="onClick()">Log in o Sign up</button>
+    
+            <div class="carousel-container" >
+                <owl-carousel-o [options]="customOptions">
+                    <ng-template carouselSlide *ngFor="let commento of commenti">
+                        <div class="comment">
+                            <div class="comment-header">
+                                <div class="stars">
+                                    <star-rating [starType]="'svg'" [readOnly]="true"
+                                        [rating]="commento.recensione"></star-rating>
+                                </div>
+    
+                                <svg-icon [svgStyle]="{ 'width.px':30 }"
+                                    src="assets/Icons/tripadvisor-icon.svg"></svg-icon>
+                            </div>
+                            <div class="commment-content">
+                                <p class="comment-title">{{commento.titolo}}</p>
+                                <p class="comment-desc">
+                                    {{commento.descrizione}}
+                                </p>
+                            </div>
+                            <div class="comment-footer">
+                                <p class="comment-location">{{commento.luogo}}</p>
+                            </div>
+                        </div>
+                    </ng-template>
+    
+                </owl-carousel-o>
+            </div>
+    
+        </div>
+        <div class="container-no-padding" *ngIf="!(authService.currentUser$ | async)">
+            <div class="sezione ultima-sezione">
+                <h3 class="titolo-blocco">
+                    Vivi la tua esperienza emozionale
+                </h3>
+                <div class="login-container">
+                    <p class="login-desc">
+                        Accedi o crea un account per personalizzare la tua
+                        esperienza e partecipare alla community game
+                    </p>
+                    <button class="button" (click)="onClick()">Log in o Sign up</button>
+                </div>
             </div>
         </div>
     </div>
+    
 </div>

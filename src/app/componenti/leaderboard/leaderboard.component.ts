@@ -20,16 +20,17 @@ export class LeaderboardComponent implements OnInit{
   constructor(private firestoreService : FirestoreService, private badgeService : BadgeService){}
 
   ngOnInit(): void {
-    let elementoDaAggiungere ;
     this.firestoreService.getClassifica().subscribe(
       
       (data : any) => {
-        for(const [index, value] of data.entries()){
-          elementoDaAggiungere = value
-          elementoDaAggiungere['posizione'] = index + 1
-          //console.log(elementoDaAggiungere)
-          this.utenti.push(elementoDaAggiungere)
-        }
+        this.utenti=data.sort((utenteA : any,utenteB : any) => {
+          if(utenteA['livello'] > utenteB['livello']) return -1
+          if(utenteA['livello'] > utenteB['livello']) return 1
+          return 0
+        }).map((utente:any, index: number) => {
+          utente['posizione'] = index+1
+          return utente
+        })
       }
     )
   }

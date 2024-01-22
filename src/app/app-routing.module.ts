@@ -11,6 +11,8 @@ import { ProfiloUserComponent } from './componenti/profilo-user/profilo-user.com
 import { authGuard } from './auth/auth.guard';
 import { LeaderboardComponent } from './componenti/leaderboard/leaderboard.component';
 import { DashboardComponent } from './componenti/dashboard/dashboard.component';
+import { ModificaLuogoViewComponent } from './componenti/modifica-luogo-view/modifica-luogo-view.component';
+import { ModificaLuogoComponent } from './componenti/modifica-luogo/modifica-luogo.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -22,6 +24,8 @@ const routes: Routes = [
   {path: 'cerca', component: CercaComponent},
   {path: 'profilo', component: ProfiloUserComponent, canActivate: [authGuard]},
   {path: 'leaderboard', component: LeaderboardComponent},
+  {path: 'dashboard/:idLuogo/modifica',component: ModificaLuogoComponent},
+  {path: 'dashboard/:idLuogo', component: ModificaLuogoViewComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: '',pathMatch: 'full',redirectTo: 'home'}
 ];

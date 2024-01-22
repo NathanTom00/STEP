@@ -39,6 +39,12 @@
                 <h3 class="titolo-blocco-graph">
                     Commenti
                 </h3>
+
+                <button class="tipo-button" matRipple [matMenuTriggerFor]="menu"><svg-icon [svgStyle]="{ 'width.px':30 }" src="{{srcTipoDaCambiare}}"></svg-icon> <mat-icon style="margin-left: 4px;">expand_more</mat-icon></button>
+                <mat-menu #menu="matMenu" >
+                    <button mat-menu-item class="tipo-elemento" (click)="cambiaTipoCommento('tripadvisor','assets/Icons/tripadvisor-icon.svg')"><svg-icon [svgStyle]="{ 'width.px':30 }" src="assets/Icons/tripadvisor-icon.svg"></svg-icon></button>
+                    <button mat-menu-item class="tipo-elemento" (click)="cambiaTipoCommento('step','assets/Icons/STEP_icon.svg')"><svg-icon [svgStyle]="{ 'width.px':30 }" src="assets/Icons/STEP_icon.svg"></svg-icon></button>
+                </mat-menu>
             </div>
             <div class="graph-content">
                 <canvas id="canvas" height="250">{{grafico}}</canvas>
@@ -47,11 +53,12 @@
             <div class="select-container">
                 <select id="anno" class="select-anno" (change)="onChange($event.target)">
                     <ng-container *ngFor="let anno of anni">
-                        <option [selected]="annoSelezionato == anno ? 'selected' : ''" value="{{anno}}">{{anno}}</option>
+                        <option [selected]="annoSelezionato == anno ? 'selected' : ''" value="{{anno}}">{{anno}}
+                        </option>
                     </ng-container>
                 </select>
             </div>
-            
+
         </div>
     </div>
 
@@ -60,8 +67,8 @@
             Gestisci i tuoi luoghi
         </h3>
         <div class="scrollable-container">
-    
-            <mat-card class="card" *ngFor="let luogo of luoghiAdmin" (click)="gestisciLuogo(luogo.id)" >
+
+            <mat-card class="card" *ngFor="let luogo of luoghiAdmin" (click)="gestisciLuogo(luogo.id)">
                 <img class="imm-card" src="{{luogo.imm}}" alt="Photo of a Shiba Inu">
 
 
@@ -76,5 +83,30 @@
         <h3 class="titolo-blocco">
             Recensioni recenti
         </h3>
+        <div class="comment-container" *ngIf="commentiRecenti">
+            <ng-container *ngFor="let commento of commentiRecenti">
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="stars">
+                            <star-rating [starType]="'svg'" [readOnly]="true"
+                                [rating]="commento.recensione"></star-rating>
+                        </div>
+
+                        <svg-icon [svgStyle]="{ 'width.px':30 }" *ngIf="commento.fonte === 'tripadvisor' " src="assets/Icons/tripadvisor-icon.svg"></svg-icon>
+                        <svg-icon [svgStyle]="{ 'width.px':30 }" *ngIf="commento.fonte === 'step' " src="assets/Icons/STEP_icon.svg"></svg-icon>
+                    </div>
+                    <div class="commment-content">
+                        <p class="comment-title">{{commento.titolo}}</p>
+                        <p class="comment-desc">
+                            {{commento.descrizione}}
+                        </p>
+                    </div>
+                    <div class="comment-footer">
+                        <p class="comment-location">{{commento.luogo}}</p>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
     </div>
 </div>
