@@ -23,16 +23,16 @@ export class DashboardComponent implements OnInit {
   commentiNegativi: any[] = [];
   commentiRecenti: any[] = [];
   annoSelezionato: number = 2023;
-  fonte : string = 'tripadvisor'
-  srcTipoDaCambiare = 'assets/Icons/tripadvisor-icon.svg'
+  fonte: string = 'tripadvisor';
+  srcTipoDaCambiare = 'assets/Icons/tripadvisor-icon.svg';
   grafico!: Chart;
 
   constructor(
     private userService: UserService,
     private firestoreService: FirestoreService,
     private datePipe: DatePipe,
-    private router : Router,
-    private activatedRoute : ActivatedRoute
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
     this.currentUser$ = userService.currentUserProfile$;
     Chart.register(...registerables);
@@ -69,10 +69,9 @@ export class DashboardComponent implements OnInit {
       if (this.idLuogoSelezionato === luogo.id) this.luogoSelezionato = luogo;
     }
 
-    let commentiConNomeLuogo : any;
+    let commentiConNomeLuogo: any;
     //i commenti hanno ancora il timestamp => convertiamo in mese e anno
     for (let i = 0; i < this.luogoSelezionato['commenti'].length; i++) {
-      
       this.luogoSelezionato.commenti[i]['mese'] = parseInt(
         this.datePipe.transform(this.luogoSelezionato.commenti[i].data, 'MM')!
       );
@@ -80,14 +79,13 @@ export class DashboardComponent implements OnInit {
         this.datePipe.transform(this.luogoSelezionato.commenti[i].data, 'YYYY')!
       );
 
-      commentiConNomeLuogo = this.luogoSelezionato.commenti[i]
-      commentiConNomeLuogo['luogo'] = this.luogoSelezionato['nome']
+      commentiConNomeLuogo = this.luogoSelezionato.commenti[i];
+      commentiConNomeLuogo['luogo'] = this.luogoSelezionato['nome'];
       this.commentiRecenti.push(commentiConNomeLuogo);
 
       //se la fonte è diversa faccio lo ignoro
-      if(this.luogoSelezionato['commenti'][i]['fonte'] !== this.fonte)
-        continue
-      
+      if (this.luogoSelezionato['commenti'][i]['fonte'] !== this.fonte)
+        continue;
 
       if (this.luogoSelezionato.commenti[i]['recensione'] > 3) {
         this.commentiPositivi.push(this.luogoSelezionato.commenti[i]);
@@ -111,11 +109,10 @@ export class DashboardComponent implements OnInit {
       return 0;
     });
 
-    //se i commenti sono più di 5 allora devo eliminare 
-    if(this.commentiRecenti.length > 5)
-      this.commentiRecenti = this.commentiRecenti.slice(0,5)
+    //se i commenti sono più di 5 allora devo eliminare
+    if (this.commentiRecenti.length > 5)
+      this.commentiRecenti = this.commentiRecenti.slice(0, 5);
 
-    
     this.creaGrafico();
   }
 
@@ -140,57 +137,59 @@ export class DashboardComponent implements OnInit {
 
     //console.log(countCommentiPositiviByMonths, countCommentiNegativiByMonths);
 
-    this.grafico = new Chart('canvas', {
-      type: 'line',
-      data: {
-        labels: [
-          'Gen',
-          'Feb',
-          'Mar',
-          'Apr',
-          'Mag',
-          'Giu',
-          'Lug',
-          'Ago',
-          'Set',
-          'Ott',
-          'Nov',
-          'Dic',
-        ],
-        datasets: [
-          {
-            label: 'positivi',
-            data: countCommentiPositiviByMonths,
-            borderWidth: 2,
-            borderColor: '#00b998',
-            fill: false,
-          },
-          {
-            label: 'negativi',
-            data: countCommentiNegativiByMonths,
-            borderWidth: 2,
-            borderColor: '#d51a52',
-            fill: false,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            ticks: {
-              stepSize: 1,
+    try {
+      this.grafico = new Chart('canvas', {
+        type: 'line',
+        data: {
+          labels: [
+            'Gen',
+            'Feb',
+            'Mar',
+            'Apr',
+            'Mag',
+            'Giu',
+            'Lug',
+            'Ago',
+            'Set',
+            'Ott',
+            'Nov',
+            'Dic',
+          ],
+          datasets: [
+            {
+              label: 'positivi',
+              data: countCommentiPositiviByMonths,
+              borderWidth: 2,
+              borderColor: '#00b998',
+              fill: false,
             },
-            min: 0,
+            {
+              label: 'negativi',
+              data: countCommentiNegativiByMonths,
+              borderWidth: 2,
+              borderColor: '#d51a52',
+              fill: false,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              ticks: {
+                stepSize: 1,
+              },
+              min: 0,
+            },
+          },
+          plugins: {
+            legend: {
+              position: 'bottom',
+            },
           },
         },
-        plugins: {
-          legend: {
-            position: 'bottom',
-          },
-        },
-      },
-    });
+      });
+    } catch (error) {}
   }
 
   contaPositivi() {
@@ -207,12 +206,12 @@ export class DashboardComponent implements OnInit {
   }
 
   gestisciLuogo(idLuogo: string) {
-    this.router.navigate([idLuogo], {relativeTo: this.activatedRoute})
+    this.router.navigate([idLuogo], { relativeTo: this.activatedRoute });
   }
 
-  cambiaTipoCommento(fonteDaCambiare : string, src : string){
-    this.srcTipoDaCambiare = src
-    this.fonte = fonteDaCambiare
-    this.selezionaLuogo(this.idLuogoSelezionato)
+  cambiaTipoCommento(fonteDaCambiare: string, src: string) {
+    this.srcTipoDaCambiare = src;
+    this.fonte = fonteDaCambiare;
+    this.selezionaLuogo(this.idLuogoSelezionato);
   }
 }

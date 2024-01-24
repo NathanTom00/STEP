@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,6 +16,7 @@ export class ModificaLuogoComponent implements OnInit {
   idLuogo!: string;
   luogo: any;
   luogoModificato: any;
+  immLinkDaEliminare : string[] = []
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -50,7 +51,6 @@ export class ModificaLuogoComponent implements OnInit {
 
   rimuoviEmozione(emozioneDaRimuovere : string){
     this.luogoModificato['emozioni'] = this.luogoModificato['emozioni'].filter((emozione : string) => emozione !== emozioneDaRimuovere)
-    console.log(this.luogoModificato)
   }
 
   getIconByName(nomeObiettivo: string) {
@@ -97,12 +97,16 @@ export class ModificaLuogoComponent implements OnInit {
       
       if(risultato.tipoOperazione === 'modifica'){
         this.luogoModificato['obiettivi'][iObiettivo] = risultato.nuovoObiettivo 
+        this.immLinkDaEliminare = risultato.immLinkDaEliminare
         return
       }
 
       if(risultato.tipoOperazione === 'elimina'){
         this.luogoModificato['obiettivi'] = this.luogoModificato['obiettivi'].filter((value : any , index: number) => index !== iObiettivo)
+        
       }
+
+      
 
 
     })
@@ -110,13 +114,12 @@ export class ModificaLuogoComponent implements OnInit {
 
   annulla(){
     this.luogoModificato = this.luogo
-    console.log(this.luogo)
   }
 
   test(){
-    console.log(this.luogoModificato)
+    this.firestoreService.modificaLuogo(this.idLuogo,this.luogoModificato,this.immLinkDaEliminare)
+    alert("Luogo modificato correttamente")
   }
-
   
   
 }

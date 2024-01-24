@@ -24,9 +24,9 @@ const routes: Routes = [
   {path: 'cerca', component: CercaComponent},
   {path: 'profilo', component: ProfiloUserComponent, canActivate: [authGuard]},
   {path: 'leaderboard', component: LeaderboardComponent},
-  {path: 'dashboard/:idLuogo/modifica',component: ModificaLuogoComponent},
-  {path: 'dashboard/:idLuogo', component: ModificaLuogoViewComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'dashboard/:idLuogo/modifica',component: ModificaLuogoComponent,canActivate: [authGuard]},
+  {path: 'dashboard/:idLuogo', component: ModificaLuogoViewComponent, canActivate: [authGuard]},
+  {path: 'dashboard', component: DashboardComponent,canActivate: [authGuard]},
   {path: '',pathMatch: 'full',redirectTo: 'home'}
 ];
 

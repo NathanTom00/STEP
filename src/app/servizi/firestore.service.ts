@@ -12,7 +12,7 @@ import {
   where,
 } from '@angular/fire/firestore';
 import { FieldValue, QueryConstraint, arrayUnion, orderBy, updateDoc } from 'firebase/firestore';
-import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
+import { Storage, deleteObject, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { of } from 'rxjs';
 
 @Injectable({
@@ -87,5 +87,17 @@ export class FirestoreService {
     const refCollection = collection(this.firestore, 'users')
     const refQuery = query(refCollection,orderBy('livello'))
     return collectionData(refQuery, { idField: 'id' });
+  }
+
+  modificaLuogo(idLuogo: string,luogo : any,immLinkDaModificare : string[]){
+    let storageRef;
+    for(let immLink of immLinkDaModificare){
+      console.log(immLink)
+      storageRef = ref(this.storage,immLink)
+      deleteObject(storageRef)
+    }
+    const refCollection = collection(this.firestore, 'luogo');
+    const luogoRef = doc(this.firestore, 'luogo', idLuogo);
+    updateDoc(luogoRef,luogo)
   }
 }

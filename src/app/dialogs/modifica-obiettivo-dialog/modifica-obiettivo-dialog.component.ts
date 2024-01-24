@@ -20,7 +20,8 @@ export class ModificaObiettivoDialogComponent {
    * Se si chiude il dialog allora verrà fatta ritornare: {tipoOperazione: 'annulla', nuovoObiettivo: obiettivo}. In questo caso modifica-luogo-component non leggerà nuovoObiettivo
    */
   obiettivo!: { nome: string; container: any[] };
-  risultato : {tipoOperazione: string, nuovoObiettivo: { nome: string, container: any[]}}
+  immLinkDaEliminare : string[] = []
+  risultato : {tipoOperazione: string, nuovoObiettivo: { nome: string, container: any[]}, immLinkDaEliminare : string[]}
 
   constructor(
     public dialogRef: MatDialogRef<ModificaObiettivoDialogComponent>,
@@ -29,7 +30,7 @@ export class ModificaObiettivoDialogComponent {
   ) {
     this.obiettivo = structuredClone(data.obiettivo);
     //inizializzo il risultato come annulla
-    this.risultato = {tipoOperazione: 'annulla', nuovoObiettivo: this.obiettivo}
+    this.risultato = {tipoOperazione: 'annulla', nuovoObiettivo: this.obiettivo,immLinkDaEliminare: []}
   }
 
   toCap(stringa: string) {
@@ -49,6 +50,10 @@ export class ModificaObiettivoDialogComponent {
   }
 
   eliminaItem(iItem : number){
+    //se item è un imm allora devo aggiungere il link per eliminarlo 
+    if(this.obiettivo['container'][iItem]['tipo'] === 'imm') {
+      this.immLinkDaEliminare.push(this.obiettivo['container'][iItem]['link'])
+    }
     this.obiettivo['container'] = this.obiettivo['container'].filter((value: any,index:number) => index !== iItem)
   }
 
@@ -59,6 +64,7 @@ export class ModificaObiettivoDialogComponent {
   salvaModifiche(){
     this.risultato.tipoOperazione = 'modifica'
     this.risultato.nuovoObiettivo = this.obiettivo
+    this.risultato.immLinkDaEliminare = this.immLinkDaEliminare
     this.chiudi()
   }
 
