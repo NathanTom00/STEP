@@ -111,7 +111,7 @@
   justify-content: center;
 }
 
-.container-emozioni {
+.container-obiettivi {
   display: grid;
   grid-template-columns: auto auto auto;
   gap: 10px;
@@ -155,7 +155,7 @@
 }
 
 .edit_icon {
-  padding-top: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .action-container {

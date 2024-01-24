@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ModificaObiettivoDialogComponent } from 'src/app/dialogs/modifica-obiettivo-dialog/modifica-obiettivo-dialog.component';
 import { FirestoreService } from 'src/app/servizi/firestore.service';
 import { ObiettiviService } from 'src/app/servizi/obiettivi.service';
 
@@ -18,7 +20,8 @@ export class ModificaLuogoComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private firestoreService: FirestoreService,
     private router: Router,
-    private obiettiviService : ObiettiviService
+    private obiettiviService : ObiettiviService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -42,9 +45,7 @@ export class ModificaLuogoComponent implements OnInit {
     return stringa[0].toUpperCase() + stringa.substring(1);
   }
 
-  test(){
-    console.log(this.luogoModificato)
-  }
+  
 
   rimuoviEmozione(emozioneDaRimuovere : string){
     this.luogoModificato['emozioni'] = this.luogoModificato['emozioni'].filter((emozione : string) => emozione !== emozioneDaRimuovere)
@@ -59,10 +60,41 @@ export class ModificaLuogoComponent implements OnInit {
     return '';
   }
 
+  openModificaObiettivoDialog(iObiettivo : number){
+    let obiettivoDaModificare = this.luogoModificato['obiettivi'][iObiettivo]
+    let dialogRef = this.dialog.open(ModificaObiettivoDialogComponent,{
+      maxWidth: '90vw',
+      width: '90%',
+      data: { obiettivo: obiettivoDaModificare },
+      
+    })
+
+    dialogRef.afterClosed().subscribe((risultato : any) => {
+      if(risultato.tipoOperazione === 'annulla')
+        return
+      
+      if(risultato.tipoOperazione === 'modifica'){
+        this.luogoModificato['obiettivi'][iObiettivo] = risultato.nuovoObiettivo 
+        return
+      }
+
+      if(risultato.tipoOperazione === 'elimina'){
+        this.luogoModificato['obiettivi'] = this.luogoModificato['obiettivi'].filter((value : any , index: number) => index !== iObiettivo)
+      }
+
+
+    })
+  }
 
   annulla(){
     this.luogoModificato = this.luogo
     console.log(this.luogo)
   }
+
+  test(){
+    console.log(this.luogoModificato)
+  }
+
+  
   
 }

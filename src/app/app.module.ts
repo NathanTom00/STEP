@@ -87,6 +87,7 @@ import { DashboardComponent } from './componenti/dashboard/dashboard.component';
 import { DatePipe } from "@angular/common";
 import { ModificaLuogoViewComponent } from './componenti/modifica-luogo-view/modifica-luogo-view.component';
 import { ModificaLuogoComponent } from './componenti/modifica-luogo/modifica-luogo.component';
+import { ModificaObiettivoDialogComponent } from './dialogs/modifica-obiettivo-dialog/modifica-obiettivo-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -109,6 +110,7 @@ import { ModificaLuogoComponent } from './componenti/modifica-luogo/modifica-luo
     DashboardComponent,
     ModificaLuogoViewComponent,
     ModificaLuogoComponent,
+    ModificaObiettivoDialogComponent,
     
   ],
   imports: [

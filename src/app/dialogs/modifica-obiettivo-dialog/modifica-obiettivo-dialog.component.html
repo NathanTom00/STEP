@@ -1,0 +1,57 @@
+
+
+<div class="container">
+    <div class="content-container">
+        <div mat-dialog-title class="title">
+            <h2 class="label-titolo">Modifica Anima Locus</h2><span style="flex: 1 1 auto"></span> <button mat-mini-fab
+                class="menu-button" (click)="chiudi()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    
+        
+    </div>
+    <div class="content-container" mat-dialog-content>
+        <div class="sezione">
+            <h4 class="titolo-sezione">
+                {{toCap(obiettivo.nome)}}
+            </h4>
+        </div>
+        <div class="sezione">
+            <div class="elimina-anima-container">
+                <button type="button " matRipple class="button warning-button" (click)="eliminaAnima()"><mat-icon fontIcon="delete" style="width: 16px; height: 16px;font-size: medium;"></mat-icon> Cancella Anima Locus</button>
+            </div>
+        </div>
+    
+        <div class="sezione">
+            <div class="anima-container" >
+                <ng-container *ngFor="let item of obiettivo.container; index as i ">
+                    <div class="anima-item" *ngIf="item.tipo === 'imm'" >
+                        <img class="imm-anima" src="{{item.link}}" alt="" (click)="zoomImm(item.link)">
+                        <mat-icon fontIcon="delete" style="margin-top: 0.5rem;" (click)="eliminaItem(i)"></mat-icon>
+                    </div>
+                    <div class="anima-item" *ngIf="item.tipo === 'link'" >
+                        <div class="div-anima" (click)="navTo(item.link)">
+                            {{item.titolo}}
+                        </div>
+                        <mat-icon fontIcon="delete" style="margin-top: 0.5rem;" (click)="eliminaItem(i)"></mat-icon>
+                    </div>
+                </ng-container>
+            </div>
+
+            
+        </div>
+
+        
+        
+    </div>
+    
+    
+</div>
+<div mat-dialog-actions class="action-container">
+    <button matRipple type="button" class="button salva" (click)="salvaModifiche()">Salva</button>
+</div>
+
+        
+
+    

@@ -68,19 +68,22 @@
         <h4 class="sub-titolo">
             Anima locus
         </h4>
-        <div class="container-emozioni">
-            <div class="button-container" matRipple *ngFor="let obiettivo of  luogo.obiettivi; index as i ">
+        <div class="container-obiettivi">
+            <div class="button-container" *ngFor="let obiettivo of  luogoModificato.obiettivi; index as i ">
                 <div class="button-obiettivo">
-                    <button matRipple type="button" class="obiettivo" value="{{obiettivo.nome}} ">
+                    <button type="button" class="obiettivo" value="{{obiettivo.nome}} ">
                         <div class="icon-button">
                             <svg-icon src="{{getIconByName(obiettivo.nome)}}"></svg-icon>
 
                         </div>
                         <p class="label-button">
-                            {{obiettivo.nome}}
+                            {{toCap(obiettivo.nome)}}
                         </p>
                     </button>
-                    <svg-icon src="assets/Icons/edit.svg" [svgStyle]="{ 'height.px':20 }" class="edit_icon"></svg-icon>
+
+                    <svg-icon src="assets/Icons/edit.svg" matRipple [svgStyle]="{ 'height.px':20 ,'width.px':20}"
+                        class="edit_icon" (click)="openModificaObiettivoDialog(i)"></svg-icon>
+
                 </div>
 
             </div>

@@ -1,0 +1,100 @@
+.container {
+  background-color: #f5f3f7;
+  height: 70vh;
+}
+.content-container{
+  padding: 0 1rem;
+}
+.label-titolo {
+  font-size: 18px;
+  margin: 0;
+}
+.menu-button {
+  color: #d2b48c;
+  background-color: white;
+  box-shadow: none !important;
+}
+.title {
+  display: flex;
+  padding-top: 1rem;
+  padding-inline: 0;
+}
+
+.sezione {
+  width: 100%;
+  padding-top: 1rem;
+}
+
+.titolo-sezione {
+  margin: 0;
+}
+
+.button {
+  width: 240px;
+}
+
+.footer {
+  padding-top: 50px;
+}
+
+.warning-button {
+  color: #d51a52;
+  background-image: none !important;
+  background-color: white;
+  border: #d51a52 1px solid;
+  font-weight: lighter;
+  font-size: small;
+  width: 175px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.elimina-anima-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.anima-container {
+  display: grid;
+  grid-template-columns: 90px 90px 90px;
+  grid-auto-rows: 150px;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.anima-item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imm-anima {
+  width: 100%;
+  height: 90px;
+  border-radius: 30px;
+}
+
+.div-anima {
+  width: 100%;
+  height: 90px;
+  border-radius: 30px;
+  background-color: #015ede;
+  color: white;
+  font-size: large;
+  font-weight: lighter;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.salva{
+  width: 100%;
+}
+
+.action-container{
+  background-color: #f5f3f7;
+  padding: 0 1rem 2rem 1rem
+}
