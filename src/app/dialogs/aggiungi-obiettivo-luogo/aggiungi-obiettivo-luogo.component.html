@@ -1,0 +1,24 @@
+<div class="content-container">
+    <div mat-dialog-title class="title">
+        <h2 class="label-titolo">Aggiungi Anima Locus</h2><span style="flex: 1 1 auto"></span> <button mat-mini-fab
+            class="menu-button" (click)="chiudi()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div class="sezione">
+        <h4 class="titolo-sezione">Seleziona un'anima locus</h4>
+        <select name="select-obiettivo" id="select-obiettivo" class="select" [(ngModel)]="obiettivoDaAggiungere" >
+            <ng-container *ngFor="let nomeObiettivo of arrNomiObiettivi" >
+                <option value="{{nomeObiettivo}}">{{toCap(nomeObiettivo)}}</option>
+            </ng-container>
+        </select>
+    </div>
+
+    <div class="button-container">
+        <button matRipple class="button" (click)="salva()" >Salva</button>
+    </div>
+    
+</div>
+
+

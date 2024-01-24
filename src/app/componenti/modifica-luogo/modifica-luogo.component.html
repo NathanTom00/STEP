@@ -65,9 +65,13 @@
     </div>
 
     <div class="sezione">
-        <h4 class="sub-titolo">
-            Anima locus
-        </h4>
+        <div class="anima-locus-container">
+            <h4 class="sub-titolo">
+                Anima locus
+            </h4>
+            <mat-chip class="chip" (click)="aggiungiObiettivo()">+ Aggiungi anima locus</mat-chip>
+        </div>
+        
         <div class="container-obiettivi">
             <div class="button-container" *ngFor="let obiettivo of  luogoModificato.obiettivi; index as i ">
                 <div class="button-obiettivo">

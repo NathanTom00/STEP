@@ -175,3 +175,8 @@
   border: #d51a52 1px solid;
   font-weight: bold;
 }
+
+.anima-locus-container{
+  display: flex;
+  justify-content: space-between;
+}

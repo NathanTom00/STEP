@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ObiettiviService } from 'src/app/servizi/obiettivi.service';
 import { ZoomInImgComponent } from '../zoom-in-img/zoom-in-img.component';
 
 @Component({
@@ -26,7 +25,6 @@ export class ModificaObiettivoDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<ModificaObiettivoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private obiettiviService : ObiettiviService,
     private dialog : MatDialog
   ) {
     this.obiettivo = structuredClone(data.obiettivo);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AggiungiObiettivoLuogoComponent } from 'src/app/dialogs/aggiungi-obiettivo-luogo/aggiungi-obiettivo-luogo.component';
 import { ModificaObiettivoDialogComponent } from 'src/app/dialogs/modifica-obiettivo-dialog/modifica-obiettivo-dialog.component';
 import { FirestoreService } from 'src/app/servizi/firestore.service';
 import { ObiettiviService } from 'src/app/servizi/obiettivi.service';
@@ -58,6 +59,27 @@ export class ModificaLuogoComponent implements OnInit {
     }
 
     return '';
+  }
+
+  aggiungiObiettivo(){
+    let dialogRef = this.dialog.open(AggiungiObiettivoLuogoComponent,{
+      maxWidth: '90vw',
+      width: '90%',
+      data: {
+        nomeObiettiviLuogo : this.luogoModificato['obiettivi'].map((obiettivo : any) => obiettivo.nome)
+      }
+    })
+
+    dialogRef.afterClosed().subscribe((data : any) => {
+      if(!data)
+        return
+      if(data === '')
+        return
+
+        this.luogoModificato['obiettivi'].push({nome: data, container: []})
+    })
+
+
   }
 
   openModificaObiettivoDialog(iObiettivo : number){
