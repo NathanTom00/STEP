@@ -1,0 +1,116 @@
+.container {
+  max-width: 100%;
+  min-height: 100vh;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  padding-inline: 1rem;
+  padding-bottom: 50px;
+}
+
+.sezione {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  margin-top: 2rem;
+  flex-direction: column;
+}
+
+.titolo-blocco {
+  font-weight: bold;
+  font-size: large;
+}
+
+.sub-titolo {
+  font-size: medium;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.label {
+  margin-bottom: 4px;
+  font-size: medium;
+}
+
+.input-field {
+  height: 2.5rem;
+  border: 1px solid #d5d5d5;
+  border-radius: 15px;
+  width: 100%;
+  padding: 0 1rem;
+  font-size: 16px;
+  margin-bottom: 1rem;
+
+  /*per mettere il padding senza alterare il width */
+  box-sizing: border-box;
+  -moz-box-sizing: border-box; /* Firefox */
+  -webkit-box-sizing: border-box; /* Safari */
+}
+
+.container-emozioni {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  max-width: 100%;
+  padding-bottom: 1.5rem;
+}
+
+.button-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.emozione {
+  width: 105px;
+  height: 100px;
+  border: none;
+  border-radius: 7%;
+  box-shadow: none;
+  font-size: small;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: #015ede;
+  box-shadow: 5px 10px 10px 0px hwb(0deg 25.35% 74.65% / 20%);
+}
+
+.label-button::first-letter {
+  text-transform: uppercase
+}
+
+.icon-button {
+  margin-bottom: 5px;
+}
+
+.sezione-button {
+  display: flex;
+  justify-content: center;
+  padding-inline: 1rem;
+}
+
+
+
+.selected {
+  background-color: #015ede !important;
+  color: white !important;
+}
+
+@media only screen and (max-width: 320px) {
+  .emozione {
+    width: 80px;
+    height: 80px;
+    font-size: x-small;
+  }
+}
+
+.button:disabled,
+.button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  background-image: none !important;
+}

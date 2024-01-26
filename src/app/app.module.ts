@@ -89,6 +89,7 @@ import { ModificaLuogoViewComponent } from './componenti/modifica-luogo-view/mod
 import { ModificaLuogoComponent } from './componenti/modifica-luogo/modifica-luogo.component';
 import { ModificaObiettivoDialogComponent } from './dialogs/modifica-obiettivo-dialog/modifica-obiettivo-dialog.component';
 import { AggiungiObiettivoLuogoComponent } from './dialogs/aggiungi-obiettivo-luogo/aggiungi-obiettivo-luogo.component';
+import { ModificaProfiloUserComponent } from './componenti/modifica-profilo-user/modifica-profilo-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -113,6 +114,7 @@ import { AggiungiObiettivoLuogoComponent } from './dialogs/aggiungi-obiettivo-lu
     ModificaLuogoComponent,
     ModificaObiettivoDialogComponent,
     AggiungiObiettivoLuogoComponent,
+    ModificaProfiloUserComponent,
     
   ],
   imports: [

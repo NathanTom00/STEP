@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="sezione">
+        <h4 class="titolo-blocco">Modifica Profilo</h4>
+    </div>
+    <div class="sezione" *ngIf="currentUserModificato">
+        <h5 class="sub-titolo">Info utente</h5>
+        <div class="inputs-container">
+            <p class="label">Nome</p>
+            <input type="text" name="nome" class="input-field" [(ngModel)]="currentUserModificato.nome">
+            <p class="label">Email</p>
+            <input type="email" name="email" class="input-field" [(ngModel)]="currentUserModificato.email">
+            <p class="label">Reset Password</p>
+            <button type="button" class="button" matRipple>Reset Password</button>
+        </div>
+        <div class="sezione">
+            <h4 class="titolo-blocco">Anima Locus d' interesse</h4>
+            <div class="container-emozioni">
+                <div class="button-container" *ngFor="let obiettivo of  obiettivi">
+                    <button matRipple type="button" #bottoneObiettivo class="emozione" (click)="onClickObiettivo(bottoneObiettivo)" [ngClass]="{'selected' : currentUserModificato.obiettiviInteressati.includes(obiettivo.nome)}"  value="{{obiettivo.nome}}">
+                        <div class="icon-button">
+                            <svg-icon src="{{obiettivo.icon}}" ></svg-icon>
+                            
+                        </div>
+                        <p class="label-button">
+                            {{obiettivo.nome}}
+                        </p>
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+        <button type="button" class="button" matRipple [matRippleDisabled]="!isModificato()" (click)="onClickSalva()" [disabled]="!isModificato()">Salva</button>
+       
+
+    </div>
+</div>

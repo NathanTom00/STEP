@@ -100,4 +100,9 @@ export class FirestoreService {
     const luogoRef = doc(this.firestore, 'luogo', idLuogo);
     updateDoc(luogoRef,luogo)
   }
+
+  modificaUtente(user :any){
+    const userRef = doc(this.firestore, 'users', user.uid)
+    updateDoc(userRef,user)
+  }
 }

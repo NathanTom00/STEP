@@ -10,6 +10,7 @@ import {
 } from '@angular/fire/auth';
 import { catchError, from, map, mergeMap, of, throwError } from 'rxjs';
 import { FirestoreService } from '../servizi/firestore.service';
+import { updateEmail } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -52,5 +53,9 @@ export class AuthService {
   passDimenticata(email : string){
     return of(sendPasswordResetEmail(this.auth,email))
   }
- 
+
+  changeEmail(email: string){
+    if(this.auth.currentUser)
+      updateEmail(this.auth.currentUser,email)
+  }
 }

@@ -13,6 +13,7 @@ import { LeaderboardComponent } from './componenti/leaderboard/leaderboard.compo
 import { DashboardComponent } from './componenti/dashboard/dashboard.component';
 import { ModificaLuogoViewComponent } from './componenti/modifica-luogo-view/modifica-luogo-view.component';
 import { ModificaLuogoComponent } from './componenti/modifica-luogo/modifica-luogo.component';
+import { ModificaProfiloUserComponent } from './componenti/modifica-profilo-user/modifica-profilo-user.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'luoghi/:id_luogo/:iObiettivo', component: AnimaLocusComponent},
   {path: 'luoghi/:id_luogo', component: LuogoComponent},
   {path: 'cerca', component: CercaComponent},
+  {path: 'profilo/modifica', component: ModificaProfiloUserComponent, canActivate: [authGuard]},
   {path: 'profilo', component: ProfiloUserComponent, canActivate: [authGuard]},
   {path: 'leaderboard', component: LeaderboardComponent},
   {path: 'dashboard/:idLuogo/modifica',component: ModificaLuogoComponent,canActivate: [authGuard]},
