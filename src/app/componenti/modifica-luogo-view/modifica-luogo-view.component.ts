@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Observable, filter, mergeMap } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { AggiungiEmozioniDialogComponent } from 'src/app/dialogs/aggiungi-emozioni-dialog/aggiungi-emozioni-dialog.component';
@@ -18,6 +19,29 @@ import { UserService } from 'src/app/servizi/user.service';
 export class ModificaLuogoViewComponent {
   idLuogo: string | null = null;
   luogo$!: Observable<any>;
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: false,
+    dots: true,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1,
+      },
+      400: {
+        items: 1,
+      },
+      740: {
+        items: 1,
+      },
+      940: {
+        items: 1,
+      },
+    },
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,

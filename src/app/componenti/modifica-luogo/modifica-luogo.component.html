@@ -3,12 +3,21 @@
         <h4 class="sub-titolo">
             Foto
         </h4>
-        <div class="foto-container">
-            <img class="imm-luogo" src="{{luogo.imm}}" alt="">
+        <div class="foto-container" >
+            <ng-container *ngFor="let immLink of luogoModificato.imm; index as i">
+                <div class="item-foto-container">
+                    <img class="imm-luogo" src="{{immLink}}" alt="">
+                    <mat-icon fontIcon="delete" style="margin-top: 0.5rem;" (click)="eliminaImmLuogo(i)"></mat-icon>
+                </div>
+            </ng-container>
+            
         </div>
         <div class="imm-button-container">
             <!--TODO-->
-
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <ngx-mat-file-input name="imm" [(ngModel)]="immLuogoAggiunti" [multiple]="true"  placeholder="Carica immagini luogo" accept="image/png, image/jpeg">
+                </ngx-mat-file-input>
+            </mat-form-field>
         </div>
     </div>
 
@@ -71,7 +80,7 @@
             </h4>
             <mat-chip class="chip" (click)="aggiungiObiettivo()">+ Aggiungi anima locus</mat-chip>
         </div>
-        
+
         <div class="container-obiettivi">
             <div class="button-container" *ngFor="let obiettivo of  luogoModificato.obiettivi; index as i ">
                 <div class="button-obiettivo">
@@ -103,7 +112,7 @@
     </div>
 
     <div class="sezione action-container">
-        <button class="button" matRipple (click)="test()">Salva</button>
+        <button class="button" matRipple (click)="salvaModifiche()">Salva</button>
         <button class="button warning-button" matRipple (click)="annulla()">Annulla</button>
     </div>
 </div>

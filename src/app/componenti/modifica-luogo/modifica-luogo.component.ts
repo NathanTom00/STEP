@@ -1,3 +1,4 @@
+import { NgxMatFileInputComponent } from '@angular-material-components/file-input';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,6 +18,7 @@ export class ModificaLuogoComponent implements OnInit {
   luogo: any;
   luogoModificato: any;
   immLinkDaEliminare : string[] = []
+  immLuogoAggiunti : any[] = []
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -47,6 +49,14 @@ export class ModificaLuogoComponent implements OnInit {
     return stringa[0].toUpperCase() + stringa.substring(1);
   }
 
+  eliminaImmLuogo(i : number){
+    console.log(this.luogoModificato.imm[i])
+    this.immLinkDaEliminare.push(this.luogoModificato.imm[i])
+    this.luogoModificato.imm = this.luogoModificato.imm.filter((el : any, index : number) => index !== i)
+  }
+  onChangeInputLuogo(values : any){
+    console.log(values)
+  }
   
 
   rimuoviEmozione(emozioneDaRimuovere : string){
@@ -97,7 +107,8 @@ export class ModificaLuogoComponent implements OnInit {
       
       if(risultato.tipoOperazione === 'modifica'){
         this.luogoModificato['obiettivi'][iObiettivo] = risultato.nuovoObiettivo 
-        this.immLinkDaEliminare = risultato.immLinkDaEliminare
+        for(let immLink of risultato.immLinkDaEliminare)
+          this.immLinkDaEliminare.push(immLink)
         return
       }
 
@@ -116,9 +127,16 @@ export class ModificaLuogoComponent implements OnInit {
     this.luogoModificato = this.luogo
   }
 
-  test(){
-    this.firestoreService.modificaLuogo(this.idLuogo,this.luogoModificato,this.immLinkDaEliminare)
+  salvaModifiche(){
+    
+    if(this.luogoModificato.imm.length == 0){
+      console.log("bisogna avere almeno un immagine del luogo")
+      return
+    }
+    this.firestoreService.modificaLuogo(this.idLuogo,this.luogoModificato,this.immLinkDaEliminare,this.immLuogoAggiunti)
     alert("Luogo modificato correttamente")
+     
+
   }
   
   

@@ -5,7 +5,13 @@
         <div class="sezione modifica-container">
             <mat-chip class="chip " style="margin-inline-end: 1rem;" (click)="modificaLuogo()"> <span class="modifica-button"><svg-icon src="assets/Icons/edit.svg" [svgStyle]="{ 'height.px':16, 'width.px':16 , 'margin-right.px': 5}" class="edit_icon"></svg-icon> Modifica</span>  </mat-chip>
         </div>
-        <img class="immagine-luogo" src="{{luogo.imm}}" alt="">
+        
+        <img class="immagine-luogo" src="{{luogo.imm}}" *ngIf="luogo.imm.length == 1" alt="">
+        <owl-carousel-o [options]="customOptions" *ngIf="!(luogo.imm.length == 1)">
+            <ng-template carouselSlide *ngFor="let immLink of luogo.imm">
+                <img class="immagine-luogo" src="{{immLink}}" alt="">
+            </ng-template>
+        </owl-carousel-o>
 
         <div class="sezione">
             <div class="location-container">

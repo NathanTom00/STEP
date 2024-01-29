@@ -79,7 +79,7 @@ export class FirestoreService {
     
     const obiettivi = documento!['obiettivi']
     obiettivi[iObiettivo].container.push({tipo: 'link',titolo : titolo,link: link})
-    console.log(obiettivi)
+    //console.log(obiettivi)
     updateDoc(luogoRef, { obiettivi: obiettivi});
   }
 
@@ -89,12 +89,27 @@ export class FirestoreService {
     return collectionData(refQuery, { idField: 'id' });
   }
 
-  modificaLuogo(idLuogo: string,luogo : any,immLinkDaModificare : string[]){
+  async modificaLuogo(idLuogo: string,luogo : any,immLinkDaEliminare : string[],immLuogoAggiunti : File[]){
     let storageRef;
-    for(let immLink of immLinkDaModificare){
-      console.log(immLink)
+    for(let immLink of immLinkDaEliminare){
+      //console.log(immLink)
       storageRef = ref(this.storage,immLink)
       deleteObject(storageRef)
+    }
+
+    //per ogni File in immLuogoAggiunti devo fare upload su firebase storage e poi prendere il link e aggiungerlo in luogo
+    let linkImms : string[] = []
+    const immLuogoSrc = '/luoghi/'
+    let storageRefUpload 
+    let uploadTask
+    let immURL
+    for(let fileImmLuogo of immLuogoAggiunti){
+      storageRefUpload = ref(this.storage, immLuogoSrc + new Date().getTime() + fileImmLuogo.name)
+      uploadTask = uploadBytesResumable(storageRefUpload, fileImmLuogo);
+      await uploadTask;
+    
+      immURL = await getDownloadURL(uploadTask.snapshot.ref);
+      luogo.imm.push(immURL)
     }
     const refCollection = collection(this.firestore, 'luogo');
     const luogoRef = doc(this.firestore, 'luogo', idLuogo);

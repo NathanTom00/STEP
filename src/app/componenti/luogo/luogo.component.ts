@@ -9,9 +9,9 @@ import { LoginSignupDialogComponent } from 'src/app/dialogs/login-signup-dialog/
 import { FirestoreService } from 'src/app/servizi/firestore.service';
 import { ObiettiviService } from 'src/app/servizi/obiettivi.service';
 import { UserService } from 'src/app/servizi/user.service';
-import {Clipboard} from '@angular/cdk/clipboard';
+import { Clipboard } from '@angular/cdk/clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-luogo',
@@ -21,6 +21,29 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LuogoComponent implements OnInit {
   idLuogo: string | null = null;
   luogo$!: Observable<any>;
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: false,
+    dots: true,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1,
+      },
+      400: {
+        items: 1,
+      },
+      740: {
+        items: 1,
+      },
+      940: {
+        items: 1,
+      },
+    },
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -33,7 +56,6 @@ export class LuogoComponent implements OnInit {
     protected cookieService: CookieService,
     private clipboard: Clipboard,
     private snackBar: MatSnackBar
-    
   ) {}
 
   ngOnInit(): void {
@@ -76,8 +98,8 @@ export class LuogoComponent implements OnInit {
   }
 
   onShare() {
-    this.clipboard.copy(window.location.href)
-    this.snackBar.open('Indirizzo URL copiato','OK');
+    this.clipboard.copy(window.location.href);
+    this.snackBar.open('Indirizzo URL copiato', 'OK');
   }
 
   toCap(stringa: string) {

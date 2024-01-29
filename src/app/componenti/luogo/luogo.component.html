@@ -2,7 +2,13 @@
 
     <ng-container *ngIf="luogo$| async; let luogo">
 
-        <img class="immagine-luogo" src="{{luogo.imm}}" alt="">
+        
+        <img class="immagine-luogo" src="{{luogo.imm}}" *ngIf="luogo.imm.length == 1" alt="">
+        <owl-carousel-o [options]="customOptions" *ngIf="!(luogo.imm.length == 1)">
+            <ng-template carouselSlide *ngFor="let immLink of luogo.imm">
+                <img class="immagine-luogo" src="{{immLink}}" alt="">
+            </ng-template>
+        </owl-carousel-o>
 
         <div class="sezione">
             <div class="location-container">
