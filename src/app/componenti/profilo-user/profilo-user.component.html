@@ -44,7 +44,7 @@
                 <h3 class="count-challenge">La tua Cronologia</h3>
                 <div class="task-item cronologia" *ngFor="let task of user.taskFatti">
                     <div class="content-item">
-                        <p class="data">{{task.data| date:'shortDate'}}</p>
+                        <p class="data">{{task.data| date:'dd/MM/YYYY'}}</p>
                         <p class="testo-task blu">{{task.nome}}</p>
                         <p class="testo-task">{{task.descrizione}}</p>
                     

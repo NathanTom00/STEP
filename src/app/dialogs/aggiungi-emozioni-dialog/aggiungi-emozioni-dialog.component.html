@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="aggiungi-container">
-        <button class="button" (click)="aggiungiEmozioni()">Aggiungi</button>
+        <button class="button" (click)="aggiungiEmozioni()" [disabled]="emozioniSelezionati.length==0">Aggiungi</button>
     </div>
 
 

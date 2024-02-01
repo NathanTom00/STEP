@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Observable, concatMap, map, switchMap } from 'rxjs';
@@ -68,13 +69,13 @@ export class HomeComponent implements OnInit {
     private firestoreService: FirestoreService,
     private dialog: MatDialog,
     protected authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private snackBar: MatSnackBar
   ) {
     this.currentUser$ = userService.currentUserProfile$;
   }
 
   ngOnInit(): void {
-
     //redirect with localstorage -> per vedere se un utente ha già visitato il sito o meno usiamo un cookie
     if (localStorage['visitato'] !== 'TRUE') {
       this.router.navigate(['onboarding']);
@@ -139,14 +140,19 @@ export class HomeComponent implements OnInit {
     }
 
     this.emozioneSelezionato = emozione;
+    /** Aggiungo l'emozione in emozioni_cercati dello user */ 
+    this.authService.currentUser$.subscribe((user:any) => {
+      if(!user ) return
+      this.userService.aggiungiEmozione(user, [this.emozioneSelezionato])
+    })
+
+    /** Cerco i luoghi che hanno l'emozione selezionato */
     this.luoghiByEmozione = [];
-    this.firestoreService.getLuoghi().subscribe((data: any) => {
-      for (let luogo of data) {
-        if (luogo.emozioni.includes(this.emozioneSelezionato)) {
-          this.luoghiByEmozione.push(luogo);
-        }
+    for (let luogo of this.tutti_luoghi) {
+      if (luogo.emozioni.includes(this.emozioneSelezionato)) {
+        this.luoghiByEmozione.push(luogo);
       }
-    });
+    }
   }
 
   toCap(stringa: string) {

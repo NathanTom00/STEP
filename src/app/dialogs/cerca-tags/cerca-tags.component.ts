@@ -4,6 +4,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { EmozioniServiceService } from 'src/app/servizi/emozioni-service.service';
 import { ObiettiviService } from 'src/app/servizi/obiettivi.service';
 import { AggiungiEmozioniDialogComponent } from '../aggiungi-emozioni-dialog/aggiungi-emozioni-dialog.component';
+import { AuthService } from 'src/app/auth/auth.service';
+import { UserService } from 'src/app/servizi/user.service';
 
 @Component({
   selector: 'app-cerca-tags',
@@ -23,7 +25,9 @@ export class CercaTagsComponent {
   constructor(
     public dialogRef: MatDialogRef<AggiungiEmozioniDialogComponent>,
     private obiettivi: ObiettiviService,
-    private emozioni: EmozioniServiceService
+    private emozioni: EmozioniServiceService,
+    private authService : AuthService,
+    private userService : UserService
   ) {
     this.emozioniTotali = emozioni.getEmozioni();
     this.obiettiviTotali = obiettivi.getObiettivi().map((data) => data.nome);
@@ -77,6 +81,11 @@ export class CercaTagsComponent {
   }
 
   cerca() {
+    /** Aggiungo l'emozioni in emozioni_cercati dello user e controllo la task della gioia */
+    this.authService.currentUser$.subscribe((user:any) => {
+      if(!user ) return
+      this.userService.aggiungiEmozione(user, this.emozioniSelezionati)
+    })
     this.dialogRef.close({
       provinceSelezionati: this.provinceSelezionati,
       emozioniSelezionati: this.emozioniSelezionati,

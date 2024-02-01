@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MatChip } from '@angular/material/chips';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { AuthService } from 'src/app/auth/auth.service';
 import { EmozioniServiceService } from 'src/app/servizi/emozioni-service.service';
 import { FirestoreService } from 'src/app/servizi/firestore.service';
 import { ObiettiviService } from 'src/app/servizi/obiettivi.service';
+import { UserService } from 'src/app/servizi/user.service';
 
 @Component({
   selector: 'app-aggiungi-emozioni-dialog',
@@ -21,7 +23,9 @@ export class AggiungiEmozioniDialogComponent implements OnInit{
     public dialogRef: MatDialogRef<AggiungiEmozioniDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private emozioniService : EmozioniServiceService,
-    private firestoreService : FirestoreService
+    private firestoreService : FirestoreService,
+    private authService : AuthService,
+    private userService : UserService
   ) {
     this.idLuogo = data.idLuogo;
   }
@@ -62,8 +66,14 @@ export class AggiungiEmozioniDialogComponent implements OnInit{
   }
 
   aggiungiEmozioni(){
-    
+    /** Incremento il "count_obiettivi_esplorati" dello user */ 
+    this.authService.currentUser$.subscribe((user:any) => {
+      if(!user ) return
+      this.userService.incrementaEmozioniAggiunti(user,this.emozioniSelezionati.length)
+    })
+
     this.firestoreService.aggiungiEmozioni(this.idLuogo,this.emozioniSelezionati)
+
     this.nuoveAggiunte.emit(this.emozioniSelezionati);
     this.dialogRef.close()
   }

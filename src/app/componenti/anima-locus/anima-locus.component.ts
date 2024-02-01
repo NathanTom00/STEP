@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { AggiungiAnimaComponent } from 'src/app/dialogs/aggiungi-anima/aggiungi-anima.component';
 import { ZoomInImgComponent } from 'src/app/dialogs/zoom-in-img/zoom-in-img.component';
 import { FirestoreService } from 'src/app/servizi/firestore.service';
+import { UserService } from 'src/app/servizi/user.service';
 
 @Component({
   selector: 'app-anima-locus',
@@ -23,10 +24,12 @@ export class AnimaLocusComponent implements OnInit {
     private router: Router,
     private firestoreService: FirestoreService,
     protected authService: AuthService,
+    private userService : UserService,
     private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
+    
     this.idLuogo = this.route.snapshot.paramMap.get('id_luogo');
     if (
       !this.route.snapshot.paramMap.get('iObiettivo') ||
@@ -45,6 +48,12 @@ export class AnimaLocusComponent implements OnInit {
 
       //console.log(this.obiettivoSelezionato);
     });
+
+    /** Incremento il "count_obiettivi_esplorati" dello user */ 
+    this.authService.currentUser$.subscribe((user:any) => {
+      if(!user ) return
+      this.userService.incrementaCountObiettiviEsplorati(user)
+    })
   }
 
   toCap(stringa: string) {
