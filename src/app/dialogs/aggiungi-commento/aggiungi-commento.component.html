@@ -1,0 +1,54 @@
+
+
+<div class="container">
+        <div mat-dialog-title class="title" >
+            <h2 class="label-titolo" >Scrivi una recensione</h2><span style="flex: 1 1 auto"></span> <button mat-mini-fab class="menu-button"
+            [mat-dialog-close]="true">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <mat-dialog-content class="mat-typography">
+            
+            <form [formGroup]="aggiungiCommentoForm" class="login-form" (ngSubmit)="onSubmit()">
+                
+                <div class="form-field">
+                    <p class="titolo-blocco">
+                        Come valuteresti la tua esperienza?
+                    </p>
+                    <div class="stars">
+                        <star-rating-control [starType]="'svg'" formControlName="rating" [size]="'medium'" style="justify-content: left;"
+                            ></star-rating-control>
+                    </div>
+                </div>
+        
+                <div class="form-field">
+                    <p class="titolo-blocco">
+                        Titolo della recensione
+                    </p>
+                    <input class="input-text" placeholder="Titolo" type="text" name="titolo" formControlName="titolo">
+                </div>
+        
+                <div class="form-field">
+                    <p class="titolo-blocco">
+                        Scrivi la tua recensione
+                    </p>
+                    <div class="textarea-container">
+                        <textarea class="textarea-descrizione" name="descrizione" formControlName="descrizione"></textarea>
+                    </div>
+                </div>
+
+                
+                
+        
+                <button class="button" [ngClass]="{'disabled-button': !aggiungiCommentoForm.valid}" type="submit" [disabled]="!aggiungiCommentoForm.valid">
+                    Aggiungi Commento
+                </button>
+
+                
+            </form>
+           
+        </mat-dialog-content>
+    
+
+    
+</div>

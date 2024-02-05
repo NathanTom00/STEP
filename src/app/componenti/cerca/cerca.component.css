@@ -7,6 +7,13 @@
   padding-inline: 1rem;
 }
 
+.caricamento-container{
+  display: flex;
+  padding-top: 40px;
+  justify-content: space-evenly;
+  background-color: transparent;
+}
+
 .sezione {
   width: 100%;
   height: max-content;

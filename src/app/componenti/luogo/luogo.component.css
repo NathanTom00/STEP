@@ -6,6 +6,13 @@
   flex-direction: column;
 }
 
+.caricamento-container{
+  display: flex;
+  padding-top: 40px;
+  justify-content: space-evenly;
+  background-color: transparent;
+}
+
 .immagine-luogo {
   border-radius: 5%;
   height: 400px;
@@ -169,4 +176,59 @@
   text-decoration: underline;
   display: flex;
   align-items: center;
+}
+
+.empty-container{
+  text-align: center;
+}
+
+.empty-paragraph{
+  color: #818181;
+  font-size: 16px;
+}
+
+.aggiungi-button-container{
+  padding-inline: 1rem;
+}
+
+.comment-container {
+  padding-inline: 1rem;
+}
+
+.comment {
+  padding: 1rem;
+  border-radius: 15px;
+  background-color: white;
+  margin-bottom: 1rem;
+  box-shadow: #64646447 0px 5px 10px 0px;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.comment-title {
+  color: gray;
+  margin-bottom: 0;
+}
+
+.comment-location {
+  color: gray;
+  font-weight: lighter;
+}
+
+.comment-desc {
+  font-weight: 550;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: small;
+  overflow-x: initial;
+  white-space: initial;
 }

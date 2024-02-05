@@ -1,79 +1,57 @@
-<div class="container " *ngIf="(luoghi_all$|async) as luoghi">
-    
-    <div class="sezione">
-        <h3 class="titolo-blocco esplora">Esplora</h3>
-        <form [formGroup]="cercaForm" class="login-form" (ngSubmit)="cercaSubmit(luoghi)">
-            <div class="form-field">
-                <button type="submit" class="cerca-button" [disabled]="!cercaForm.valid">
-                    <mat-icon>search</mat-icon>
-                </button>
-                <input class="input-text" type="text" placeholder="Cosa vorresti scoprire?" formControlName="cercaInput">
+<div class="container " >
+    <div class="caricamento-container" *ngIf="!(luoghi_all$|async)">
 
-            </div>
-
-            
-
-            <mat-chip (click)="onClickFiltra()" class="chip"><mat-icon class="filtra-button">tune</mat-icon><span
-                    class="label-filtra">Filtra</span> </mat-chip>
-
-            <mat-chip (click)="eliminaProvincia(provincia)" *ngFor="let provincia of provinceSelezionati"
-                class="chip eliminabile">{{toCap(provincia)}} X</mat-chip>
-            <mat-chip (click)="eliminaEmozione(emozione)" *ngFor="let emozione of emozioniSelezionati"
-                class="chip eliminabile">{{toCap(emozione)}} X</mat-chip>
-            <mat-chip (click)="eliminaObiettivo(obiettivo)" *ngFor="let obiettivo of obiettiviSelezionati"
-                class="chip eliminabile">{{toCap(obiettivo)}} X</mat-chip>
-
-        </form>
-
-        
+        <mat-spinner></mat-spinner>
     </div>
-    <button class="button-mappa" (click)="openMap()">
-        <mat-icon>map</mat-icon>
-        Visualizza la mappa 
-    </button>
-    <div class="sezione">
 
-        <div
-            *ngIf="stringaDaCercare==='' && provinceSelezionati.length  == 0 && emozioniSelezionati.length  == 0 &&  obiettiviSelezionati.length  == 0  ">
-
-            <h4 class="titolo-blocco">Suggerimenti</h4>
-            <div>
-                <div class="card-container" *ngFor="let luogo of luoghiLimitati$|async" (click)="goToLuogo(luogo.id)">
-
-                    <mat-card class="card">
-                        <img class="imm-card" src="{{luogo.imm}}">
-                        <div class="emozioni-container">
-                            <mat-chip disabled class="chip" *ngFor="let obiettivo of luogo.obiettivi">
-
-                                {{toCap(obiettivo.nome)}}
-
-                            </mat-chip>
-                        </div>
-                        <mat-card-title>{{luogo.nome}}</mat-card-title>
-                        <p class="par-card">
-                            {{luogo.descrizione}}
-                        </p>
-                    </mat-card>
-
+    <ng-container *ngIf="(luoghi_all$|async) as luoghi">
+        <div class="sezione">
+            <h3 class="titolo-blocco esplora">Esplora</h3>
+            <form [formGroup]="cercaForm" class="login-form" (ngSubmit)="cercaSubmit(luoghi)">
+                <div class="form-field">
+                    <button type="submit" class="cerca-button" [disabled]="!cercaForm.valid">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                    <input class="input-text" type="text" placeholder="Cosa vorresti scoprire?" formControlName="cercaInput">
+    
                 </div>
-            </div>
+    
+                
+    
+                <mat-chip (click)="onClickFiltra()" class="chip"><mat-icon class="filtra-button">tune</mat-icon><span
+                        class="label-filtra">Filtra</span> </mat-chip>
+    
+                <mat-chip (click)="eliminaProvincia(provincia)" *ngFor="let provincia of provinceSelezionati"
+                    class="chip eliminabile">{{toCap(provincia)}} X</mat-chip>
+                <mat-chip (click)="eliminaEmozione(emozione)" *ngFor="let emozione of emozioniSelezionati"
+                    class="chip eliminabile">{{toCap(emozione)}} X</mat-chip>
+                <mat-chip (click)="eliminaObiettivo(obiettivo)" *ngFor="let obiettivo of obiettiviSelezionati"
+                    class="chip eliminabile">{{toCap(obiettivo)}} X</mat-chip>
+    
+            </form>
+    
+            
         </div>
-
-        <div
-            *ngIf="!(stringaDaCercare=='' && provinceSelezionati.length  == 0 && emozioniSelezionati.length  == 0 &&  obiettiviSelezionati.length  == 0)">
-
-            <h4 class="titolo-blocco">Risultati</h4>
-            <ng-container *ngIf="getLuoghiSelezionati(luoghi).length !== 0">
-                <div *ngFor="let luogo of getLuoghiSelezionati(luoghi)">
-                    <div class="card-container" (click)="goToLuogo(luogo.id)">
-
+        <button class="button-mappa" (click)="openMap()">
+            <mat-icon>map</mat-icon>
+            Visualizza la mappa 
+        </button>
+        <div class="sezione">
+    
+            <div
+                *ngIf="stringaDaCercare==='' && provinceSelezionati.length  == 0 && emozioniSelezionati.length  == 0 &&  obiettiviSelezionati.length  == 0  ">
+    
+                <h4 class="titolo-blocco">Suggerimenti</h4>
+                <div>
+                    <div class="card-container" *ngFor="let luogo of luoghiLimitati$|async" (click)="goToLuogo(luogo.id)">
+    
                         <mat-card class="card">
                             <img class="imm-card" src="{{luogo.imm}}">
                             <div class="emozioni-container">
                                 <mat-chip disabled class="chip" *ngFor="let obiettivo of luogo.obiettivi">
-
+    
                                     {{toCap(obiettivo.nome)}}
-
+    
                                 </mat-chip>
                             </div>
                             <mat-card-title>{{luogo.nome}}</mat-card-title>
@@ -81,22 +59,51 @@
                                 {{luogo.descrizione}}
                             </p>
                         </mat-card>
-
+    
                     </div>
-
                 </div>
-            </ng-container>
-            <ng-container *ngIf="!(getLuoghiSelezionati(luoghi).length !== 0)">
-                <div class="err-container">
-                    <img class="img-errore" src="assets/images/error-search.svg" alt="">
-                    <p class="paragrado-errore">Non abbiamo trovato risultati per la tua ricerca. Prova a <strong>togliere dei filtri o scrivere una query diversa</strong></p>
-                </div>
-            </ng-container>
-
+            </div>
+    
+            <div
+                *ngIf="!(stringaDaCercare=='' && provinceSelezionati.length  == 0 && emozioniSelezionati.length  == 0 &&  obiettiviSelezionati.length  == 0)">
+    
+                <h4 class="titolo-blocco">Risultati</h4>
+                <ng-container *ngIf="getLuoghiSelezionati(luoghi).length !== 0">
+                    <div *ngFor="let luogo of getLuoghiSelezionati(luoghi)">
+                        <div class="card-container" (click)="goToLuogo(luogo.id)">
+    
+                            <mat-card class="card">
+                                <img class="imm-card" src="{{luogo.imm}}">
+                                <div class="emozioni-container">
+                                    <mat-chip disabled class="chip" *ngFor="let obiettivo of luogo.obiettivi">
+    
+                                        {{toCap(obiettivo.nome)}}
+    
+                                    </mat-chip>
+                                </div>
+                                <mat-card-title>{{luogo.nome}}</mat-card-title>
+                                <p class="par-card">
+                                    {{luogo.descrizione}}
+                                </p>
+                            </mat-card>
+    
+                        </div>
+    
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="!(getLuoghiSelezionati(luoghi).length !== 0)">
+                    <div class="err-container">
+                        <img class="img-errore" src="assets/images/error-search.svg" alt="">
+                        <p class="paragrado-errore">Non abbiamo trovato risultati per la tua ricerca. Prova a <strong>togliere dei filtri o scrivere una query diversa</strong></p>
+                    </div>
+                </ng-container>
+    
+            </div>
+    
+    
+    
+    
         </div>
-
-
-
-
-    </div>
+    </ng-container>
+    
 </div>

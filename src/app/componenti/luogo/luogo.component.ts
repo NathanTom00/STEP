@@ -12,6 +12,7 @@ import { UserService } from 'src/app/servizi/user.service';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { AggiungiCommentoComponent } from 'src/app/dialogs/aggiungi-commento/aggiungi-commento.component';
 
 @Component({
   selector: 'app-luogo',
@@ -134,5 +135,17 @@ export class LuogoComponent implements OnInit {
 
   navigaLink(link: string) {
     window.location.href = link;
+  }
+
+  getCommentiSTEP(luogo : any){
+    return luogo['commenti'].filter((a:any) => a.fonte === 'step')
+  }
+
+  apriCommentoDialog(idLuogo: string){
+    const dialogRef = this.dialog.open(AggiungiCommentoComponent, {
+      maxWidth: '90vw',
+      width: '90%',
+      data: { idLuogo: idLuogo },
+    });
   }
 }

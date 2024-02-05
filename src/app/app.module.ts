@@ -65,6 +65,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatMenuModule} from '@angular/material/menu';
 
 
+
 import { StarRatingModule } from 'angular-star-rating';
 import { LoginSignupDialogComponent } from './dialogs/login-signup-dialog/login-signup-dialog.component';
 import { getAuth, provideAuth } from '@angular/fire/auth';
@@ -90,6 +91,9 @@ import { ModificaLuogoComponent } from './componenti/modifica-luogo/modifica-luo
 import { ModificaObiettivoDialogComponent } from './dialogs/modifica-obiettivo-dialog/modifica-obiettivo-dialog.component';
 import { AggiungiObiettivoLuogoComponent } from './dialogs/aggiungi-obiettivo-luogo/aggiungi-obiettivo-luogo.component';
 import { ModificaProfiloUserComponent } from './componenti/modifica-profilo-user/modifica-profilo-user.component';
+import { AggiungiCommentoComponent } from './dialogs/aggiungi-commento/aggiungi-commento.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,6 +119,7 @@ import { ModificaProfiloUserComponent } from './componenti/modifica-profilo-user
     ModificaObiettivoDialogComponent,
     AggiungiObiettivoLuogoComponent,
     ModificaProfiloUserComponent,
+    AggiungiCommentoComponent,
     
   ],
   imports: [
