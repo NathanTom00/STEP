@@ -37,7 +37,6 @@ export class AppComponent {
 
   openMenu(){
     this.sidenav.open()
-    window.scroll(0,0);
   }
   
 

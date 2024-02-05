@@ -11,7 +11,7 @@ import {
   query,
   where,
 } from '@angular/fire/firestore';
-import { FieldValue, QueryConstraint, arrayUnion, orderBy, updateDoc } from 'firebase/firestore';
+import { FieldValue, QueryConstraint, arrayRemove, arrayUnion, orderBy, updateDoc } from 'firebase/firestore';
 import { Storage, deleteObject, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { of } from 'rxjs';
 
@@ -119,5 +119,21 @@ export class FirestoreService {
   modificaUtente(user :any){
     const userRef = doc(this.firestore, 'users', user.uid)
     updateDoc(userRef,user)
+  }
+
+  aggiungiCommentoLuogo(commento : any , idLuogo : string){
+    const refCollection = collection(this.firestore, 'luogo');
+
+    const emozioniRef = doc(this.firestore, 'luogo', idLuogo);
+
+    updateDoc(emozioniRef, { commenti: arrayUnion(commento) });
+  }
+
+  eliminaCommentoLuogo(commento : any, idLuogo : string){
+    const refCollection = collection(this.firestore, 'luogo');
+
+    const emozioniRef = doc(this.firestore, 'luogo', idLuogo);
+
+    updateDoc(emozioniRef, { commenti: arrayRemove(commento) });
   }
 }

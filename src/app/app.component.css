@@ -10,6 +10,15 @@ mat-toolbar {
   background-color: #E2DCD5;
 }
 
+mat-drawer  {
+  position:fixed;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+mat-drawer::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
 .menu-button {
   color: #d2b48c;
   background-color: white;

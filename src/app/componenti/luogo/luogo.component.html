@@ -65,8 +65,8 @@
                         <p class="empty-paragraph">Al momento non sono presenti commenti STEP per questo luogo</p>
                     </div>
                 </ng-container>
-                <ng-container *ngFor="let commento of getCommentiSTEP(luogo)">
-                    <div class="comment">
+                <ng-container *ngFor="let commento of getCommentiSTEP(luogo); index as i">
+                    <div class="comment" id="{{'commento-luogo-'+ i}}">
                         <div class="comment-header">
                             <div class="stars">
                                 <star-rating [starType]="'svg'" [readOnly]="true"
@@ -79,12 +79,12 @@
                                     <mat-icon>more_vert</mat-icon>
                                   </button>
                                   <mat-menu #menu="matMenu">
-                                    <button mat-menu-item>
+                                    <button mat-menu-item (click)="copiaCommento('commento-luogo-'+ i)" >
                                       <span>Condividi Recensione</span>
                                     </button>
-                                    <!-- Solo se lo user che user uid === luogo.commenti.idCreatore -->
+                                    <!-- Solo se lo user che user uid === commento.idCreatore -->
                                     <ng-container *ngIf=" authService.currentUser$ | async; let user ">
-                                            <button mat-menu-item *ngIf="user.uid === luogo.commenti.idCreatore">
+                                            <button mat-menu-item *ngIf="user.uid === commento.idCreatore" (click)="eliminaCommento(commento)" >
                                                 <span>Elimina Recensione</span>
                                             </button>
                                         

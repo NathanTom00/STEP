@@ -201,6 +201,7 @@
   background-color: white;
   margin-bottom: 1rem;
   box-shadow: #64646447 0px 5px 10px 0px;
+  scroll-margin-top: 60px;
 }
 
 .comment-header {

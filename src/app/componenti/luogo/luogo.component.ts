@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, filter, mergeMap, toArray } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -19,9 +19,10 @@ import { AggiungiCommentoComponent } from 'src/app/dialogs/aggiungi-commento/agg
   templateUrl: './luogo.component.html',
   styleUrls: ['./luogo.component.css'],
 })
-export class LuogoComponent implements OnInit {
+export class LuogoComponent implements OnInit, AfterViewChecked{
   idLuogo: string | null = null;
   luogo$!: Observable<any>;
+  userId : string = ''
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -45,6 +46,9 @@ export class LuogoComponent implements OnInit {
       },
     },
   };
+
+  controlloLinkConAnchor = true //true se devo fare il controllo dell'ancora false altrimenti
+  fragmentCommento: string | null = null; 
 
   constructor(
     private route: ActivatedRoute,
@@ -72,6 +76,7 @@ export class LuogoComponent implements OnInit {
     /** se l'utente è loggato allora devo cambiare il suo count */
     this.authService.currentUser$.subscribe((user: any) => {
       if (!user) return;
+      this.userId = user.uid
       this.userService.incrementaCountLuoghi(user);
     });
 
@@ -81,6 +86,7 @@ export class LuogoComponent implements OnInit {
 
     /**Inizio visualizzazione luogo */
     this.idLuogo = this.route.snapshot.paramMap.get('id_luogo');
+    this.route.fragment.subscribe(fragment => { this.fragmentCommento = fragment; }); //se ha il fragment allora devo navigare fino al commento con id = fragment
 
     this.luogo$ = this.firestoreService.getLuoghi().pipe(
       mergeMap((data) => data),
@@ -96,6 +102,18 @@ export class LuogoComponent implements OnInit {
           data: { singUpPage: 'signup' },
         });
     });
+
+  }
+
+  ngAfterViewChecked(): void {
+    try {
+      if(!this.controlloLinkConAnchor && document.querySelector('#' + this.fragmentCommento) === null)
+        return
+
+      
+      this.controlloLinkConAnchor = false
+      document.querySelector('#' + this.fragmentCommento)!.scrollIntoView();
+    } catch (e) { }
   }
 
   onShare() {
@@ -147,5 +165,16 @@ export class LuogoComponent implements OnInit {
       width: '90%',
       data: { idLuogo: idLuogo },
     });
+  }
+
+  eliminaCommento(commento : any){
+    this.firestoreService.eliminaCommentoLuogo(commento, this.idLuogo!)
+  }
+
+  copiaCommento(fragment : string){
+    //link senza hash
+    const urlNoHash =  window.location.href.split("#")[0]
+    this.clipboard.copy(urlNoHash + "#" + fragment)
+    this.snackBar.open('Indirizzo URL commento copiato', 'OK');
   }
 }
