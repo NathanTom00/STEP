@@ -17,14 +17,14 @@ export class ModificaLuogoComponent implements OnInit {
   idLuogo!: string;
   luogo: any;
   luogoModificato: any;
-  immLinkDaEliminare : string[] = []
-  immLuogoAggiunti : any[] = []
+  immLinkDaEliminare: string[] = [];
+  immLuogoAggiunti: any[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private firestoreService: FirestoreService,
     private router: Router,
-    private obiettiviService : ObiettiviService,
+    private obiettiviService: ObiettiviService,
     private dialog: MatDialog
   ) {}
 
@@ -35,32 +35,34 @@ export class ModificaLuogoComponent implements OnInit {
     this.idLuogo = this.activatedRoute.snapshot.paramMap.get('idLuogo')!;
 
     this.firestoreService.getLuoghi().subscribe((luoghi: any) => {
-      for(let luogo of luoghi){
-        if(this.idLuogo === luogo.id){
-          this.luogo = structuredClone( luogo)
-          this.luogoModificato = structuredClone( luogo)
+      for (let luogo of luoghi) {
+        if (this.idLuogo === luogo.id) {
+          this.luogo = structuredClone(luogo);
+          this.luogoModificato = structuredClone(luogo);
         }
       }
     });
-
   }
 
   toCap(stringa: string) {
     return stringa[0].toUpperCase() + stringa.substring(1);
   }
 
-  eliminaImmLuogo(i : number){
-    console.log(this.luogoModificato.imm[i])
-    this.immLinkDaEliminare.push(this.luogoModificato.imm[i])
-    this.luogoModificato.imm = this.luogoModificato.imm.filter((el : any, index : number) => index !== i)
+  eliminaImmLuogo(i: number) {
+    console.log(this.luogoModificato.imm[i]);
+    this.immLinkDaEliminare.push(this.luogoModificato.imm[i]);
+    this.luogoModificato.imm = this.luogoModificato.imm.filter(
+      (el: any, index: number) => index !== i
+    );
   }
-  onChangeInputLuogo(values : any){
-    console.log(values)
+  onChangeInputLuogo(values: any) {
+    console.log(values);
   }
-  
 
-  rimuoviEmozione(emozioneDaRimuovere : string){
-    this.luogoModificato['emozioni'] = this.luogoModificato['emozioni'].filter((emozione : string) => emozione !== emozioneDaRimuovere)
+  rimuoviEmozione(emozioneDaRimuovere: string) {
+    this.luogoModificato['emozioni'] = this.luogoModificato['emozioni'].filter(
+      (emozione: string) => emozione !== emozioneDaRimuovere
+    );
   }
 
   getIconByName(nomeObiettivo: string) {
@@ -71,73 +73,72 @@ export class ModificaLuogoComponent implements OnInit {
     return '';
   }
 
-  aggiungiObiettivo(){
-    let dialogRef = this.dialog.open(AggiungiObiettivoLuogoComponent,{
+  aggiungiObiettivo() {
+    let dialogRef = this.dialog.open(AggiungiObiettivoLuogoComponent, {
       maxWidth: '90vw',
       width: '90%',
       data: {
-        nomeObiettiviLuogo : this.luogoModificato['obiettivi'].map((obiettivo : any) => obiettivo.nome)
-      }
-    })
+        nomeObiettiviLuogo: this.luogoModificato['obiettivi'].map(
+          (obiettivo: any) => obiettivo.nome
+        ),
+      },
+    });
 
-    dialogRef.afterClosed().subscribe((data : any) => {
-      if(!data)
-        return
-      if(data === '')
-        return
+    dialogRef.afterClosed().subscribe((data: any) => {
+      if (!data) return;
+      if (data === '') return;
 
-        this.luogoModificato['obiettivi'].push({nome: data, container: []})
-    })
-
-
+      this.luogoModificato['obiettivi'].push({ nome: data, container: [] });
+    });
   }
 
-  openModificaObiettivoDialog(iObiettivo : number){
-    let obiettivoDaModificare = this.luogoModificato['obiettivi'][iObiettivo]
-    let dialogRef = this.dialog.open(ModificaObiettivoDialogComponent,{
+  openModificaObiettivoDialog(iObiettivo: number) {
+    let obiettivoDaModificare = this.luogoModificato['obiettivi'][iObiettivo];
+    let dialogRef = this.dialog.open(ModificaObiettivoDialogComponent, {
       maxWidth: '90vw',
       width: '90%',
       data: { obiettivo: obiettivoDaModificare },
-      
-    })
+    });
 
-    dialogRef.afterClosed().subscribe((risultato : any) => {
-      if(risultato.tipoOperazione === 'annulla')
-        return
-      
-      if(risultato.tipoOperazione === 'modifica'){
-        this.luogoModificato['obiettivi'][iObiettivo] = risultato.nuovoObiettivo 
-        for(let immLink of risultato.immLinkDaEliminare)
-          this.immLinkDaEliminare.push(immLink)
-        return
+    dialogRef.afterClosed().subscribe((risultato: any) => {
+      if (risultato.tipoOperazione === 'annulla') return;
+
+      if (risultato.tipoOperazione === 'modifica') {
+        this.luogoModificato['obiettivi'][iObiettivo] =
+          risultato.nuovoObiettivo;
+        for (let immLink of risultato.immLinkDaEliminare)
+          this.immLinkDaEliminare.push(immLink);
+        return;
       }
 
-      if(risultato.tipoOperazione === 'elimina'){
-        this.luogoModificato['obiettivi'] = this.luogoModificato['obiettivi'].filter((value : any , index: number) => index !== iObiettivo)
-        
+      if (risultato.tipoOperazione === 'elimina') {
+        this.luogoModificato['obiettivi'] = this.luogoModificato[
+          'obiettivi'
+        ].filter((value: any, index: number) => index !== iObiettivo);
       }
-
-      
-
-
-    })
+    });
   }
 
-  annulla(){
-    this.luogoModificato = this.luogo
+  annulla() {
+    this.luogoModificato = this.luogo;
   }
 
-  salvaModifiche(){
-    
-    if(this.luogoModificato.imm.length == 0){
-      console.log("bisogna avere almeno un immagine del luogo")
-      return
+  salvaModifiche() {
+    if (this.luogoModificato.imm.length == 0) {
+      console.log('bisogna avere almeno un immagine del luogo');
+      return;
     }
-    this.firestoreService.modificaLuogo(this.idLuogo,this.luogoModificato,this.immLinkDaEliminare,this.immLuogoAggiunti)
-    alert("Luogo modificato correttamente")
-     
-
+    this.firestoreService
+      .modificaLuogo(
+        this.idLuogo,
+        this.luogoModificato,
+        this.immLinkDaEliminare,
+        this.immLuogoAggiunti
+      )
+      .then((_) => {
+        alert('Luogo modificato correttamente');
+        this.immLuogoAggiunti = []
+      })
+      .catch((_) => alert('Errore durante il salvataggio delle modifiche'));
   }
-  
-  
 }
