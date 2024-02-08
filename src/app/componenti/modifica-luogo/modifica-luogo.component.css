@@ -26,6 +26,7 @@
   display: grid;
   grid-template-columns: 100px 100px 100px;
   gap: 1rem;
+  padding-bottom: 1rem;
 }
 
 @media only screen and (max-width: 320px) {
@@ -51,9 +52,19 @@
 }
 
 .imm-luogo {
+  aspect-ratio : 1 / 1;
   width: 100%;
-  height: auto;
   border-radius: 15px;
+}
+
+.preview{
+  filter: brightness(50%);
+}
+
+.preview-text{
+  position: absolute;
+  color: white;
+  margin-top: 40px
 }
 
 .input-field {

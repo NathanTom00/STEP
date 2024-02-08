@@ -19,6 +19,7 @@ export class ModificaLuogoComponent implements OnInit {
   luogoModificato: any;
   immLinkDaEliminare: string[] = [];
   immLuogoAggiunti: any[] = [];
+  previewsImg : any[] = []
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -52,9 +53,14 @@ export class ModificaLuogoComponent implements OnInit {
     console.log(this.luogoModificato.imm[i]);
     this.immLinkDaEliminare.push(this.luogoModificato.imm[i]);
     this.luogoModificato.imm = this.luogoModificato.imm.filter(
-      (el: any, index: number) => index !== i
+      (_: any, index: number) => index !== i
     );
   }
+
+  setPreview(){
+    this.previewsImg = this.immLuogoAggiunti.map((file : any) => URL.createObjectURL(file))
+  }
+
   onChangeInputLuogo(values: any) {
     console.log(values);
   }

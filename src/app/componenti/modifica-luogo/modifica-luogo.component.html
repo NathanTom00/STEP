@@ -10,11 +10,17 @@
                     <mat-icon fontIcon="delete" style="margin-top: 0.5rem;" (click)="eliminaImmLuogo(i)"></mat-icon>
                 </div>
             </ng-container>
+            <ng-container *ngFor="let immPreview of previewsImg; index as i">
+                <div class="item-foto-container">
+                    <img class="imm-luogo preview" src="{{immPreview}}" alt="">
+                    <p class="preview-text">Preview</p>
+                </div>
+            </ng-container>
             
         </div>
         <div class="imm-button-container">
             <mat-form-field appearance="outline" style="width: 100%;">
-                <ngx-mat-file-input name="imm" [(ngModel)]="immLuogoAggiunti" [multiple]="true"  placeholder="Carica immagini luogo" accept="image/png, image/jpeg">
+                <ngx-mat-file-input name="imm" [(ngModel)]="immLuogoAggiunti" [multiple]="true"  placeholder="Carica immagini luogo" accept="image/png, image/jpeg" (change)="setPreview()">
                 </ngx-mat-file-input>
             </mat-form-field>
         </div>
