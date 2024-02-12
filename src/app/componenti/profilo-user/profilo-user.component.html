@@ -105,8 +105,48 @@
                 <div class="count-challenge">
                     Commenti Aggiunti
                 </div>
-                <div class="comment-container">
-                    
+                <div class="comment-container" *ngIf="commentiAggiunti.length != 0">
+                    <ng-container *ngFor="let commento of commentiAggiunti">
+                        <div class="comment" >
+                            <div class="comment-header">
+                                <div class="stars">
+                                    <star-rating [starType]="'svg'" [readOnly]="true"
+                                        [rating]="commento.commento.recensione"></star-rating>
+                                </div>
+        
+                                <div>
+                                    <svg-icon [svgStyle]="{ 'width.px':30 }" src="assets/Icons/STEP_icon.svg"></svg-icon>
+                                    <button mat-icon-button [matMenuTriggerFor]="menu" >
+                                        <mat-icon>more_vert</mat-icon>
+                                      </button>
+                                      <mat-menu #menu="matMenu">
+                                        
+                                        
+                                        <ng-container >
+                                                <button mat-menu-item *ngIf="user.uid === commento.commento.idCreatore" (click)="eliminaCommento(commento)" >
+                                                    <span>Elimina Recensione</span>
+                                                </button>
+                                            
+                                        </ng-container>
+                                        
+                                      </mat-menu>
+                                </div>
+                            </div>
+                            <div class="commment-content">
+                                <p class="comment-title">{{commento.commento.titolo}}</p>
+                                <p class="comment-desc">
+                                    {{commento.commento.descrizione}}
+                                </p>
+                            </div>
+                            <div class="comment-footer">
+                                <p class="comment-location">{{commento.nomeLuogo}}</p>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+
+                <div class="empty-state-container" *ngIf="commentiAggiunti.length == 0">
+                    <p class="p-empty">Non hai ancora aggiunto nessun commento</p>
                 </div>
             </div>
 

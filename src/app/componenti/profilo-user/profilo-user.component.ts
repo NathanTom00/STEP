@@ -76,6 +76,13 @@ export class ProfiloUserComponent implements OnInit {
             }
           }
 
+          for(let [iCommento,commento] of luogo.commenti.entries()){
+            if(commento.idCreatore === this.uid){
+
+              this.commentiAggiunti.push({commento:commento, idLuogo: luogo.id, nomeLuogo : luogo.nome})
+            }
+          }
+
           
         }
 
@@ -138,5 +145,9 @@ export class ProfiloUserComponent implements OnInit {
       data: { luoghi: emozioneAggiunta.luoghi },
     });
     
+  }
+
+  eliminaCommento(commento : any){
+    this.firestoreService.eliminaCommentoLuogo(commento.commento, commento.idLuogo)
   }
 }
