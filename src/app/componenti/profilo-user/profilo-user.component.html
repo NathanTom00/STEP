@@ -10,30 +10,36 @@
 
         <div class="sezione">
             <div class="content-container">
-                <button class=" scegli-button "  (click)="cambiaSezione('challenge')" [ngClass]="{'selected' : sezioneLink==='challenge'}">Challenge</button>
-                <button class=" scegli-button "  (click)="cambiaSezione('badge')" [ngClass]="{'selected' : sezioneLink==='badge'}">Badge</button>
-                <button class=" scegli-button "  (click)="cambiaSezione('cronologia')" [ngClass]="{'selected' : sezioneLink==='cronologia'}">Cronologia</button>
-                <button class=" scegli-button "  (click)="cambiaSezione('myStep')" [ngClass]="{'selected' : sezioneLink==='myStep'}">MyStep</button>
-                
+                <button class=" scegli-button " (click)="cambiaSezione('challenge')"
+                    [ngClass]="{'selected' : sezioneLink==='challenge'}">Challenge</button>
+                <button class=" scegli-button " (click)="cambiaSezione('badge')"
+                    [ngClass]="{'selected' : sezioneLink==='badge'}">Badge</button>
+                <button class=" scegli-button " (click)="cambiaSezione('cronologia')"
+                    [ngClass]="{'selected' : sezioneLink==='cronologia'}">Cronologia</button>
+                <button class=" scegli-button " (click)="cambiaSezione('myStep')"
+                    [ngClass]="{'selected' : sezioneLink==='myStep'}">MyStep</button>
+
             </div>
         </div>
         <div class="sezione">
             <div class="content-container" *ngIf="sezioneLink==='challenge'">
-                <h3 class="count-challenge"><span class="blu">{{user.taskFatti.length}}/{{user.taskTotali.length}}</span> challenge completati</h3>
+                <h3 class="count-challenge"><span
+                        class="blu">{{user.taskFatti.length}}/{{user.taskTotali.length}}</span> challenge completati
+                </h3>
                 <div class="task-item" *ngFor="let task of user.taskTotali">
                     <div class="content-item">
                         <p class="testo-task blu">{{task.nome}}</p>
                         <p class="testo-task">{{task.descrizione}}</p>
                     </div>
                     <div class="icon-fatto" *ngIf="controllaTask(user.taskFatti,task)">
-                        <mat-icon style="color: rgb(40, 179, 21);transform: scale(1.2);" >check_circle</mat-icon>
+                        <mat-icon style="color: rgb(40, 179, 21);transform: scale(1.2);">check_circle</mat-icon>
                     </div>
                 </div>
             </div>
 
             <div class="content-container" *ngIf="sezioneLink==='badge'">
                 <h3 class="count-challenge">I tuoi Badge</h3>
-                <div class="badge-container" >
+                <div class="badge-container">
                     <div class="badge" *ngFor="let badge of user.badges">
                         <svg-icon [svgStyle]="{ 'width.px':90 }" src="{{getLink(badge)}}"></svg-icon>
                         <p class="testo-task blu">{{badge}}</p>
@@ -48,7 +54,7 @@
                         <p class="data">{{task.data| date:'dd/MM/YYYY'}}</p>
                         <p class="testo-task blu">{{task.nome}}</p>
                         <p class="testo-task">{{task.descrizione}}</p>
-                    
+
                     </div>
                 </div>
             </div>
@@ -56,12 +62,44 @@
             <div class="content-container" *ngIf="sezioneLink==='myStep'">
                 <h3 class="count-challenge">I tuoi contributi STEP</h3>
                 <h3 class="count-challenge">Constributi Anima Locus</h3>
-                <div class="anima-container">
-                    
+                <div class="anima-container" *ngFor="let anima of animaAggiunti">
+                    <ng-container *ngIf="anima.tipo === 'imm'">
+                        <img class="imm-anima" src="{{anima.link}}" alt="">
+                    </ng-container>
+                    <ng-container *ngIf="anima.tipo === 'link'">
+                        <div class="div-anima">
+                            {{anima.titolo}}
+                        </div>
+                    </ng-container>
+
+                    <div class="p-container-anima">
+                        <p>{{toCap(anima.nomeObiettivo)}}</p>
+                        <p style="color: grey;">{{toCap(anima.nomeLuogo)}}</p>
+                    </div>
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="eliminaAnima(anima)">
+                            <span>Elimina Anima</span>
+                        </button>
+                    </mat-menu>
+
+                </div>
+
+
+                <h3 class="count-challenge">Emozioni Aggiunte</h3>
+                <div class="emozioni-container">
+                    <ng-container *ngFor="let emozioneAggiunta of emozioniAggiunti ">
+                        <button class="emozione" matBadge="{{emozioneAggiunta.luoghi.length}}" (click)="displayLuoghi(emozioneAggiunta)">
+                            {{toCap(emozioneAggiunta.nomeEmozione)}}
+                        </button>
+                    </ng-container>
                 </div>
             </div>
 
+
         </div>
     </ng-container>
-    
+
 </div>

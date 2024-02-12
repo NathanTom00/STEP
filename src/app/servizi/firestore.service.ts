@@ -97,7 +97,7 @@ export class FirestoreService {
   async modificaLuogo(idLuogo: string,luogo : any,immLinkDaEliminare : string[],immLuogoAggiunti : File[]){
     let storageRef;
     for(let immLink of immLinkDaEliminare){
-      //console.log(immLink)
+      //per ogni linkImm da eliminare lo devo eliminare sul firebase storage
       storageRef = ref(this.storage,immLink)
       deleteObject(storageRef)
     }
@@ -140,5 +140,24 @@ export class FirestoreService {
     const emozioniRef = doc(this.firestore, 'luogo', idLuogo);
 
     updateDoc(emozioniRef, { commenti: arrayRemove(commento) });
+  }
+
+  async eliminaAnimaLocusContent(idLuogo : string, iObiettivo : number, iContainer : number){
+    const refCollection = collection(this.firestore, 'luogo');
+    const luogoRef = doc(this.firestore, 'luogo', idLuogo);
+    const documento = (await getDoc(doc(this.firestore, 'luogo', idLuogo))).data()
+
+    const animaDaEliminare = documento!['obiettivi'][iObiettivo]['container'][iContainer]
+
+    let storageRef;
+    if(animaDaEliminare['tipo'] === 'imm'){
+      //se è tipo imm allora devo eliminare anche l'immagine nel firebase storage
+      storageRef = ref(this.storage,animaDaEliminare['link'])
+      deleteObject(storageRef)
+    }
+
+    documento!['obiettivi'][iObiettivo]['container'] = documento!['obiettivi'][iObiettivo]['container'].filter((el:any,index:number) => el !== animaDaEliminare)
+
+    updateDoc(luogoRef, documento!);
   }
 }
