@@ -65,7 +65,7 @@ export class ModificaLuogoComponent implements OnInit {
     console.log(values);
   }
 
-  rimuoviEmozione(emozioneDaRimuovere: string) {
+  rimuoviEmozione(emozioneDaRimuovere: any) {
     this.luogoModificato['emozioni'] = this.luogoModificato['emozioni'].filter(
       (emozione: string) => emozione !== emozioneDaRimuovere
     );

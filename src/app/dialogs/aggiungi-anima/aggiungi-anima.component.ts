@@ -1,16 +1,17 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EmozioniServiceService } from 'src/app/servizi/emozioni-service.service';
 import { FirestoreService } from 'src/app/servizi/firestore.service';
 import { AggiungiEmozioniDialogComponent } from '../aggiungi-emozioni-dialog/aggiungi-emozioni-dialog.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-aggiungi-anima',
   templateUrl: './aggiungi-anima.component.html',
   styleUrls: ['./aggiungi-anima.component.css']
 })
-export class AggiungiAnimaComponent {
+export class AggiungiAnimaComponent implements OnInit{
   /**
    * nel container ci possono essere due tipi di items:
    * la prima come immagine semplice, la seconda come link con titolo => idea il container riceve oggetti di tipo:
@@ -30,6 +31,7 @@ export class AggiungiAnimaComponent {
   iObiettivo: string;
   caricamento : boolean = false
   completato : boolean = false
+  currentUser : any
 
   private urlRegex = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
   linkForm: FormGroup = new FormGroup({
@@ -45,12 +47,16 @@ export class AggiungiAnimaComponent {
     public dialogRef: MatDialogRef<AggiungiEmozioniDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private emozioniService : EmozioniServiceService,
-    private firestoreService : FirestoreService
+    private firestoreService : FirestoreService,
+    private authService : AuthService
   ) {
     this.idLuogo = data.idLuogo;
     this.iObiettivo = data.iObiettivo;
   }
 
+  ngOnInit(): void {
+    this.authService.currentUser$.subscribe(data => this.currentUser = data)
+  }
 
   cambiaSezione(sezioneDaCambiare :boolean){
     if(sezioneDaCambiare == this.sezioneLink){
@@ -66,7 +72,7 @@ export class AggiungiAnimaComponent {
     const  link = this.linkForm.value.link
 
     this.caricamento = true
-    const up = this.firestoreService.uploadLink(this.idLuogo,this.iObiettivo,titolo,link)
+    const up = this.firestoreService.uploadLink(this.idLuogo,this.iObiettivo,titolo,link,this.currentUser.uid)
     await up
     this.caricamento = false;
     this.completato = true;
@@ -77,7 +83,7 @@ export class AggiungiAnimaComponent {
     let imm = this.immForm.value.imm;
 
     this.caricamento = true;
-    const up = this.firestoreService.uploadImm(this.idLuogo,this.iObiettivo,imm)
+    const up = this.firestoreService.uploadImm(this.idLuogo,this.iObiettivo,imm,this.currentUser.uid)
     await up
     this.caricamento = false;
     this.completato = true;

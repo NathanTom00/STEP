@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Observable, concatMap, forkJoin, switchMap, toArray } from 'rxjs';
+import { Observable, concatMap, forkJoin, map, switchMap, toArray } from 'rxjs';
 import { CercaMappaComponent } from 'src/app/dialogs/cerca-mappa/cerca-mappa.component';
 import { CercaTagsComponent } from 'src/app/dialogs/cerca-tags/cerca-tags.component';
 import { FirestoreService } from 'src/app/servizi/firestore.service';
@@ -32,7 +32,19 @@ export class CercaComponent implements OnInit {
 
   ngOnInit(): void {
     this.luoghiLimitati$ = this.firestoreService.getLuoghiLimitato();
-    this.luoghi_all$ = this.firestoreService.getLuoghi()
+
+    //devo convertire tutte le emozioni dei luoghi senza idCreatore, ovvero se un emozione letto nel db è un oggetto 
+    //(verifichiamo che esiste emozione['idCreatore']) prendo emozione['emozione']
+    this.luoghi_all$ = this.firestoreService.getLuoghi().pipe(map((luoghi : any) =>{
+      for(let luogo of luoghi){
+        luogo['emozioni'] = luogo['emozioni'].map((emozione : any ) => {
+          if(emozione['idCreatore'])
+            return emozione['emozione']
+          return emozione
+        })
+      }
+      return luoghi
+    }))
   }
 
   toCap(stringa: string) {

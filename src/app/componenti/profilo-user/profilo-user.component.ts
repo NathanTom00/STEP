@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserProfile } from 'firebase/auth';
 import { Observable } from 'rxjs';
@@ -12,12 +12,13 @@ import { UserService } from 'src/app/servizi/user.service';
   templateUrl: './profilo-user.component.html',
   styleUrls: ['./profilo-user.component.css'],
 })
-export class ProfiloUserComponent {
+export class ProfiloUserComponent implements OnInit {
   /**
    * Le sezioni possono essere challenge,badge e cronologia
    */
   sezioneLink = 'challenge';
   currentUser$: Observable<ProfileUser | null>;
+  luoghi : any;
   taskDaFare: any;
 
   constructor(
@@ -28,6 +29,10 @@ export class ProfiloUserComponent {
     private activatedRoute: ActivatedRoute
   ) {
     this.currentUser$ = userService.currentUserProfile$;
+  }
+
+  ngOnInit(): void {
+    this.firestoreService.getLuoghi().subscribe( data => this.luoghi = data )
   }
 
   goToModifica() {

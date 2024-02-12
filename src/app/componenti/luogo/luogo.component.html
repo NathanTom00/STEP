@@ -119,9 +119,13 @@
             <div class="emozioni-container">
                 <mat-chip matRipple (click)="aggiungiEmozione(luogo.id)" class="chip aggiungi-button"
                     *ngIf="authService.currentUser$ | async">Aggiungi</mat-chip>
+                
+                <!--TODO: se idCreatore===uid allora posso rimuoverlo-->
                 <mat-chip disabled class="chip" *ngFor="let emozione of luogo.emozioni">
-
-                    {{toCap(emozione)}}
+                    <ng-container *ngIf="!emozione['idCreatore']">{{toCap(emozione)}}</ng-container>
+                    <ng-container *ngIf="emozione['idCreatore']">
+                        {{toCap(emozione['emozione'])}}
+                    </ng-container>
 
                 </mat-chip>
 

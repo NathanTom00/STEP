@@ -85,9 +85,20 @@ export class HomeComponent implements OnInit {
     this.subscribeLuoghi = this.firestoreService
       .getLuoghi()
       .subscribe((data: any) => {
-        this.tutti_luoghi = data;
+        //devo convertire tutte le emozioni in array di string (ovvero senza il loro idCreatore)
+        this.tutti_luoghi  = data.map((luogo: any) => {
+
+          let arrEmozioniString =luogo['emozioni'].map((emozione: any) => {
+            if (emozione['idCreatore']) return emozione['emozione'];
+            return emozione;
+          });
+
+          luogo['emozioni'] = arrEmozioniString
+          return luogo
+        });
+
         let arr_luoghi_no_evidenza: any[] = [];
-        for (let luogo of data) {
+        for (let luogo of this.tutti_luoghi) {
           if (luogo.id === 'rvAQISEhM3dUZ0jJFqUU')
             //per adesso forzo villa lante
             this.luogo_evidenza = luogo;
@@ -107,11 +118,6 @@ export class HomeComponent implements OnInit {
         }
 
         this.caricamento = false;
-
-        //console.log(this.commenti)
-
-        //console.log(this.luoghi_scopri)
-        //console.log(this.luogo_evidenza)
       });
   }
 
@@ -140,11 +146,11 @@ export class HomeComponent implements OnInit {
     }
 
     this.emozioneSelezionato = emozione;
-    /** Aggiungo l'emozione in emozioni_cercati dello user */ 
-    this.authService.currentUser$.subscribe((user:any) => {
-      if(!user ) return
-      this.userService.aggiungiEmozione(user, [this.emozioneSelezionato])
-    })
+    /** Aggiungo l'emozione in emozioni_cercati dello user */
+    this.authService.currentUser$.subscribe((user: any) => {
+      if (!user) return;
+      this.userService.aggiungiEmozione(user, [this.emozioneSelezionato]);
+    });
 
     /** Cerco i luoghi che hanno l'emozione selezionato */
     this.luoghiByEmozione = [];

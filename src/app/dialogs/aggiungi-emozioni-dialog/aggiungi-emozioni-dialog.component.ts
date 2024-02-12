@@ -70,9 +70,11 @@ export class AggiungiEmozioniDialogComponent implements OnInit{
     this.authService.currentUser$.subscribe((user:any) => {
       if(!user ) return
       this.userService.incrementaEmozioniAggiunti(user,this.emozioniSelezionati.length)
+
+      this.firestoreService.aggiungiEmozioni(this.idLuogo,this.emozioniSelezionati, user.uid)
     })
 
-    this.firestoreService.aggiungiEmozioni(this.idLuogo,this.emozioniSelezionati)
+    
 
     this.nuoveAggiunte.emit(this.emozioniSelezionati);
     this.dialogRef.close()

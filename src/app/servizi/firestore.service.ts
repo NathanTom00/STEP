@@ -44,18 +44,23 @@ export class FirestoreService {
   }
 
 
-  aggiungiEmozioni(idLuogo: string, emozioni: string[]) {
+  aggiungiEmozioni(idLuogo: string, emozioni: string[], idCreatore : string) {
+    let emozioniConCreatore : any[] = []
+    for(let emozione of emozioni){
+      emozioniConCreatore.push( {emozione, idCreatore})
+    }
+
     const refCollection = collection(this.firestore, 'luogo');
 
     const emozioniRef = doc(this.firestore, 'luogo', idLuogo);
 
-    updateDoc(emozioniRef, { emozioni: arrayUnion(...emozioni) });
+    updateDoc(emozioniRef, { emozioni: arrayUnion(...emozioniConCreatore) });
   }
 
-  async uploadImm(idLuogo: string, iObiettivo: string, file: File) {
+  async uploadImm(idLuogo: string, iObiettivo: string, file: File, idCreatore : string) {
     if (!file) return;
 
-    const storageRef = ref(this.storage, '/animalocus_imm/'+file.name);
+    const storageRef = ref(this.storage, '/animalocus_imm/'+Date.now()+file.name);
     let uploadTask = uploadBytesResumable(storageRef, file);
     await uploadTask;
     
@@ -67,18 +72,18 @@ export class FirestoreService {
     const documento = (await getDoc(doc(this.firestore, 'luogo', idLuogo))).data()
     
     const obiettivi = documento!['obiettivi']
-    obiettivi[iObiettivo].container.push({tipo: 'imm',link : immURL})
+    obiettivi[iObiettivo].container.push({tipo: 'imm',link : immURL,idCreatore: idCreatore})
     //console.log(obiettivi)
     updateDoc(luogoRef, { obiettivi: obiettivi});
   }
 
-  async uploadLink(idLuogo: string, iObiettivo: string,titolo:string,link:string){
+  async uploadLink(idLuogo: string, iObiettivo: string,titolo:string,link:string, idCreatore : string){
     const refCollection = collection(this.firestore, 'luogo');
     const luogoRef = doc(this.firestore, 'luogo', idLuogo);
     const documento = (await getDoc(doc(this.firestore, 'luogo', idLuogo))).data()
     
     const obiettivi = documento!['obiettivi']
-    obiettivi[iObiettivo].container.push({tipo: 'link',titolo : titolo,link: link})
+    obiettivi[iObiettivo].container.push({tipo: 'link',titolo : titolo,link: link,idCreatore:idCreatore})
     //console.log(obiettivi)
     updateDoc(luogoRef, { obiettivi: obiettivi});
   }

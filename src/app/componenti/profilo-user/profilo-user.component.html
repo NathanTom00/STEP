@@ -13,6 +13,7 @@
                 <button class=" scegli-button "  (click)="cambiaSezione('challenge')" [ngClass]="{'selected' : sezioneLink==='challenge'}">Challenge</button>
                 <button class=" scegli-button "  (click)="cambiaSezione('badge')" [ngClass]="{'selected' : sezioneLink==='badge'}">Badge</button>
                 <button class=" scegli-button "  (click)="cambiaSezione('cronologia')" [ngClass]="{'selected' : sezioneLink==='cronologia'}">Cronologia</button>
+                <button class=" scegli-button "  (click)="cambiaSezione('myStep')" [ngClass]="{'selected' : sezioneLink==='myStep'}">MyStep</button>
                 
             </div>
         </div>
@@ -49,6 +50,14 @@
                         <p class="testo-task">{{task.descrizione}}</p>
                     
                     </div>
+                </div>
+            </div>
+
+            <div class="content-container" *ngIf="sezioneLink==='myStep'">
+                <h3 class="count-challenge">I tuoi contributi STEP</h3>
+                <h3 class="count-challenge">Constributi Anima Locus</h3>
+                <div class="anima-container">
+                    
                 </div>
             </div>
 

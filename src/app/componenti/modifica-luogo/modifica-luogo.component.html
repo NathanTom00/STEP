@@ -70,9 +70,16 @@
         </h4>
         <div class="emozioni-container">
             <ng-container *ngFor="let emozione of luogoModificato['emozioni']">
-                <mat-chip class="chip" (click)="rimuoviEmozione(emozione)"> <span
-                        class="elimina-emozione">{{toCap(emozione)}} <mat-icon class="close-icon"
-                            fontIcon="close"></mat-icon></span> </mat-chip>
+                <mat-chip class="chip" (click)="rimuoviEmozione(emozione)"> 
+                    <span class="elimina-emozione">
+                        
+                        <ng-container *ngIf="!emozione['idCreatore']">{{toCap(emozione)}}</ng-container>
+                        <ng-container *ngIf="emozione['idCreatore']">
+                            {{toCap(emozione['emozione'])}}
+                        </ng-container>
+                        <mat-icon class="close-icon" fontIcon="close"></mat-icon>
+                    </span> 
+                </mat-chip>
             </ng-container>
 
         </div>

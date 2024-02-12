@@ -51,7 +51,10 @@
             <div class="emozioni-container">
                 <mat-chip disabled class="chip" *ngFor="let emozione of luogo.emozioni">
 
-                    {{toCap(emozione)}}
+                    <ng-container *ngIf="!emozione['idCreatore']">{{toCap(emozione)}}</ng-container>
+                    <ng-container *ngIf="emozione['idCreatore']">
+                        {{toCap(emozione['emozione'])}}
+                    </ng-container>
 
                 </mat-chip>
 
