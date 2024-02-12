@@ -177,4 +177,8 @@ export class LuogoComponent implements OnInit, AfterViewChecked{
     this.clipboard.copy(urlNoHash + "#" + fragment)
     this.snackBar.open('Indirizzo URL commento copiato', 'OK');
   }
+
+  eliminaEmozione(emozione : any){
+    this.firestoreService.eliminaEmozione(this.idLuogo!,emozione)
+  }
 }

@@ -160,4 +160,16 @@ export class FirestoreService {
 
     updateDoc(luogoRef, documento!);
   }
+
+
+  async eliminaEmozione(idLuogo : string, emozione : any){
+
+    const refCollection = collection(this.firestore, 'luogo');
+    const luogoRef = doc(this.firestore, 'luogo', idLuogo);
+    const documento = (await getDoc(doc(this.firestore, 'luogo', idLuogo))).data()
+
+    documento!['emozioni'] = documento!['emozioni'].filter(((emozioneLuogo : any) =>  JSON.stringify(emozioneLuogo) !== JSON.stringify(emozione)))
+
+    updateDoc(luogoRef, documento!);
+  }
 }

@@ -89,12 +89,24 @@
 
 
                 <h3 class="count-challenge">Emozioni Aggiunte</h3>
-                <div class="emozioni-container">
+                <div class="emozioni-container" *ngIf="emozioniAggiunti.length != 0">
                     <ng-container *ngFor="let emozioneAggiunta of emozioniAggiunti ">
                         <button class="emozione" matBadge="{{emozioneAggiunta.luoghi.length}}" (click)="displayLuoghi(emozioneAggiunta)">
                             {{toCap(emozioneAggiunta.nomeEmozione)}}
                         </button>
                     </ng-container>
+                    
+                </div>
+                <div class="empty-state-container" *ngIf="emozioniAggiunti.length == 0">
+                    <p class="p-empty">Non hai ancora aggiunto nessuna emozione</p>
+                </div>
+
+
+                <div class="count-challenge">
+                    Commenti Aggiunti
+                </div>
+                <div class="comment-container">
+                    
                 </div>
             </div>
 

@@ -121,13 +121,33 @@
                     *ngIf="authService.currentUser$ | async">Aggiungi</mat-chip>
                 
                 <!--TODO: se idCreatore===uid allora posso rimuoverlo-->
-                <mat-chip disabled class="chip" *ngFor="let emozione of luogo.emozioni">
-                    <ng-container *ngIf="!emozione['idCreatore']">{{toCap(emozione)}}</ng-container>
-                    <ng-container *ngIf="emozione['idCreatore']">
-                        {{toCap(emozione['emozione'])}}
-                    </ng-container>
+                
 
-                </mat-chip>
+                <ng-container *ngFor="let emozione of luogo.emozioni">
+                    
+                        <ng-container *ngIf="!emozione['idCreatore']">
+                            <mat-chip disabled class="chip" >
+                                {{toCap(emozione)}}
+                            </mat-chip>
+                        </ng-container>
+                        
+                        <ng-container *ngIf="emozione['idCreatore'] && emozione['idCreatore'] !== userId">
+                            
+                            <mat-chip disabled class="chip" >
+                                {{toCap(emozione['emozione'])}}
+                            </mat-chip>
+                        </ng-container>
+
+                        <ng-container *ngIf="emozione['idCreatore'] && emozione['idCreatore'] === userId">
+                            
+                            <mat-chip class="chip user-chip" >
+                                <div style="display: flex; align-items: center;" (click)="eliminaEmozione(emozione)">
+                                    {{toCap(emozione['emozione'])}} <mat-icon style="font-size: 16px; height: 16px; width: 16px;">close</mat-icon>
+                                </div>
+                            </mat-chip>
+                        </ng-container>
+    
+                </ng-container>
 
             </div>
         </div>

@@ -221,3 +221,12 @@
     right: 5px;
   }
 }
+
+.empty-state-container{
+  text-align: center;
+}
+
+.p-empty{
+  color: #696969;
+  font-size: medium;
+}
