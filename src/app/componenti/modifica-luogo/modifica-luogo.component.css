@@ -52,19 +52,19 @@
 }
 
 .imm-luogo {
-  aspect-ratio : 1 / 1;
+  aspect-ratio: 1 / 1;
   width: 100%;
   border-radius: 15px;
 }
 
-.preview{
+.preview {
   filter: brightness(50%);
 }
 
-.preview-text{
+.preview-text {
   position: absolute;
   color: white;
-  margin-top: 40px
+  margin-top: 40px;
 }
 
 .input-field {
@@ -218,4 +218,29 @@
 .anima-locus-container {
   display: flex;
   justify-content: space-between;
+}
+
+.info-container {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 15px;
+  border: lightgray 1px solid;
+  /*per mettere il padding senza alterare il width */
+  box-sizing: border-box;
+  -moz-box-sizing: border-box; /* Firefox */
+  -webkit-box-sizing: border-box; /* Safari */
+}
+
+.info-input {
+  margin-bottom: 1rem;
+}
+
+.info-p{
+  margin-bottom: 0.5rem;
+  font-size: medium;
+}
+
+.del-info-container{
+  text-align: center;
+  padding-bottom: 1rem;
 }

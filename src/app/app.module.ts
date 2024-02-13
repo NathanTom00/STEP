@@ -93,6 +93,7 @@ import { AggiungiObiettivoLuogoComponent } from './dialogs/aggiungi-obiettivo-lu
 import { ModificaProfiloUserComponent } from './componenti/modifica-profilo-user/modifica-profilo-user.component';
 import { AggiungiCommentoComponent } from './dialogs/aggiungi-commento/aggiungi-commento.component';
 import { LuoghiFiltroEmozioneComponent } from './dialogs/luoghi-filtro-emozione/luoghi-filtro-emozione.component';
+import { AggiungiInfoComponent } from './dialogs/aggiungi-info/aggiungi-info.component';
 
 
 @NgModule({
@@ -122,6 +123,7 @@ import { LuoghiFiltroEmozioneComponent } from './dialogs/luoghi-filtro-emozione/
     ModificaProfiloUserComponent,
     AggiungiCommentoComponent,
     LuoghiFiltroEmozioneComponent,
+    AggiungiInfoComponent,
     
   ],
   imports: [

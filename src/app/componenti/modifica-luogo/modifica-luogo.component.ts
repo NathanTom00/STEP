@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AggiungiInfoComponent } from 'src/app/dialogs/aggiungi-info/aggiungi-info.component';
 import { AggiungiObiettivoLuogoComponent } from 'src/app/dialogs/aggiungi-obiettivo-luogo/aggiungi-obiettivo-luogo.component';
 import { ModificaObiettivoDialogComponent } from 'src/app/dialogs/modifica-obiettivo-dialog/modifica-obiettivo-dialog.component';
 import { FirestoreService } from 'src/app/servizi/firestore.service';
@@ -123,6 +124,19 @@ export class ModificaLuogoComponent implements OnInit {
         ].filter((value: any, index: number) => index !== iObiettivo);
       }
     });
+  }
+
+  openAggiungiInfo(){
+    let dialogRef = this.dialog.open(AggiungiInfoComponent, {
+      maxWidth: '90vw',
+      width: '90%'
+    });
+
+    dialogRef.componentInstance.submitClicked.subscribe(data => this.luogoModificato['info'].push(data))
+  }
+
+  eliminaInfo(info : any){
+    this.luogoModificato['info'] = this.luogoModificato['info'].filter((el : any) => el !== info) 
   }
 
   annulla() {

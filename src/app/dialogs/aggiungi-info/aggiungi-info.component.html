@@ -1,0 +1,42 @@
+
+
+<div class="container">
+    <div mat-dialog-title class="title" >
+        <h2 class="label-titolo" >Scrivi una recensione</h2><span style="flex: 1 1 auto"></span> <button mat-mini-fab class="menu-button"
+        [mat-dialog-close]="true">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <mat-dialog-content class="mat-typography">
+        
+        <form [formGroup]="aggiungiInfoForm" class="login-form" (ngSubmit)="onSubmit()">
+            
+            <div class="form-field">
+                <p class="titolo-blocco">
+                    Nome Info
+                </p>
+                <input class="input-text" placeholder="Inserisci nome info" type="text" name="nome" formControlName="nome">
+            </div>
+    
+            <div class="form-field">
+                <p class="titolo-blocco">
+                    Link Info
+                </p>
+                <input class="input-text" placeholder="Inserisci link info" type="text" name="link" formControlName="link">
+            </div>
+
+            
+            
+    
+            <button class="button" [ngClass]="{'disabled-button': !aggiungiInfoForm.valid}" type="submit" [disabled]="!aggiungiInfoForm.valid">
+                Aggiungi Info
+            </button>
+
+            
+        </form>
+       
+    </mat-dialog-content>
+
+
+
+</div>

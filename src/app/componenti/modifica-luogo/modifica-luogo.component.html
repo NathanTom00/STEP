@@ -119,8 +119,25 @@
         <h4 class="sub-titolo">
             Info utili
         </h4>
-        <input type="text" class="input-field" [(ngModel)]="luogoModificato['info']"
-            placeholder="{{luogoModificato['info']}}" value="{{luogoModificato['info']}}">
+        <ng-container *ngFor="let info of luogoModificato['info'];index as i">
+            <div class="info-container">
+                <p class="info-p">
+                    Nome Info
+                </p>
+                <input type="text" class="input-field info-input" [(ngModel)]="luogoModificato['info'][i]['nome']"
+                    placeholder="{{luogoModificato['info'][i]['nome']}}" value="{{luogoModificato['info'][i]['nome']}}">
+
+                <p class="info-p">
+                    Link Info
+                </p>
+                <input type="text" class="input-field info-input" style="margin: 0;" [(ngModel)]="luogoModificato['info'][i]['link']"
+                    placeholder="{{luogoModificato['info'][i]['link']}}" value="{{luogoModificato['info'][i]['link']}}">
+            </div>
+            <div class="del-info-container">
+                <mat-icon fontIcon="delete" style="margin-top: 0.5rem; font-size: 28px; width: 28px; height: 28px;" (click)="eliminaInfo(info)"></mat-icon>
+            </div>
+        </ng-container>
+        <button class="button" matRipple style="width: 100%;" (click)="openAggiungiInfo()">Aggiungi Info</button>
     </div>
 
     <div class="sezione action-container">
