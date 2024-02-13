@@ -205,13 +205,41 @@ mat-card-title {
   white-space: initial;
 }
 
-.tipo-button{
+.tipo-button {
   border: none;
   background-color: transparent;
   width: 70px;
   border-radius: 15px;
 }
 
-.tipo-elemento{
+.header-comment {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-inline: 1rem;
+}
+
+.tipo-elemento {
   justify-content: center;
+}
+
+.filtro-commento-button {
+  display: flex;
+  align-items: center;
+  width: 100px;
+  justify-content: space-between;
+}
+
+.label-commento {
+  font-size: medium;
+}
+
+.empty-container {
+  text-align: center;
+  padding-inline: 1rem;
+}
+
+.p-empty {
+  color: #696969;
+  font-size: medium;
 }

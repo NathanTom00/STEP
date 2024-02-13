@@ -19,12 +19,17 @@ export class DashboardComponent implements OnInit {
   luoghiAdmin: any[] = [];
   idLuogoSelezionato: string = '';
   luogoSelezionato: any;
-  commentiPositivi: any[] = [];
-  commentiNegativi: any[] = [];
+  commentiPositivi: any[] = []; //commenti positivi di una fonte
+  commentiNegativi: any[] = []; //commenti negativi di una fonte
+  commentiTuttiPositivi : any = [] //commenti positivi sia di trip che di step
+  commentiTuttiNegativi : any = [] //commenti negativi sia di trip che di step
   commentiRecenti: any[] = [];
+  commentiTutti: any[] =[]
   annoSelezionato: number = 2023;
   fonte: string = 'tripadvisor';
   srcTipoDaCambiare = 'assets/Icons/tripadvisor-icon.svg';
+  labelFiltroCommenti : string = 'Recenti'
+  commentiFiltro : any[] = []
   grafico!: Chart;
 
   constructor(
@@ -54,17 +59,21 @@ export class DashboardComponent implements OnInit {
         this.luoghiAdmin = data;
         this.idLuogoSelezionato = data[0].id;
         this.selezionaLuogo(this.idLuogoSelezionato);
+        
       });
   }
 
   selezionaLuogo(idLuogo: string) {
     this.idLuogoSelezionato = idLuogo;
-    this.annoSelezionato = 2023;
+    
 
     //ripulisco i commenti negativi, positivi e commenti recenti
     this.commentiPositivi = [];
     this.commentiNegativi = [];
     this.commentiRecenti = [];
+    this.commentiTutti = []
+    this.commentiTuttiPositivi = [] 
+    this.commentiTuttiNegativi  = []
     for (let luogo of this.luoghiAdmin) {
       if (this.idLuogoSelezionato === luogo.id) this.luogoSelezionato = luogo;
     }
@@ -83,7 +92,13 @@ export class DashboardComponent implements OnInit {
       commentiConNomeLuogo['luogo'] = this.luogoSelezionato['nome'];
       this.commentiRecenti.push(commentiConNomeLuogo);
 
-      //se la fonte è diversa faccio lo ignoro
+      if (this.luogoSelezionato.commenti[i]['recensione'] > 3) {
+        this.commentiTuttiPositivi.push(this.luogoSelezionato.commenti[i]);
+      } else {
+        this.commentiTuttiNegativi.push(this.luogoSelezionato.commenti[i]);
+      }
+
+      //se la fonte è diversa lo ignoro per il grafico
       if (this.luogoSelezionato['commenti'][i]['fonte'] !== this.fonte)
         continue;
 
@@ -94,26 +109,35 @@ export class DashboardComponent implements OnInit {
       }
     }
 
-    //riordino i commenti recenti prima per anno e poi per mese
-    this.commentiRecenti.sort((commentoA: any, commentoB: any) => {
-      //se a ha l'anno più grande allora ritorno -1 (più recente commentoA)
-      if (commentoA['anno'] > commentoB['anno']) return -1;
-      //se b ha l'anno più gerande allora ritorno 1 (più recente commentoB)
-      if (commentoA['anno'] < commentoB['anno']) return 1;
-
-      //se stiamo in questo caso allora hanno anni uguali, dobbiamo confrontare i mesi
-      if (commentoA['mese'] > commentoB['mese']) return -1;
-      if (commentoA['mese'] > commentoB['mese']) return 1;
-
-      //se stiamo in questo caso vuol dire che hanno anno e mese uguali
-      return 0;
-    });
+    //ordino i commenti by data
+    this.commentiRecenti.sort(this.sorter);
+    this.commentiPositivi.sort(this.sorter);
+    this.commentiNegativi.sort(this.sorter);
+    this.commentiTuttiPositivi.sort(this.sorter);
+    this.commentiTuttiNegativi.sort(this.sorter);
+    this.commentiTutti = this.commentiRecenti
 
     //se i commenti sono più di 5 allora devo eliminare
     if (this.commentiRecenti.length > 5)
       this.commentiRecenti = this.commentiRecenti.slice(0, 5);
 
+      this.filtraCommenti('recenti')
     this.creaGrafico();
+  }
+
+  sorter(commentoA: any, commentoB: any) {
+    //riordino i commenti prima per anno e poi per mese
+    //se a ha l'anno più grande allora ritorno -1 (più recente commentoA)
+    if (commentoA['anno'] > commentoB['anno']) return -1;
+    //se b ha l'anno più gerande allora ritorno 1 (più recente commentoB)
+    if (commentoA['anno'] < commentoB['anno']) return 1;
+
+    //se stiamo in questo caso allora hanno anni uguali, dobbiamo confrontare i mesi
+    if (commentoA['mese'] > commentoB['mese']) return -1;
+    if (commentoA['mese'] > commentoB['mese']) return 1;
+
+    //se stiamo in questo caso vuol dire che hanno anno e mese uguali
+    return 0;
   }
 
   creaGrafico() {
@@ -213,5 +237,21 @@ export class DashboardComponent implements OnInit {
     this.srcTipoDaCambiare = src;
     this.fonte = fonteDaCambiare;
     this.selezionaLuogo(this.idLuogoSelezionato);
+  }
+
+  filtraCommenti(tipo : string){
+    this.labelFiltroCommenti = tipo[0].toUpperCase() + tipo.substring(1)
+    if(tipo === "recenti"){
+      this.commentiFiltro = this.commentiRecenti
+    }
+    if(tipo === "tutti"){
+      this.commentiFiltro = this.commentiTutti
+    }
+    if(tipo === "negativi"){
+      this.commentiFiltro = this.commentiTuttiNegativi
+    }
+    if(tipo === "positivi"){
+      this.commentiFiltro = this.commentiTuttiPositivi
+    }
   }
 }

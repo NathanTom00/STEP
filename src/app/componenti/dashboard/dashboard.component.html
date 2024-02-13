@@ -40,10 +40,16 @@
                     Commenti
                 </h3>
 
-                <button class="tipo-button" matRipple [matMenuTriggerFor]="menu"><svg-icon [svgStyle]="{ 'width.px':30 }" src="{{srcTipoDaCambiare}}"></svg-icon> <mat-icon style="margin-left: 4px;">expand_more</mat-icon></button>
-                <mat-menu #menu="matMenu" >
-                    <button mat-menu-item class="tipo-elemento" (click)="cambiaTipoCommento('tripadvisor','assets/Icons/tripadvisor-icon.svg')"><svg-icon [svgStyle]="{ 'width.px':30 }" src="assets/Icons/tripadvisor-icon.svg"></svg-icon></button>
-                    <button mat-menu-item class="tipo-elemento" (click)="cambiaTipoCommento('step','assets/Icons/STEP_icon.svg')"><svg-icon [svgStyle]="{ 'width.px':30 }" src="assets/Icons/STEP_icon.svg"></svg-icon></button>
+                <button class="tipo-button" matRipple [matMenuTriggerFor]="menu"><svg-icon
+                        [svgStyle]="{ 'width.px':30 }" src="{{srcTipoDaCambiare}}"></svg-icon> <mat-icon
+                        style="margin-left: 4px;">expand_more</mat-icon></button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item class="tipo-elemento"
+                        (click)="cambiaTipoCommento('tripadvisor','assets/Icons/tripadvisor-icon.svg')"><svg-icon
+                            [svgStyle]="{ 'width.px':30 }" src="assets/Icons/tripadvisor-icon.svg"></svg-icon></button>
+                    <button mat-menu-item class="tipo-elemento"
+                        (click)="cambiaTipoCommento('step','assets/Icons/STEP_icon.svg')"><svg-icon
+                            [svgStyle]="{ 'width.px':30 }" src="assets/Icons/STEP_icon.svg"></svg-icon></button>
                 </mat-menu>
             </div>
             <div class="graph-content">
@@ -80,11 +86,37 @@
     </div>
 
     <div class="sezione">
-        <h3 class="titolo-blocco">
-            Recensioni recenti
-        </h3>
-        <div class="comment-container" *ngIf="commentiRecenti">
-            <ng-container *ngFor="let commento of commentiRecenti">
+        <div class="header-comment">
+            <h3 class="titolo-blocco" style="padding-inline: 0">
+                Recensioni recenti
+            </h3>
+            <button class="tipo-button filtro-commento-button" matRipple [matMenuTriggerFor]="menuRecensioni">
+                <span class="label-commento">
+
+                    {{labelFiltroCommenti}}
+                </span>
+                <mat-icon
+                    style="margin-left: 4px;">expand_more
+                </mat-icon>
+            </button>
+            <mat-menu #menuRecensioni="matMenu">
+                <button mat-menu-item class="tipo-elemento" (click)="filtraCommenti('recenti')">
+                    Recenti
+                </button>
+                <button mat-menu-item class="tipo-elemento" (click)="filtraCommenti('tutti')">
+                    Tutti
+                </button>
+                <button mat-menu-item class="tipo-elemento" (click)="filtraCommenti('negativi')">
+                    Negativi
+                </button>
+                <button mat-menu-item class="tipo-elemento" (click)="filtraCommenti('positivi')">
+                    Positivi
+                </button>
+            </mat-menu>
+        </div>
+
+        <div class="comment-container" *ngIf="commentiFiltro">
+            <ng-container *ngFor="let commento of commentiFiltro">
                 <div class="comment">
                     <div class="comment-header">
                         <div class="stars">
@@ -92,8 +124,10 @@
                                 [rating]="commento.recensione"></star-rating>
                         </div>
 
-                        <svg-icon [svgStyle]="{ 'width.px':30 }" *ngIf="commento.fonte === 'tripadvisor' " src="assets/Icons/tripadvisor-icon.svg"></svg-icon>
-                        <svg-icon [svgStyle]="{ 'width.px':30 }" *ngIf="commento.fonte === 'step' " src="assets/Icons/STEP_icon.svg"></svg-icon>
+                        <svg-icon [svgStyle]="{ 'width.px':30 }" *ngIf="commento.fonte === 'tripadvisor' "
+                            src="assets/Icons/tripadvisor-icon.svg"></svg-icon>
+                        <svg-icon [svgStyle]="{ 'width.px':30 }" *ngIf="commento.fonte === 'step' "
+                            src="assets/Icons/STEP_icon.svg"></svg-icon>
                     </div>
                     <div class="commment-content">
                         <p class="comment-title">{{commento.titolo}}</p>
@@ -106,6 +140,11 @@
                     </div>
                 </div>
             </ng-container>
+        </div>
+        <div class="empty-container" *ngIf="commentiFiltro.length == 0">
+            <p class="p-empty">
+                Ancora nessuna recensione per questo filtro
+            </p>
         </div>
 
     </div>
