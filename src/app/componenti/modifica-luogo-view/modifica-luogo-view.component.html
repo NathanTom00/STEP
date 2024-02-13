@@ -38,10 +38,15 @@
                 {{luogo.descrizione}}
             </p>
         </div>
-        <div class="sezione" *ngIf="luogo.info !== '' && luogo.info">
+        <div class="sezione" *ngIf="luogo.info.length != 0">
             <div class="titolo-container">
                 <h4 class=" sottosezione">Info Utili</h4>
-                <button class="link-utile" (click)="navigaLink(luogo.info)"><svg-icon src="assets/Icons/exit_to_app.svg"></svg-icon>  {{luogo.info}}</button>
+                <ng-container *ngFor="let info of luogo.info">
+                    <div>
+                        <button class="link-utile" (click)="navigaLink(info['link'])"><svg-icon src="assets/Icons/exit_to_app.svg"></svg-icon>  {{info['nome']}}</button>
+                    </div>
+            
+                </ng-container>
             </div>
         </div>
         <div class="sezione">
