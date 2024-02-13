@@ -100,14 +100,14 @@
                             </p>
                         </div>
                         <div class="comment-footer">
-                            <p class="comment-location">{{commento.luogo}}</p>
+                            <p class="comment-location">{{commento.nomeUser}}</p>
                         </div>
                     </div>
                 </ng-container>
             </div>
 
             <div class="aggiungi-button-container">
-                <button class="button" *ngIf="authService.currentUser$ | async" matRipple (click)="apriCommentoDialog(luogo.id)">Aggiungi Commento</button>
+                <button class="button" *ngIf="authService.currentUser$ | async" matRipple (click)="apriCommentoDialog(luogo.id)">Scrivi Recensione</button>
             </div>
         </div>
 

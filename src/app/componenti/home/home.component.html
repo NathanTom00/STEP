@@ -118,8 +118,8 @@
                                         [rating]="commento.recensione"></star-rating>
                                 </div>
     
-                                <svg-icon [svgStyle]="{ 'width.px':30 }"
-                                    src="assets/Icons/tripadvisor-icon.svg"></svg-icon>
+                                <svg-icon [svgStyle]="{ 'width.px':30 }" src="assets/Icons/tripadvisor-icon.svg" *ngIf="commento.fonte === 'tripadvisor'"></svg-icon>
+                                <svg-icon [svgStyle]="{ 'width.px':30 }" src="assets/Icons/STEP_icon.svg" *ngIf="commento.fonte === 'step'"></svg-icon>
                             </div>
                             <div class="commment-content">
                                 <p class="comment-title">{{commento.titolo}}</p>
@@ -129,6 +129,7 @@
                             </div>
                             <div class="comment-footer">
                                 <p class="comment-location">{{commento.luogo}}</p>
+                                <p class="comment-location">{{commento.nomeUser}}</p>
                             </div>
                         </div>
                     </ng-template>

@@ -183,7 +183,7 @@ mat-card-title {
 
 .comment-footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;;
 }
 
 .comment-title {

@@ -42,7 +42,11 @@ export class AggiungiEmozioniDialogComponent implements OnInit{
 
       for(let emozione of arrEmozioni){
         //console.log(emozione,luogoSelezionato.emozioni)
-        if(!luogoSelezionato.emozioni.includes(emozione))
+        if(!luogoSelezionato.emozioni.map((emozioneLuogo : any) =>{
+          if(!emozioneLuogo['idCreatore'])
+            return emozioneLuogo
+          return emozioneLuogo['emozione']
+        }).includes(emozione))
             this.emozioniNotInLuogo.push(emozione)
       }
     })

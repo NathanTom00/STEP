@@ -18,6 +18,7 @@ export class AggiungiCommentoComponent implements OnInit{
   })
 
   userID !: string
+  userName !: string
   idLuogo !: string
   constructor(private userService : UserService, private firestoreService : FirestoreService,  public dialogRef: MatDialogRef<AggiungiCommentoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any){
@@ -25,7 +26,7 @@ export class AggiungiCommentoComponent implements OnInit{
     }
 
   ngOnInit(): void {
-    this.userService.currentUserProfile$.subscribe((user:any) => this.userID = user.uid)
+    this.userService.currentUserProfile$.subscribe((user:any) => {this.userID = user.uid; this.userName = user.nome})
   }
   
   
@@ -39,6 +40,7 @@ export class AggiungiCommentoComponent implements OnInit{
     nuovoCommentoSTEP['idCreatore'] = this.userID
     nuovoCommentoSTEP['fonte'] = 'step'
     nuovoCommentoSTEP['data'] = Date.now()
+    nuovoCommentoSTEP['nomeUser'] = this.userName
     this.firestoreService.aggiungiCommentoLuogo(nuovoCommentoSTEP, this.idLuogo)
 
     this.dialogRef.close()
